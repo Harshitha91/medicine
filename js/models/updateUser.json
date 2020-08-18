@@ -1,0 +1,43 @@
+{
+    "name": "updateUser",
+    "label": "Update User",
+    "fields": {
+      "Country": {
+        "name": "Country",
+        "label": "Country",
+        "type": "country"
+      },
+      "phoneNumber": {
+        "name": "phoneNumber",
+        "label": "Mobile No",
+        "type": "phoneNumber"
+      },
+      "email": {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "editable": false
+      },
+      "userName": {
+        "name": "userName",
+        "label": "Username",
+        "type": "string"
+      },
+      "fullName": {
+        "name": "fullName",
+        "label": "Full Name",
+        "type": "string"
+      },
+      "userStatus": {
+        "name": "userStatus",
+        "label": "User Status",
+        "type": "string",
+        "editable": false
+      },
+      "imageData": {
+        "name": "imageData",
+        "label": "Image Data",
+        "type": "Image"
+      }
+    }
+  }

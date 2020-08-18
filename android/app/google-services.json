@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "971702559548",
+    "firebase_url": "https://report-connect-solve.firebaseio.com",
+    "project_id": "report-connect-solve",
+    "storage_bucket": "report-connect-solve.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971702559548:android:d5d8c23f2cba5f68",
+        "android_client_info": {
+          "package_name": "com.complainerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBDNSkJDuXN6AdVr7alSJgCrm1YKBg1M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "971702559548-3sev1catsb8hlpugahrnf1ifjqm0ifer.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esshva.SdsComplainer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971702559548:android:973ca0d41540b71a0df439",
+        "android_client_info": {
+          "package_name": "com.medicine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBDNSkJDuXN6AdVr7alSJgCrm1YKBg1M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "971702559548-3sev1catsb8hlpugahrnf1ifjqm0ifer.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esshva.SdsComplainer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971702559548:android:b16f0c0ec19240bc0df439",
+        "android_client_info": {
+          "package_name": "com.sds_rcsadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBDNSkJDuXN6AdVr7alSJgCrm1YKBg1M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "971702559548-3sev1catsb8hlpugahrnf1ifjqm0ifer.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esshva.SdsComplainer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971702559548:android:5b4ce809897f3b260df439",
+        "android_client_info": {
+          "package_name": "com.sds_rcscomplainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBDNSkJDuXN6AdVr7alSJgCrm1YKBg1M4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971702559548-u2na9b0t7t4udqce445vj6h117r3oa4h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "971702559548-3sev1catsb8hlpugahrnf1ifjqm0ifer.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.esshva.SdsComplainer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

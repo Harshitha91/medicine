@@ -1,0 +1,56 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+# add pods for desired Firebase products
+# https://firebase.google.com/docs/ios/setup#available-pods
+
+# Required by RNFirebase
+pod 'Firebase/Core', '~> 6.3.0'
+
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+
+# Add the pods for any other Firebase products you want to use in your app
+# For example, to use Firebase Authentication and Cloud Firestore
+# pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'Firebase/Messaging'
+
+target 'ComplainManagement' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ComplainManagement
+
+  # target 'ComplainManagement-tvOSTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
+
+  # pod 'RNIap', :path => '../node_modules/react-native-iap'
+
+# pod 'react-native-uuid-generator', :path => '../node_modules/react-native-uuid-generator'
+
+# pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
+
+pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+#  target 'ComplainManagementTests' do
+#    inherit! :search_paths
+#    # Pods for testing
+#  end
+
+end
+
+# target 'ComplainManagement-tvOS' do
+#   # Comment the next line if you don't want to use dynamic frameworks
+#   use_frameworks!
+
+#   # Pods for ComplainManagement-tvOS
+
+#   target 'ComplainManagement-tvOSTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
+
+# end

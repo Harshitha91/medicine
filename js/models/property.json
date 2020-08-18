@@ -1,0 +1,81 @@
+{
+  "name": "property",
+  "plural": "properties",
+  "label": "Property",
+  "fields": {
+    "type": {
+      "name": "type",
+      "label": "Type",
+      "type": "enum",
+      "required": true
+    },
+    "createdAt": {
+      "name": "createdAt",
+      "label": "Created At",
+      "type": "timestamp",
+      "editable": false
+    },
+    "updatedAt": {
+      "name": "updatedAt",
+      "label": "Updated At",
+      "type": "timestamp"
+    },
+    "createdBy": {
+      "name": "createdBy",
+      "label": "Created By",
+      "type": "string"
+    },
+    "name": {
+      "name": "name",
+      "label": "Name",
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "name": "address",
+      "label": "Address",
+      "type": "string",
+      "required": true
+    },
+    "country": {
+      "name": "country",
+      "label": "Country",
+      "type": "searchablePicker",
+      "required": true
+    },
+    "description": {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "required": true
+    },
+    "businessType": {
+      "name": "businessType",
+      "label": "Business Type",
+      "type": "string",
+      "required": true
+    },
+    "complainTypes": {
+      "name": "complainTypes",
+      "label": "Complain Types",
+      "type": "array",
+      "required": true
+    },
+    "postalCode": {
+      "name": "postalCode",
+      "label": "Postal Code",
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "name": "logo",
+      "label": "Logo",
+      "type": "string"
+    },
+    "imageData": {
+      "name": "imageData",
+      "label": "Image Data",
+      "type": "Image"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+    "name": "signUp",
+    "label": "Sign up",
+    "fields": {
+      "id": {
+        "name": "id",
+        "label": "ID",
+        "type": "number",
+        "length": [
+          3,
+          50
+        ],
+        "required": true,
+        "editable": false,
+        "system": true
+      },
+      "createdAt": {
+        "name": "createdAt",
+        "label": "Created At",
+        "type": "timestamp",
+        "editable": false
+      },
+      "updatedAt": {
+        "name": "updatedAt",
+        "label": "Updated At",
+        "type": "timestamp"
+      },
+      "Country": {
+        "name": "Country",
+        "label": "Country",
+        "type": "country",
+        "required": true
+      },
+      "PhoneNumber": {
+        "name": "PhoneNumber",
+        "label": "Mobile No",
+        "type": "phoneNumber",
+        "required": true
+      },
+      "Email": {
+        "name": "Email",
+        "label": "Email",
+        "type": "email",
+        "required": true
+      },
+      "Username": {
+        "name": "Username",
+        "label": "Username",
+        "type": "string",
+        "required": true
+      },
+      "Fullname": {
+        "name": "Fullname",
+        "label": "Full Name",
+        "type": "string",
+        "required": true
+      },
+      "Password": {
+        "name": "Password",
+        "label": "Password",
+        "type": "password",
+        "required": true
+      },
+      "ConfirmPassword": {
+        "name": "ConfirmPassword",
+        "label": "Confirm Password",
+        "type": "password",
+        "required": true
+      },
+      "RoleName": {
+        "name": "RoleName",
+        "label": "Confirm Password",
+        "type": "password",
+        "required": true
+      }
+    }
+  }

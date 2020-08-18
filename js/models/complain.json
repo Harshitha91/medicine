@@ -1,0 +1,72 @@
+{
+  "name": "complain",
+  "plural": "complains",
+  "label": "Complain",
+  "fields": {
+    "complainsId": {
+      "name": "complainsId",
+      "label": "ID",
+      "type": "number",
+      "length": [
+        3,
+        50
+      ],
+      "required": true,
+      "editable": false,
+      "system": true
+    },
+    "createdAt": {
+      "name": "createdAt",
+      "label": "Created At",
+      "type": "timestamp",
+      "editable": false
+    },
+    "updatedAt": {
+      "name": "updatedAt",
+      "label": "Updated At",
+      "type": "timestamp"
+    },
+    "propertyName": {
+      "name": "propertyName",
+      "label": "Property",
+      "type": "string",
+      "required": true
+    },
+    "Title": {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "name": "userId",
+      "label": "User Id",
+      "type": "string",
+      "required": true
+    },
+    "createdBy": {
+      "name": "createdBy",
+      "label": "Created By",
+      "type": "string",
+      "required": true
+    },
+    "complainTypeId": {
+      "name": "complainTypeId",
+      "label": "Complain Type",
+      "type": "enum",
+      "required": true
+    },
+    "status": {
+      "name": "status",
+      "label": "Change status",
+      "type": "enum",
+      "required": true
+    },
+    "description": {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "required": true
+    }
+  }
+}
