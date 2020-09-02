@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml",
+            "outputFile": "/Users/harshitha/Desktop/other/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml",
             "map": [
                 {
                     "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/jetified-play-services-basement-16.0.1.aar/65fe970d7ad9fccb936e783912db6073/res/values-or/values.xml",

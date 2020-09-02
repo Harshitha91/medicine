@@ -158,8 +158,8 @@ export default class Home extends React.Component {
                 "2020-08-16": [{ name: "item 2 - any js object", height: 80 }],
                 "2020-08-16": [],
                 "2020-08-17": [
-                  { name: "item 3 - any js object" },
-                  { name: "any js object" },
+                  { name: "Panadol", time: "9 PM" },
+                  { name: "Zitracine", time: "10 PM" },
                 ],
               }}
               loadItemsForMonth={(month) => {
@@ -184,21 +184,21 @@ export default class Home extends React.Component {
                           paddingBottom: 2,
                         }}
                       >
-                        9 PM
+                        {item.time}
                       </Text>
 
                       <View style={{ marginLeft: 15 }}>
                         <Text
                           style={{
                             fontWeight: "600",
-                            fontSize: 12,
+                            fontSize: 15,
                             color: "white",
                             paddingBottom: 2,
                           }}
                         >
-                          'Panadol'
+                          {item.name}
                         </Text>
-                        <Text
+                        {/* <Text
                           style={{
                             fontWeight: "600",
                             fontSize: 12,
@@ -216,7 +216,7 @@ export default class Home extends React.Component {
                           }}
                         >
                           'fgdfgdfgfdgfdg'
-                        </Text>
+                        </Text> */}
                       </View>
                     </View>
                   </TouchableOpacity>
@@ -239,7 +239,7 @@ export default class Home extends React.Component {
             />
           )}
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "center",
@@ -257,7 +257,7 @@ export default class Home extends React.Component {
             status="warning"
             containerStyle={{ paddingLeft: 10, marginBottom: 10 }}
           />
-        </View>
+        </View> */}
 
         <Fab onPress={this.addProperty} />
       </View>

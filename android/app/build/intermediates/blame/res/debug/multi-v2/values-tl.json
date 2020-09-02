@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml",
+            "outputFile": "/Users/harshitha/Desktop/other/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml",
             "map": [
                 {
                     "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/jetified-firebase-messaging-18.0.0.aar/68a0fca573c852c1261725bd0d483a84/res/values-tl/values.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "outputFile": "/Users/harshitha/Desktop/other/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
                     "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6310fc68228f18a1eed94ab745e8db2c/res/values-b+sr+Latn/values.xml",

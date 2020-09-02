@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/Users/harshitha/Desktop/other/medicine/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/f78b77069a831ff437a221dd00e6ae16/res/values-v24/values-v24.xml",
