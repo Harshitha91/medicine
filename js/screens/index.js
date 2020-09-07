@@ -5,11 +5,17 @@ import { SignInContainer } from "./Auth/SignIn";
 import { SignUpContainer } from "./Auth/SignUp";
 import { UserProfileContainer } from "./User/UserProfile";
 import { UpdateUserContainer } from "./User/UpdateUser";
-import { UserManagementContainer } from "./User/UserManagement";
+import { SliderContainer } from "./Slider";
 import InAppNotification from "./InAppNotification";
-import { HistoryContainer } from "./History/History";
+import { ScheduleHistoryContainer } from "./Schedule/ScheduleHistory";
 import { HomeContainer } from "./Home";
-import { AddMedicineContainer } from "./Home/AddMedicine";
+import { MedicineListContainer } from "./Medicine/MedicineList";
+import { AddMedicineContainer } from "./Medicine/AddMedicine";
+import { OrderMedicineContainer } from "./Medicine/OrderMedicine";
+import { DoctorAppointmentsListContainer } from "./Doctor/DoctorAppointmentsList";
+import { MakeDoctorAppointmentContainer } from "./Doctor/MakeDoctorAppointment";
+import { LabAppointmentsListContainer } from "./Lab/LabAppointmentsList";
+import { MakeLabAppointmentContainer } from "./Lab/MakeLabAppointment";
 import { LoaderOverlayContainer } from "./LoaderOverlay";
 
 export function registerScreens(store, Provider) {
@@ -50,13 +56,13 @@ export function registerScreens(store, Provider) {
     () => InAppNotification
   );
   Navigation.registerComponent(
-    "History",
+    "ScheduleHistory",
     () => (props) => (
       <Provider store={store}>
-        <HistoryContainer {...props} />
+        <ScheduleHistoryContainer {...props} />
       </Provider>
     ),
-    () => HistoryContainer
+    () => ScheduleHistoryContainer
   );
   Navigation.registerComponent(
     "Home",
@@ -86,13 +92,22 @@ export function registerScreens(store, Provider) {
     () => UpdateUserContainer
   );
   Navigation.registerComponent(
-    "UserManagement",
+    "Slider",
     () => (props) => (
       <Provider store={store}>
-        <UserManagementContainer {...props} />
+        <SliderContainer {...props} />
       </Provider>
     ),
-    () => UserManagementContainer
+    () => SliderContainer
+  );
+  Navigation.registerComponent(
+    "MedicineList",
+    () => (props) => (
+      <Provider store={store}>
+        <MedicineListContainer {...props} />
+      </Provider>
+    ),
+    () => MedicineListContainer
   );
   Navigation.registerComponent(
     "AddMedicine",
@@ -104,6 +119,15 @@ export function registerScreens(store, Provider) {
     () => AddMedicineContainer
   );
   Navigation.registerComponent(
+    "OrderMedicine",
+    () => (props) => (
+      <Provider store={store}>
+        <OrderMedicineContainer {...props} />
+      </Provider>
+    ),
+    () => OrderMedicineContainer
+  );
+  Navigation.registerComponent(
     "LoaderOverlay",
     () => (props) => (
       <Provider store={store}>
@@ -111,5 +135,41 @@ export function registerScreens(store, Provider) {
       </Provider>
     ),
     () => LoaderOverlayContainer
+  );
+  Navigation.registerComponent(
+    "DoctorAppointmentsList",
+    () => (props) => (
+      <Provider store={store}>
+        <DoctorAppointmentsListContainer {...props} />
+      </Provider>
+    ),
+    () => DoctorAppointmentsListContainer
+  );
+  Navigation.registerComponent(
+    "MakeDoctorAppointment",
+    () => (props) => (
+      <Provider store={store}>
+        <MakeDoctorAppointmentContainer {...props} />
+      </Provider>
+    ),
+    () => MakeDoctorAppointmentContainer
+  );
+  Navigation.registerComponent(
+    "LabAppointmentsList",
+    () => (props) => (
+      <Provider store={store}>
+        <LabAppointmentsListContainer {...props} />
+      </Provider>
+    ),
+    () => LabAppointmentsListContainer
+  );
+  Navigation.registerComponent(
+    "MakeLabAppointment",
+    () => (props) => (
+      <Provider store={store}>
+        <MakeLabAppointmentContainer {...props} />
+      </Provider>
+    ),
+    () => MakeLabAppointmentContainer
   );
 }

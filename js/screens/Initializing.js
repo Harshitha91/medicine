@@ -28,7 +28,7 @@ import {
   UNIQUE_SIGNALR_DEVICE_ID,
   HOSTED_ENVIRONMENT,
 } from "constant";
-
+import firebase from "react-native-firebase";
 //style
 import styles from "../styles/ui/initializing/initializing";
 import Buttons from "components/ui/Button";
@@ -54,6 +54,8 @@ export default class Initializing extends Component {
   };
 
   async componentDidMount() {
+    this.checkPermission();
+    this.createNotificationListeners();
     try {
       this.props.handleUserSession(
         this.state.notificationData,
@@ -62,6 +64,89 @@ export default class Initializing extends Component {
     } catch (e) {
       console.log("Error " + e);
     }
+  }
+
+  async checkPermission() {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
+      this.getToken();
+    } else {
+      this.requestPermission();
+    }
+  }
+
+  async getToken() {
+    let fcmToken = await AsyncStorage.getItem("fcmToken");
+    if (!fcmToken) {
+      fcmToken = await firebase.messaging().getToken();
+      if (fcmToken) {
+        // user has a device token
+        await AsyncStorage.setItem("fcmToken", fcmToken);
+      }
+    }
+    let currentDeviceToken = await AsyncStorage.getItem("fcmToken");
+    this.updateUserDeviceToken(currentDeviceToken);
+  }
+
+  //2
+  async requestPermission() {
+    try {
+      await firebase.messaging().requestPermission();
+      // User has authorised
+      this.getToken();
+    } catch (error) {
+      // User has rejected permissions
+      console.log("permission rejected");
+    }
+  }
+
+  async createNotificationListeners() {
+    const {
+      getSubscribedUsers,
+      getComplainers,
+      getComplainComments,
+      getProperties,
+      getNotifications,
+    } = this.props;
+
+    /*
+     * Triggered when a particular notification has been received in foreground
+     * */
+    this.notificationListener = firebase
+      .notifications()
+      .onNotification((notification) => {
+        // firebase.notifications().displayNotification(notification);
+        const { title, data } = notification;
+        // this.showAlert(title, body);
+        this.setState({ notificationData: data });
+      });
+
+    /*
+     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
+     * */
+    this.notificationOpenedListener = firebase
+      .notifications()
+      .onNotificationOpened((notificationOpen) => {
+        const { title, data } = notificationOpen.notification;
+        // this.showAlert(title, body);
+        this.setState({ notificationData: data });
+      });
+
+    /*
+     * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
+     * */
+    const notificationOpen = await firebase
+      .notifications()
+      .getInitialNotification();
+    if (notificationOpen) {
+      const { title, data } = notificationOpen.notification;
+      // this.showAlert(title, body);
+      this.setState({ notificationData: data });
+    }
+    /*
+     * Triggered for data only payload in foreground
+     * */
+    this.messageListener = firebase.messaging().onMessage((message) => {});
   }
 
   showAlert(title, body) {

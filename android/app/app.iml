@@ -162,16 +162,16 @@
     <orderEntry type="library" name="Gradle: com.facebook.fresco:fbcore:1.10.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-measurement-base:16.0.3@aar" level="project" />
     <orderEntry type="module" module-name="react-native-svg" />
-    <orderEntry type="module" module-name="android-react-native-uuid-generator" />
-    <orderEntry type="module" module-name="app-react-native-code-push" />
-    <orderEntry type="module" module-name="android-react-native-webview" />
-    <orderEntry type="module" module-name="android-react-native-notifications" />
-    <orderEntry type="module" module-name="android-react-native-iap" />
-    <orderEntry type="module" module-name="android-react-native-fetch-blob" />
-    <orderEntry type="module" module-name="android-@react-native-community_async-storage" />
-    <orderEntry type="module" module-name="android-react-native-vector-icons" />
-    <orderEntry type="module" module-name="app-react-native-navigation" />
-    <orderEntry type="module" module-name="android-react-native-image-picker" />
-    <orderEntry type="module" module-name="android-react-native-firebase" />
+    <orderEntry type="module" module-name="react-native-uuid-generator-android-react-native-uuid-generator" />
+    <orderEntry type="module" module-name="react-native-code-push-android-app-react-native-code-push" />
+    <orderEntry type="module" module-name="react-native-webview-android-react-native-webview" />
+    <orderEntry type="module" module-name="react-native-notifications-android-react-native-notifications" />
+    <orderEntry type="module" module-name="react-native-iap-android-react-native-iap" />
+    <orderEntry type="module" module-name="react-native-fetch-blob-android-react-native-fetch-blob" />
+    <orderEntry type="module" module-name="async-storage-android-@react-native-community_async-storage" />
+    <orderEntry type="module" module-name="react-native-vector-icons-android-react-native-vector-icons" />
+    <orderEntry type="module" module-name="android-app-react-native-navigation" />
+    <orderEntry type="module" module-name="react-native-image-picker-android-react-native-image-picker" />
+    <orderEntry type="module" module-name="react-native-firebase-android-react-native-firebase" />
   </component>
 </module>

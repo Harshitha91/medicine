@@ -11,13 +11,13 @@ const theme = Style.get();
 const styles = StyleSheet.create({
   button: {
     flex: 1,
-    zIndex: 999
-  }
+    zIndex: 999,
+  },
 });
 
 class Fab extends Component {
   static defaultProps = {
-    onPress: () => {}
+    onPress: () => {},
   };
 
   _handlePress = () => {
@@ -33,7 +33,7 @@ class Fab extends Component {
           shadowOpacity: 1,
           shadowRadius: 100,
           shadowColor: "red",
-          shadowOffset: { width: 100, height: 100 }
+          shadowOffset: { width: 100, height: 100 },
         }}
         hideShadow={false}
         fixNativeFeedbackRadius={true}

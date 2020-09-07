@@ -73,60 +73,6 @@ export default class Home extends React.Component {
     );
   }
 
-  renderItem(item) {
-    if (!item) {
-      return <Fragment />;
-    }
-    // const startTime = moment.unix(start_timestamp).format("hh.mm a");
-    // const endTime = moment.unix(end_timestamp).format("hh.mm a");
-
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", item);
-    return (
-      <TouchableOpacity
-        onPress={() => {}}
-        style={[styles.item, { height: 20, backgroundColor: "green" }]}
-      >
-        <View>
-          <Text
-            style={{
-              fontWeight: "700",
-              fontSize: 14,
-              color: "white",
-              paddingBottom: 2,
-            }}
-          >
-            'dgdgfdsfgfg'
-          </Text>
-        </View>
-        <View>
-          <Text
-            style={{
-              fontWeight: "600",
-              fontSize: 12,
-              color: "white",
-              paddingBottom: 2,
-            }}
-          >
-            'dfdgfdgfg'
-          </Text>
-          <Text
-            style={{
-              fontWeight: "600",
-              fontSize: 12,
-              color: "white",
-              paddingBottom: 2,
-            }}
-          >
-            'fdgdfgdfgg'
-          </Text>
-          <Text style={{ fontWeight: "400", fontSize: 12, color: "white" }}>
-            'fgdfgdfgfdgfdg'
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
-
   render() {
     const { refreshing, properties, loaderProperty } = this.props;
 
@@ -156,14 +102,10 @@ export default class Home extends React.Component {
               items={{
                 "2020-08-15": [{ name: "item 1 - any js object" }],
                 "2020-08-16": [{ name: "item 2 - any js object", height: 80 }],
-                "2020-08-16": [],
-                "2020-08-17": [
+                "2020-09-02": [
                   { name: "Panadol", time: "9 PM" },
                   { name: "Zitracine", time: "10 PM" },
                 ],
-              }}
-              loadItemsForMonth={(month) => {
-                console.log("trigger items loading");
               }}
               selected={formatedCurrentDate}
               renderItem={(item, firstItemInDay) => {
@@ -196,7 +138,7 @@ export default class Home extends React.Component {
                             paddingBottom: 2,
                           }}
                         >
-                          {item.name}
+                          fsdfsdfsdf
                         </Text>
                         {/* <Text
                           style={{
@@ -222,20 +164,19 @@ export default class Home extends React.Component {
                   </TouchableOpacity>
                 );
               }}
-              renderEmptyData={() => {
-                return <View />;
-              }}
-              rowHasChanged={(r1, r2) => {
-                return r1.text !== r2.text;
-              }}
+              // renderEmptyData={() => {
+              //   return <View />;
+              // }}
+              // rowHasChanged={(r1, r2) => {
+              //   return r1.text !== r2.text;
+              // }}
               onRefresh={() => console.log("refreshing...")}
               refreshing={false}
-              theme={{
-                agendaDayTextColor: "yellow",
-                agendaDayNumColor: "green",
-                agendaTodayColor: "red",
-                agendaKnobColor: "blue",
-              }}
+              // theme={{
+              //   "stylesheet.calendar.header": {
+              //     monthText: { marginTop: 3, fontWeight: "200" },
+              //   },
+              // }}
             />
           )}
         </View>

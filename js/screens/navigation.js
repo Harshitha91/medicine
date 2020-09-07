@@ -142,186 +142,235 @@ export const goHome = async (currentTabIndex = 0) =>
         left: {
           component: {
             id: "Drawer",
-            name: "UserManagement",
+            name: "Slider",
           },
         },
         ////////////////////////////
         center: {
-          bottomTabs: {
+          stack: {
+            id: "CenterStack",
             children: [
               {
-                stack: {
-                  id: "history",
+                bottomTabs: {
                   children: [
                     {
-                      component: {
-                        id: "historyComponent",
-                        name: "History",
-                        borderColor: "red",
-                        options: {
-                          layout: {
-                            backgroundColor: "white",
+                      stack: {
+                        id: "scheduleHistory",
+                        children: [
+                          {
+                            component: {
+                              id: "scheduleHistoryComponent",
+                              name: "ScheduleHistory",
+                              borderColor: "red",
+                              options: {
+                                layout: {
+                                  backgroundColor: "white",
+                                },
+                                topBar: {
+                                  visible: true,
+                                  height: 55,
+                                  topMargin: 15,
+                                  borderHeight: 0.5,
+                                  elevation: 0,
+                                  title: {
+                                    alignment: "center",
+                                    text: "Schedule History",
+                                    fontSize: 25,
+                                    fontFamily: "Ubuntu-Bold",
+                                  },
+                                  background: {
+                                    color: "#FFFFFF",
+                                  },
+                                },
+                              },
+                            },
                           },
-                          topBar: {
-                            visible: true,
-                            height: 55,
-                            topMargin: 15,
-                            borderHeight: 0.5,
-                            elevation: 0,
-                            title: {
-                              alignment: "center",
-                              text: "History",
-                              fontSize: 25,
-                              fontFamily: "Ubuntu-Bold",
-                            },
-                            background: {
-                              color: "#FFFFFF",
-                            },
+                        ],
+                        options: {
+                          bottomTab: {
+                            text: "Schedule History",
+                            icon: require("images/complain.png"),
+                            selectedIconColor: "#032DFF",
                           },
                         },
                       },
                     },
-                  ],
-                  options: {
-                    bottomTab: {
-                      text: "History",
-                      icon: require("images/complain.png"),
-                      selectedIconColor: "#032DFF",
-                    },
-                  },
-                },
-              },
-              {
-                stack: {
-                  id: "home",
-                  children: [
                     {
-                      component: {
-                        id: "homeComponent",
-                        name: "Home",
+                      stack: {
+                        id: "home",
+                        children: [
+                          {
+                            component: {
+                              id: "homeComponent",
+                              name: "Home",
+                              options: {
+                                topBar: {
+                                  visible: true,
+                                  height: 55,
+                                  topMargin: 15,
+                                  borderHeight: 0.5,
+                                  elevation: 0,
+                                  title: {
+                                    alignment: "center",
+                                    text: "Home",
+                                    fontSize: 25,
+                                    fontFamily: "Ubuntu-Bold",
+                                  },
+                                  background: {
+                                    color: "#FFFFFF",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        ],
                         options: {
-                          topBar: {
-                            visible: true,
-                            height: 55,
-                            topMargin: 15,
-                            borderHeight: 0.5,
-                            elevation: 0,
-                            title: {
-                              alignment: "center",
-                              text: "Home",
-                              fontSize: 25,
-                              fontFamily: "Ubuntu-Bold",
-                            },
-                            background: {
-                              color: "#FFFFFF",
-                            },
+                          bottomTab: {
+                            text: "Home",
+                            icon: require("images/property.png"),
+                            selectedIconColor: "#032DFF",
                           },
                         },
                       },
                     },
-                  ],
-                  options: {
-                    bottomTab: {
-                      text: "Home",
-                      icon: require("images/property.png"),
-                      selectedIconColor: "#032DFF",
-                    },
-                  },
-                },
-              },
-              {
-                stack: {
-                  id: "profile",
-                  children: [
                     {
-                      component: {
-                        id: "userProfile",
-                        name: "UserProfile",
+                      stack: {
+                        id: "medicine",
+                        children: [
+                          {
+                            component: {
+                              id: "medicineComponent",
+                              name: "MedicineList",
+                              borderColor: "red",
+                              options: {
+                                layout: {
+                                  backgroundColor: "white",
+                                },
+                                topBar: {
+                                  visible: true,
+                                  height: 55,
+                                  topMargin: 15,
+                                  borderHeight: 0.5,
+                                  elevation: 0,
+                                  title: {
+                                    alignment: "center",
+                                    text: "Medicine Inventory",
+                                    fontSize: 25,
+                                    fontFamily: "Ubuntu-Bold",
+                                  },
+                                  background: {
+                                    color: "#FFFFFF",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        ],
                         options: {
-                          topBar: {
-                            visible: true,
-                            height: 55,
-                            topMargin: 15,
-                            borderHeight: 0.5,
-                            elevation: 0,
-                            title: {
-                              alignment: "center",
-                              text: "User Profile",
-                              fontSize: 25,
-                              fontFamily: "Ubuntu-Bold",
-                            },
-                            background: {
-                              color: "#FFFFFF",
-                            },
+                          bottomTab: {
+                            text: "Medicine",
+                            icon: require("images/complain.png"),
+                            selectedIconColor: "#032DFF",
                           },
                         },
                       },
                     },
+                    {
+                      stack: {
+                        id: "profile",
+                        children: [
+                          {
+                            component: {
+                              id: "userProfile",
+                              name: "UserProfile",
+                              options: {
+                                topBar: {
+                                  visible: true,
+                                  height: 55,
+                                  topMargin: 15,
+                                  borderHeight: 0.5,
+                                  elevation: 0,
+                                  title: {
+                                    alignment: "center",
+                                    text: "User Profile",
+                                    fontSize: 25,
+                                    fontFamily: "Ubuntu-Bold",
+                                  },
+                                  background: {
+                                    color: "#FFFFFF",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        ],
+                        options: {
+                          bottomTab: {
+                            text: "Profile",
+                            icon: require("images/more_horiz.png"),
+                            selectedIconColor: "#032DFF",
+                          },
+                        },
+                      },
+                    },
+                    // {
+                    //   stack: {
+                    //     id: "notifications",
+                    //     children: [
+                    //       {
+                    //         component: {
+                    //           id: "notificationsComponent",
+                    //           name: "Notifications",
+                    //           options: {
+                    //             topBar: {
+                    //               visible: true,
+                    //               height: 75,
+                    //               topMargin: 20,
+                    //               borderHeight: 0,
+                    //               elevation: 0,
+                    //               title: {
+                    //                 alignment: "center",
+                    //                 text: "Notifications",
+                    //                 fontSize: 25,
+                    //                 fontFamily: "Ubuntu-Bold",
+                    //               },
+                    //             },
+                    //           },
+                    //         },
+                    //       },
+                    //     ],
+                    //     options: {
+                    //       bottomTab:
+                    //         Platform.OS === "android"
+                    //           ? {
+                    //               text: "Notifications",
+                    //               icon: require("images/ic_notifications.png"),
+                    //               selectedIconColor: "red",
+                    //             }
+                    //           : {
+                    //               text: "Notifications",
+                    //               icon: require("images/ic_notifications.png"),
+                    //               selectedIconColor: "red",
+                    //               iconInsets: {
+                    //                 top: 0,
+                    //                 left: 0,
+                    //                 bottom: 0,
+                    //                 right: 0,
+                    //               },
+                    //               disableIconTint: true,
+                    //             },
+                    //     },
+                    //   },
+                    // },
                   ],
                   options: {
-                    bottomTab: {
-                      text: "Profile",
-                      icon: require("images/more_horiz.png"),
-                      selectedIconColor: "#032DFF",
+                    bottomTabs: {
+                      currentTabIndex,
                     },
                   },
                 },
               },
-              // {
-              //   stack: {
-              //     id: "notifications",
-              //     children: [
-              //       {
-              //         component: {
-              //           id: "notificationsComponent",
-              //           name: "Notifications",
-              //           options: {
-              //             topBar: {
-              //               visible: true,
-              //               height: 75,
-              //               topMargin: 20,
-              //               borderHeight: 0,
-              //               elevation: 0,
-              //               title: {
-              //                 alignment: "center",
-              //                 text: "Notifications",
-              //                 fontSize: 25,
-              //                 fontFamily: "Ubuntu-Bold",
-              //               },
-              //             },
-              //           },
-              //         },
-              //       },
-              //     ],
-              //     options: {
-              //       bottomTab:
-              //         Platform.OS === "android"
-              //           ? {
-              //               text: "Notifications",
-              //               icon: require("images/ic_notifications.png"),
-              //               selectedIconColor: "red",
-              //             }
-              //           : {
-              //               text: "Notifications",
-              //               icon: require("images/ic_notifications.png"),
-              //               selectedIconColor: "red",
-              //               iconInsets: {
-              //                 top: 0,
-              //                 left: 0,
-              //                 bottom: 0,
-              //                 right: 0,
-              //               },
-              //               disableIconTint: true,
-              //             },
-              //     },
-              //   },
-              // },
             ],
-            options: {
-              bottomTabs: {
-                currentTabIndex,
-              },
-            },
           },
         },
       },
