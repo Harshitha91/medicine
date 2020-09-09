@@ -1,0 +1,24 @@
+{
+  "name": "orderMedicine",
+  "plural": "orderMedicineS",
+  "label": "Medicine",
+  "fields": {
+    "pharmacy": {
+      "name": "pharmacy",
+      "label": "Pharmacy",
+      "type": "enum",
+      "required": true
+    },
+    "prescription": {
+      "name": "prescription",
+      "label": "Prescription",
+      "type": "string",
+      "required": true
+    },
+    "deliveryMethod": {
+      "name": "deliveryMethod",
+      "label": "Delivery Method",
+      "type": "enum"
+    }
+  }
+}

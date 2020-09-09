@@ -105,78 +105,23 @@ export const DoctorAppointmentsListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {"9 AM"}
+                    {data.doctor}
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}
                   >
-                    Date:{" "}
-                    <Text style={{ color: "#ff2020" }}>{"2020-08-31"}</Text>
+                    Date: <Text style={{ color: "#ff2020" }}>{data.date}</Text>
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
-                    Phill Name:{" "}
-                    <Text style={{ color: "#000" }}>{"Panadol"}</Text>
+                    Channeling Center:{" "}
+                    <Text style={{ color: "#000" }}>
+                      {data.channelingCenter}
+                    </Text>
                   </Text>
                 </View>
               </View>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                alignItems: "flex-start",
-                marginTop: moderateScale(4),
-                paddingLeft: moderateScale(10),
-                marginBottom: moderateScale(2),
-              }}
-            >
-              {Platform.OS === "android" && (
-                <Badge
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-              {Platform.OS === "ios" && (
-                <Badge
-                  badgeStyle={{
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    borderRadius: 25,
-                  }}
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-            </View>
-            <View>
-              <Badge
-                badgeStyle={
-                  Platform.OS === "android"
-                    ? {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                    : {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                }
-                status={SeveritybadgeType}
-                containerStyle={{ left: moderateScale(5) }}
-                value={SeveritybadgeText}
-              />
             </View>
           </View>
         </View>

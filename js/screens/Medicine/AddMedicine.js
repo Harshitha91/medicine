@@ -16,14 +16,21 @@ import {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
+  saveSchedule,
 } from "actions";
-import propertyModel from "models/property.json";
-import complainTypeModel from "models/complainType.json";
+import medicineModel from "models/medicine.json";
+import modalStyle from "styles/ui/modalStyle";
+import timeModel from "models/times.json";
 import { moderateScale, normalize } from "util/sizes";
+import Text from "components/ui/Text";
 import Form from "components/ui/forms/Form";
 import InputField from "components/ui/forms/InputField";
 import Buttons from "components/ui/Button";
-import ImagePicker from "react-native-image-picker";
+import { ComplainTypeListItem } from "../components/ComplainTypeListItem";
+import isEmpty from "lodash/isEmpty";
+import { validate } from "util/validator";
+import { isUndefined } from "util/core";
+import { showInAppNotification } from "util/NavigationActions";
 import withPreventDoubleClick from "screens/components/PreventDoubleClick";
 
 const Button = withPreventDoubleClick(Buttons);
@@ -45,114 +52,73 @@ export default class AddMedicine extends React.Component {
 
   static defaultProps = {
     btnState: false,
-    frmProperty: {},
-    frmComplainType: {},
-    propertyModelError: {},
+    frmSchedule: {},
+    frmTime: {},
+    medicineModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
-    isVisibleComplainTypeModal: false,
-    complainTypeModelError: {},
-    country: [],
+    isVisibleTimeModal: false,
+    timeModelError: {},
   };
 
   state = {
-    complainTypeData: [],
-    isMounted: false,
+    timeData: [],
     isUpdate: false,
     pickedImage: null,
     imgData: null,
     updatebtnDisable: false,
-  };
-
-  pickImageHandler = () => {
-    ImagePicker.showImagePicker(
-      { title: "Pick an Image", maxWidth: 800, maxHeight: 600 },
-      (res) => {
-        if (res.didCancel) {
-          console.log("Image selection canceled");
-        } else if (res.error) {
-          console.log("Error", res.error);
-        } else {
-          this.setState({
-            pickedImage: res.uri,
-            imgData: res.data,
-          });
-        }
-      }
-    );
-  };
-
-  reset = () => {
-    this.setState({
-      pickedImage: null,
-      imgData: null,
-    });
+    times: [],
   };
 
   componentDidMount() {
     const { data, setFormFields } = this.props;
     if (data) {
       setFormFields({
-        name: propertyModel.name,
+        name: medicineModel.name,
         value: data,
       });
 
-      // getComplainTypes(data.propertyId);
-
       this.setState({
         isUpdate: true,
-        imgData: data.imageData,
-        pickedImage: data.imageData,
         updatebtnDisable: true,
       });
-
-      // if(data.complainTypes) {
-      //   this.setState({
-      //     complainTypeData: data.complainTypes
-      //   });
-      // }
     }
   }
 
   componentWillUnmount() {
     const { resetForm, setState } = this.props;
-    resetForm("property");
+    resetForm("schedule");
     setState({
-      propertyModelError: {},
-      country: [],
+      medicineModelError: {},
     });
   }
 
   render() {
     const {
-      frmProperty,
-      propertyModelError,
-      complainTypeModelError,
-      frmComplainType,
-      isVisibleComplainTypeModal,
+      frmSchedule,
+      medicineModelError,
+      timeModelError,
+      frmTime,
+      isVisibleTimeModal,
       setState,
-      complainTypes,
+      time,
       btnState,
-      country,
     } = this.props;
 
-    const propertyFields = propertyModel.fields;
+    const scheduleFields = medicineModel.fields;
+    const timeFields = timeModel.fields;
     const formData = {
-      name: propertyModel.name,
-      data: frmProperty,
+      name: medicineModel.name,
+      data: frmSchedule,
     };
-    let countryList = [];
-    country.forEach((item) => {
-      countryList.push({ id: item.name, name: item.name });
-    });
-    const buttonLabel = this.state.isUpdate ? "Update Facility" : "Add";
-
-    let types = [
-      { value: 3, label: "High" },
-      { value: 2, label: "Medium" },
-      { value: 1, label: "Low" },
-    ];
-
+    const timeFormData = {
+      name: timeModel.name,
+      data: frmTime,
+    };
+    const timeData = this.state.timeData;
+    const buttonLabel = this.state.isUpdate
+      ? "Update Schedule"
+      : "Create Schedule";
     return (
       <View style={styles.containerStyle}>
         <KeyboardAwareScrollView
@@ -162,50 +128,43 @@ export default class AddMedicine extends React.Component {
         >
           <Form form={formData}>
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              data={[
+                { id: "2424", value: "sfsdfsdf" },
+                { id: "2425", value: "sfsdfsdf" },
+              ]}
+              schema={scheduleFields.type}
+              placeholder={"Type"}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={medicineModelError}
             />
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              schema={scheduleFields.medicine}
+              placeholder={"Medicine"}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={medicineModelError}
             />
             <InputField
-              schema={propertyFields.description}
-              placeholder={"Description"}
-              multiline={true}
-              numberOfLines={3}
+              schema={scheduleFields.prefferedName}
+              placeholder={"Preffered Name"}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={medicineModelError}
             />
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              schema={scheduleFields.noOfPills}
+              placeholder={"No Of Pills"}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
-            />
-            <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
-              onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={medicineModelError}
             />
           </Form>
+
           <View style={styles.buttonSection}>
             <Button
               style={styles.rcsButton}
               disabled={this.state.updatebtnDisable}
-              onPress={this.propertyHandler}
+              onPress={this.scheduleHandler}
               loading={btnState}
             >
-              {buttonLabel}
+              {"Add"}
             </Button>
           </View>
         </KeyboardAwareScrollView>
@@ -213,22 +172,67 @@ export default class AddMedicine extends React.Component {
     );
   }
 
+  scheduleHandler = () => {
+    const { frmSchedule, setState, saveSchedule, componentId } = this.props;
+
+    // if (!this.state.isUpdate) {
+    frmSchedule.times = this.state.timeData;
+    // }
+    const validateStatus = validate(medicineModel, { ...frmSchedule });
+    setState({
+      medicineModelError: validateStatus,
+    });
+
+    let hasActiveComplainTypes = false;
+
+    if (!this.state.isUpdate) {
+      if (this.state.timeData.length == 0) {
+        showInAppNotification("error", "Please add a complaint type", 5000);
+        return;
+      }
+    } else {
+      if (this.state.times.length == 0) {
+        showInAppNotification("error", "Please add a complaint type", 5000);
+        return;
+      }
+    }
+
+    if (isEmpty(validateStatus)) {
+      setState({ btnState: true });
+      saveSchedule(frmSchedule, componentId);
+    }
+  };
+
+  handleTimeItemClick = (item) => {
+    const { setState, setFormFields } = this.props;
+    setFormFields({
+      name: timeModel.name,
+      value: item,
+    });
+
+    setState({ isVisibleTimeModal: true });
+  };
+
+  removeTime = (keyIndex) => {
+    // if (this.state.isUpdate) {
+    //   this.props.removeTime(keyIndex);
+    // } else {
+    const timeArray = [...this.state.timeData];
+    timeArray.splice(keyIndex, 1);
+
+    this.setState({
+      timeData: timeArray,
+    });
+    // }
+  };
+
   handleFieldChange = (name, value) => {
     const { onFieldChange } = this.props;
-    if (name == "country") {
-      let countryName = value.name ? value.name : value;
-      onFieldChange({
-        form: propertyModel.name,
-        name,
-        value: Platform.OS === "android" ? countryName : value.Name,
-      });
-    } else {
-      onFieldChange({
-        form: propertyModel.name,
-        name,
-        value,
-      });
-    }
+    onFieldChange({
+      form: medicineModel.name,
+      name,
+      value,
+    });
 
     if (this.state.isUpdate) {
       this.setState({
@@ -237,32 +241,58 @@ export default class AddMedicine extends React.Component {
     }
   };
 
-  handleComplainTypeModalFieldChange = (name, value) => {
-    const { onFieldChange, complainTypes } = this.props;
+  handleTimeModalFieldChange = (name, value) => {
+    const { onFieldChange, times } = this.props;
     onFieldChange({
-      form: complainTypeModel.name,
+      form: timeModel.name,
       name,
       value,
     });
-    if (complainTypes.length == 0) {
+    if (this.state.times.length == 0) {
       this.setState({
         updatebtnDisable: false,
       });
     }
+  };
+
+  addTime = () => {
+    const { frmTime, setState, resetForm, updateTime, saveTime } = this.props;
+    const validateStatus = validate(timeModel, { ...frmTime });
+
+    setState({
+      timeModelError: validateStatus,
+    });
+
+    if (isEmpty(validateStatus)) {
+      frmTime.key = Date.now(); //Add timestamp as a key for array item.
+      this.setState({
+        timeData: [...this.state.timeData, frmTime],
+      });
+      resetForm(timeModel.name);
+      setState({ isVisibleTimeModal: false });
+    }
+  };
+
+  handleCancelButtonClick = (formName) => {
+    const { setState, resetForm, resetUpdateFormFields } = this.props;
+    resetForm(formName);
+    resetUpdateFormFields(formName);
+    setState({
+      isVisibleTimeModal: false,
+      complainTypeModelError: "",
+    });
   };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     btnState: state.app.btnState,
-    frmProperty: state.form.property,
-    frmComplainType: state.form.complainType,
+    frmSchedule: state.form.schedule,
+    frmTime: state.form.time,
     sessionObject: state.app.sessionObject,
-    isVisibleComplainTypeModal: state.app.isVisibleComplainTypeModal,
-    propertyModelError: state.app.propertyModelError,
-    complainTypeModelError: state.app.complainTypeModelError,
-    userProperties: state.app.userProperties,
-    country: state.app.country,
+    isVisibleTimeModal: state.app.isVisibleTimeModal,
+    medicineModelError: state.app.medicineModelError,
+    timeModelError: state.app.timeModelError,
   };
 };
 
@@ -272,6 +302,7 @@ export const AddMedicineContainer = connect(mapStateToProps, {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
+  saveSchedule,
 })(AddMedicine);
 
 const styles = StyleSheet.create({
@@ -336,7 +367,7 @@ const styles = StyleSheet.create({
   complainTypeAddBtn: {
     height: moderateScale(20),
     width: moderateScale(98),
-    backgroundColor: "#ff2020",
+    backgroundColor: "#032DFF",
     borderRadius: moderateScale(20),
     marginTop: moderateScale(15),
   },

@@ -18,17 +18,24 @@ import debounce from "lodash/debounce";
 import PlusButton from "components/ui/Fab";
 import withPreventDoubleClick from "../components/PreventDoubleClick";
 const Fab = withPreventDoubleClick(PlusButton);
-import { ScheduleListItem } from "screens/components/ScheduleListItem";
+import { MedicineListItem } from "screens/components/MedicineListItem";
 import _ from "lodash";
 
 export default class MedicineList extends React.Component {
   static get options() {
     return {
       topBar: {
+        leftButtons: [
+          {
+            id: "menuBtn",
+            icon: require("images/baseline_menu.png"),
+            color: "black",
+          },
+        ],
         rightButtons: [
           {
             id: "filterBtn",
-            icon: require("images/filter-icon.png"),
+            icon: require("images/orderMedicine.png"),
             color: "black",
           },
         ],
@@ -55,7 +62,7 @@ export default class MedicineList extends React.Component {
 
   navigationButtonPressed({ buttonId }) {
     if (buttonId === "filterBtn") {
-      Navigation.push(this.props.componentId, {
+      Navigation.push("CenterStack", {
         component: {
           name: "OrderMedicine",
           options: {
@@ -63,11 +70,11 @@ export default class MedicineList extends React.Component {
               visible: true,
               height: moderateScale(60),
               topMargin: 15,
-              borderHeight: 0,
+              borderHeight: 0.5,
               elevation: 0,
               title: {
                 alignment: "center",
-                text: "Filter By",
+                text: "Order Medicine",
                 fontSize: 25,
                 fontFamily: "Ubuntu-Bold",
               },
@@ -111,19 +118,15 @@ export default class MedicineList extends React.Component {
     let data = [
       {
         id: "3423434",
-        date: "2020-01-20",
-        medicines: [
-          { name: "Panadol", count: 2 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        name: "Panadol",
+        prefferedName: "PAN",
+        count: 30,
       },
       {
         id: "3423435",
-        date: "2020-01-21",
-        medicines: [
-          { name: "Zitrazine", count: 1 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        prefferedName: "Snooze Phill",
+        name: "Zitrocin",
+        count: 12,
       },
     ];
     const {
@@ -148,11 +151,11 @@ export default class MedicineList extends React.Component {
             extraData={this.state}
             keyExtractor={(item) => item.complainsId}
             renderItem={({ item }) => (
-              <ScheduleListItem
+              <MedicineListItem
                 data={item}
                 toastMessage={toastMessage}
                 onPress={() => this.onItemClick(item)}
-                name={name}
+                name={"name"}
               />
             )}
             refreshing={false}
@@ -169,7 +172,7 @@ export default class MedicineList extends React.Component {
   }
 
   addMedicine = () => {
-    Navigation.push(this.props.componentId, {
+    Navigation.push("CenterStack", {
       component: {
         name: "AddMedicine",
         options: {
@@ -196,41 +199,6 @@ export default class MedicineList extends React.Component {
       },
     });
   };
-
-  // handleRefresh = (props) => {
-  //   const {
-  //     setState,
-  //     getComplains,
-  //     name,
-  //     complainFilterString,
-  //     complainFilters,
-  //   } = this.props;
-  //   setState({ refreshing: true });
-  //   getComplains(complainFilterString, name, this.options, complainFilters);
-  // };
-
-  // handleLoadMore = () => {
-  //   const {
-  //     data,
-  //     getComplains,
-  //     isFetchingMoreComplains,
-  //     setState,
-  //     complainFilterString,
-  //     name,
-  //     complainFilters,
-  //   } = this.props;
-  //   if (data.length >= DEFAULT_NUMBER_OF_ROWS && !isFetchingMoreComplains) {
-  //     setState({
-  //       isFetchingMoreComplains: true,
-  //     });
-  //     const options = {
-  //       page: this.options.page + 1,
-  //       rows: DEFAULT_NUMBER_OF_ROWS,
-  //     };
-  //     getComplains(complainFilterString, name, options, complainFilters);
-  //     this.options = options;
-  //   }
-  // };
 }
 
 const mapStateToProps = (state, ownProps) => {

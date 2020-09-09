@@ -189,7 +189,7 @@ export const goHome = async (currentTabIndex = 0) =>
                         options: {
                           bottomTab: {
                             text: "Schedule History",
-                            icon: require("images/complain.png"),
+                            icon: require("images/schedule_history.png"),
                             selectedIconColor: "#032DFF",
                           },
                         },
@@ -269,7 +269,7 @@ export const goHome = async (currentTabIndex = 0) =>
                         options: {
                           bottomTab: {
                             text: "Medicine",
-                            icon: require("images/complain.png"),
+                            icon: require("images/more_horiz.png"),
                             selectedIconColor: "#032DFF",
                           },
                         },
@@ -292,7 +292,7 @@ export const goHome = async (currentTabIndex = 0) =>
                                   elevation: 0,
                                   title: {
                                     alignment: "center",
-                                    text: "User Profile",
+                                    text: "Profile",
                                     fontSize: 25,
                                     fontFamily: "Ubuntu-Bold",
                                   },
@@ -307,61 +307,12 @@ export const goHome = async (currentTabIndex = 0) =>
                         options: {
                           bottomTab: {
                             text: "Profile",
-                            icon: require("images/more_horiz.png"),
+                            icon: require("images/people.png"),
                             selectedIconColor: "#032DFF",
                           },
                         },
                       },
                     },
-                    // {
-                    //   stack: {
-                    //     id: "notifications",
-                    //     children: [
-                    //       {
-                    //         component: {
-                    //           id: "notificationsComponent",
-                    //           name: "Notifications",
-                    //           options: {
-                    //             topBar: {
-                    //               visible: true,
-                    //               height: 75,
-                    //               topMargin: 20,
-                    //               borderHeight: 0,
-                    //               elevation: 0,
-                    //               title: {
-                    //                 alignment: "center",
-                    //                 text: "Notifications",
-                    //                 fontSize: 25,
-                    //                 fontFamily: "Ubuntu-Bold",
-                    //               },
-                    //             },
-                    //           },
-                    //         },
-                    //       },
-                    //     ],
-                    //     options: {
-                    //       bottomTab:
-                    //         Platform.OS === "android"
-                    //           ? {
-                    //               text: "Notifications",
-                    //               icon: require("images/ic_notifications.png"),
-                    //               selectedIconColor: "red",
-                    //             }
-                    //           : {
-                    //               text: "Notifications",
-                    //               icon: require("images/ic_notifications.png"),
-                    //               selectedIconColor: "red",
-                    //               iconInsets: {
-                    //                 top: 0,
-                    //                 left: 0,
-                    //                 bottom: 0,
-                    //                 right: 0,
-                    //               },
-                    //               disableIconTint: true,
-                    //             },
-                    //     },
-                    //   },
-                    // },
                   ],
                   options: {
                     bottomTabs: {

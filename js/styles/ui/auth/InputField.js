@@ -16,7 +16,7 @@ import styles from "styles/ui/form/field";
 
 const elementTypeMap: { [string]: Object } = {
   OptionInput,
-  TextField
+  TextField,
 };
 
 export default class InputField extends Component {
@@ -29,11 +29,11 @@ export default class InputField extends Component {
     error: {},
     onChange: () => {},
     placeholder: "",
-    label: ""
+    label: "",
   };
 
   render() {
-    return <View >{this.renderElement()}</View>;
+    return <View>{this.renderElement()}</View>;
   }
 
   renderElement() {
@@ -150,9 +150,11 @@ export default class InputField extends Component {
           />
         );
       case "timestamp":
+        console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP", schema.label);
         return (
           <DatePicker
             {...restProps}
+            label={schema.label}
             name={schema.name}
             error={error[schema.name]}
             required={schema.required}
@@ -249,7 +251,7 @@ export default class InputField extends Component {
   }
 
   getLabelByValue = (data, value) => {
-    const filteredDataSet = data.filter(item => {
+    const filteredDataSet = data.filter((item) => {
       return item.value === value;
     });
     if (filteredDataSet.length > 0) {

@@ -1,0 +1,35 @@
+{
+  "name": "schedule",
+  "plural": "schedules",
+  "label": "Schedule",
+  "fields": {
+    "medicine": {
+      "name": "medicine",
+      "label": "Medicine",
+      "type": "enum",
+      "required": true
+    },
+    "rewining": {
+      "name": "rewining",
+      "label": "Rewining",
+      "type": "enum",
+      "required": true
+    },
+    "startDate": {
+      "name": "startDate",
+      "label": "Start Date",
+      "type": "timestamp"
+    },
+    "finishDate": {
+      "name": "finishDate",
+      "label": "Finish Date",
+      "type": "timestamp"
+    },
+    "times": {
+      "name": "times",
+      "label": "Times",
+      "type": "array",
+      "required": true
+    }
+  }
+}

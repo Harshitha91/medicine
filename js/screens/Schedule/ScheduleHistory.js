@@ -16,6 +16,8 @@ import { moderateScale, verticalScale } from "util/sizes";
 import DropdownAlert from "react-native-dropdownalert";
 import debounce from "lodash/debounce";
 import { ScheduleListItem } from "screens/components/ScheduleListItem";
+import PlusButton from "components/ui/Fab";
+const Fab = withPreventDoubleClick(PlusButton);
 import _ from "lodash";
 
 export default class ScheduleHistory extends React.Component {
@@ -30,10 +32,23 @@ export default class ScheduleHistory extends React.Component {
     complainFilterString: "",
   };
 
+  static get options() {
+    return {
+      topBar: {
+        leftButtons: [
+          {
+            id: "menuBtn",
+            icon: require("images/baseline_menu.png"),
+            color: "black",
+          },
+        ],
+      },
+    };
+  }
+
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
-    // this.dbounceItemClick = debounce(this.handleItemClick, 200);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,33 +78,22 @@ export default class ScheduleHistory extends React.Component {
     let data = [
       {
         id: "3423434",
-        date: "2020-01-20",
-        medicines: [
-          { name: "Panadol", count: 2 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        date: "2020-09-09",
+        time: "9 PM",
+        name: "Panadol",
+        count: 2,
+        isTaken: false,
       },
       {
         id: "3423435",
-        date: "2020-01-21",
-        medicines: [
-          { name: "Zitrazine", count: 1 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        date: "2020-09-09",
+        time: "10 PM",
+        name: "Zitrocin",
+        count: 1,
+        isTaken: true,
       },
     ];
-    const {
-      complains,
-      toastMessage,
-      refreshing,
-      loaderComplain,
-      getComplains,
-      allComplainsCount,
-      setState,
-      isFetchingMoreComplains,
-      complainFilterString,
-      complainFilters,
-    } = this.props;
+    const { toastMessage } = this.props;
 
     return (
       <View style={styles.containerStyle}>
@@ -104,7 +108,7 @@ export default class ScheduleHistory extends React.Component {
                 data={item}
                 toastMessage={toastMessage}
                 onPress={() => this.onItemClick(item)}
-                name={name}
+                name={"cccc"}
               />
             )}
             refreshing={false}
@@ -115,60 +119,46 @@ export default class ScheduleHistory extends React.Component {
           />
         </View>
         <DropdownAlert ref={(ref) => (this.dropdown = ref)} showCancel={true} />
+        <Fab onPress={this.createSchedule} />
       </View>
     );
   }
 
-  // handleRefresh = (props) => {
-  //   const {
-  //     setState,
-  //     getComplains,
-  //     name,
-  //     complainFilterString,
-  //     complainFilters,
-  //   } = this.props;
-  //   setState({ refreshing: true });
-  //   getComplains(complainFilterString, name, this.options, complainFilters);
-  // };
-
-  // handleLoadMore = () => {
-  //   const {
-  //     data,
-  //     getComplains,
-  //     isFetchingMoreComplains,
-  //     setState,
-  //     complainFilterString,
-  //     name,
-  //     complainFilters,
-  //   } = this.props;
-  //   if (data.length >= DEFAULT_NUMBER_OF_ROWS && !isFetchingMoreComplains) {
-  //     setState({
-  //       isFetchingMoreComplains: true,
-  //     });
-  //     const options = {
-  //       page: this.options.page + 1,
-  //       rows: DEFAULT_NUMBER_OF_ROWS,
-  //     };
-  //     getComplains(complainFilterString, name, options, complainFilters);
-  //     this.options = options;
-  //   }
-  // };
+  createSchedule = () => {
+    Navigation.push("CenterStack", {
+      component: {
+        name: "CreateSchedule",
+        options: {
+          topBar: {
+            visible: true,
+            height: moderateScale(60),
+            topMargin: 15,
+            borderHeight: 0,
+            elevation: 0,
+            title: {
+              alignment: "center",
+              text: "Create Schedule",
+              fontSize: 25,
+              fontFamily: "Ubuntu-Bold",
+            },
+            backButton: {
+              showTitle: false,
+            },
+            background: {
+              color: "#FFFFFF",
+            },
+          },
+        },
+      },
+    });
+  };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     sessionObject: state.app.sessionObject,
-    complainFilterString: state.app.complainFilterString,
     toastMessage: state.app.toastMessage,
-    selectedTabIndex: state.app.selectedTabIndex,
     refreshing: state.app.refreshing,
-    loaderComplain: state.app.loaderComplain,
-    allComplainsCount: state.app.allComplainsCount,
-    pendingComplainsCount: state.app.pendingComplainsCount,
-    currentComplainsCount: state.app.currentComplainsCount,
-    completedComplainsCount: state.app.completedComplainsCount,
-    isFetchingMoreComplains: state.app.isFetchingMoreComplains,
-    complainFilters: state.complainFilters,
   };
 };
 export const ScheduleHistoryContainer = connect(mapStateToProps, {

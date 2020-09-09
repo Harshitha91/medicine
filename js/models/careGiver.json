@@ -1,0 +1,13 @@
+{
+  "name": "careGiver",
+  "plural": "careGivers",
+  "label": "Doctor",
+  "fields": {
+    "mobileNumber": {
+      "name": "mobileNumber",
+      "label": "Mobile Number",
+      "type": "string",
+      "required": true
+    }
+  }
+}

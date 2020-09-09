@@ -20,7 +20,7 @@ import styles from "styles/ui/form/field";
 
 const elementTypeMap = {
   OptionInput,
-  TextField
+  TextField,
 };
 
 export default class InputField extends Component {
@@ -31,8 +31,8 @@ export default class InputField extends Component {
     form: { name: "", data: {} },
     updateForm: {},
     error: {},
-    onChange: () => { },
-    label: ""
+    onChange: () => {},
+    label: "",
   };
 
   render() {
@@ -154,6 +154,7 @@ export default class InputField extends Component {
         return (
           <DatePicker
             {...restProps}
+            label={schema.label}
             name={schema.name}
             error={error[schema.name]}
             required={schema.required}
@@ -243,8 +244,8 @@ export default class InputField extends Component {
           />
         );
       case "multiselect_dropdown":
-        if(schema.name === 'types') {
-          if(form.data.propertyId && form.data.propertyId !== '0'){
+        if (schema.name === "types") {
+          if (form.data.propertyId && form.data.propertyId !== "0") {
             return (
               <MultiSelectDropDown
                 {...restProps}
@@ -274,10 +275,14 @@ export default class InputField extends Component {
             {...restProps}
             name={schema.name}
             label={schema.label}
-            data={isUndefined(form.data[schema.name]) ? {
-              from: '',
-              to: ''
-            } : form.data[schema.name]}
+            data={
+              isUndefined(form.data[schema.name])
+                ? {
+                    from: "",
+                    to: "",
+                  }
+                : form.data[schema.name]
+            }
             onChange={this.onChangeField.bind(this, schema)}
           />
         );
@@ -311,7 +316,7 @@ export default class InputField extends Component {
   }
 
   getLabelByValue = (data, value) => {
-    const filteredDataSet = data.filter(item => {
+    const filteredDataSet = data.filter((item) => {
       return item.value === value;
     });
     if (filteredDataSet.length > 0) {

@@ -4,11 +4,13 @@ import { combineReducers } from "redux";
 import app from "./app";
 import form from "./form";
 import user from "./user";
+import home from "./home";
 
 const appReducer = combineReducers({
   app,
   form,
   user,
+  home,
 });
 
 const rootReducer = (state = {}, action) => {

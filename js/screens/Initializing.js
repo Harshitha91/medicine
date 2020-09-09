@@ -14,11 +14,6 @@ import {
   resetForms,
   handleUserSession,
   handleGetStated,
-  getProperties,
-  getNotifications,
-  updateUserDeviceId,
-  getHostEnvironment,
-  generateUniqueId,
 } from "actions";
 import { Navigation } from "react-native-navigation";
 import {
@@ -178,9 +173,4 @@ export const InitializingContainer = connect(mapStateToProps, {
   resetForms,
   handleUserSession,
   handleGetStated,
-  getProperties,
-  getNotifications,
-  updateUserDeviceId,
-  getHostEnvironment,
-  generateUniqueId,
 })(Initializing);

@@ -24,16 +24,22 @@ export default class Slider extends React.Component {
     Navigation.events().bindComponent(this);
   }
 
-  renderHeader = () => <MenuHeader fullName={"wewerewr"} />;
+  renderHeader = () => <MenuHeader fullName={"Thiraj Hassen"} />;
 
   renderListItem = (item) => {
+    let imagePath =
+      item.key === "Doctor"
+        ? require("images/doctor.png")
+        : item.key === "Lab"
+        ? require("images/lab.png")
+        : require("images/careGiver.png");
     return (
       <TouchableOpacity onPress={() => this.onTapMenuCell(item)}>
         <View style={styles.mainContainer}>
           <Image
             style={styles.imageStyle}
             resizeMode={"cover"}
-            source={require("images/complain.png")}
+            source={imagePath}
           />
           <Text numberOfLines={1} style={styles.textStyle}>
             {item.key}
@@ -61,7 +67,7 @@ export default class Slider extends React.Component {
         this.navigate("DoctorAppointmentsList", "Doctor Appointments");
         break;
       case "Care Giver":
-        this.navigate("CareGiver");
+        this.navigate("CareGiverList", "Care Giver List");
         break;
       default:
         break;
@@ -83,7 +89,7 @@ export default class Slider extends React.Component {
             visible: true,
             height: moderateScale(60),
             topMargin: 15,
-            borderHeight: 0,
+            borderHeight: 0.5,
             elevation: 0,
             title: {
               alignment: "center",

@@ -1,0 +1,29 @@
+{
+  "name": "doctor",
+  "plural": "doctors",
+  "label": "Doctor",
+  "fields": {
+    "date": {
+      "name": "date",
+      "label": "Date",
+      "type": "enum",
+      "required": true
+    },
+    "hospital": {
+      "name": "hospital",
+      "label": "Hospital",
+      "type": "enum",
+      "required": true
+    },
+    "speciality": {
+      "name": "speciality",
+      "label": "Speciality",
+      "type": "enum"
+    },
+    "time": {
+      "name": "time",
+      "label": "Time",
+      "type": "string"
+    }
+  }
+}

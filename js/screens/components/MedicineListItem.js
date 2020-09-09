@@ -81,104 +81,43 @@ export const MedicineListItem = (props) => {
       style={styles.listItem}
       onPress={() => onPress(data)}
     >
-      <View>
-        <View style={{ flexDirection: "column" }}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <View style={{ flex: 80 }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "stretch",
-                  paddingLeft: moderateScale(10),
-                  paddingTop: 5,
-                }}
-              >
-                <View style={{ top: moderateScale(0) }}>
-                  <Text
-                    type="bold"
-                    numberOfLines={2}
-                    style={{
-                      color: "rgb(67,67,67)",
-                      fontSize: 20,
-                      marginRight: 10,
-                    }}
-                  >
-                    {"9 AM"}
-                  </Text>
-                  <Text
-                    style={{ marginTop: moderateScale(5), color: "#ff2020" }}
-                  >
-                    Date:{" "}
-                    <Text style={{ color: "#ff2020" }}>{"2020-08-31"}</Text>
-                  </Text>
-                  <Text
-                    style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
-                  >
-                    Phill Name:{" "}
-                    <Text style={{ color: "#000" }}>{"Panadol"}</Text>
-                  </Text>
-                </View>
+      <View style={{ flexDirection: "column" }}>
+        <View style={{ flex: 1, flexDirection: "row" }}>
+          <View style={{ flex: 80 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "stretch",
+                paddingLeft: moderateScale(10),
+                paddingTop: 5,
+              }}
+            >
+              <View style={{ top: moderateScale(0) }}>
+                <Text
+                  type="bold"
+                  numberOfLines={2}
+                  style={{
+                    color: "rgb(67,67,67)",
+                    fontSize: 20,
+                    marginRight: 10,
+                  }}
+                >
+                  {data.name}
+                </Text>
+                <Text style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}>
+                  Preferred Name:{" "}
+                  <Text style={{ color: "#000" }}>{data.prefferedName}</Text>
+                </Text>
               </View>
             </View>
           </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                alignItems: "flex-start",
-                marginTop: moderateScale(4),
-                paddingLeft: moderateScale(10),
-                marginBottom: moderateScale(2),
-              }}
-            >
-              {Platform.OS === "android" && (
-                <Badge
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-              {Platform.OS === "ios" && (
-                <Badge
-                  badgeStyle={{
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    borderRadius: 25,
-                  }}
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-            </View>
-            <View>
-              <Badge
-                badgeStyle={
-                  Platform.OS === "android"
-                    ? {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                    : {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                }
-                status={SeveritybadgeType}
-                containerStyle={{ left: moderateScale(5) }}
-                value={SeveritybadgeText}
-              />
-            </View>
-          </View>
+          <Badge
+            value={"Count:" + data.count}
+            status="primary"
+            containerStyle={{ position: "absolute", top: 30, right: 4 }}
+          />
         </View>
       </View>
     </TouchableOpacity>

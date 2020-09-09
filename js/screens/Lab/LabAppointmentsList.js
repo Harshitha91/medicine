@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Platform,
   FlatList,
+  Text,
   ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
@@ -18,7 +19,7 @@ import debounce from "lodash/debounce";
 import PlusButton from "components/ui/Fab";
 import withPreventDoubleClick from "../components/PreventDoubleClick";
 const Fab = withPreventDoubleClick(PlusButton);
-import { DoctorAppointmentsListItem } from "screens/components/DoctorAppointmentsListItem";
+import { LabAppointmentsListItem } from "screens/components/LabAppointmentsListItem";
 import _ from "lodash";
 
 export default class LabAppointmentsList extends React.Component {
@@ -49,9 +50,7 @@ export default class LabAppointmentsList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
-  }
+  componentDidMount() {}
 
   renderFooter = () => {
     return this.props.isFetchingMoreComplains ? (
@@ -64,23 +63,78 @@ export default class LabAppointmentsList extends React.Component {
     ) : null;
   };
 
+  renderHeader = () => {
+    return (
+      <View style={styles.complainTypeSectionHeader}>
+        <Text style={styles.complainTypeViewLabels}>Upcoming</Text>
+      </View>
+    );
+  };
+
+  renderHistoryHeader = () => {
+    return (
+      <View style={styles.complainTypeSectionHeader}>
+        <Text style={styles.complainTypeViewLabels}>History</Text>
+      </View>
+    );
+  };
+
+  onItemClick = () => {
+    Navigation.push("CenterStack", {
+      component: {
+        name: "ChannelingDetails",
+        options: {
+          topBar: {
+            visible: true,
+            height: moderateScale(60),
+            topMargin: 15,
+            borderHeight: 0.5,
+            elevation: 0,
+            title: {
+              alignment: "center",
+              text: "Channeling Details",
+              fontSize: 25,
+              fontFamily: "Ubuntu-Bold",
+            },
+            backButton: {
+              showTitle: false,
+            },
+            background: {
+              color: "#FFFFFF",
+            },
+          },
+        },
+      },
+    });
+  };
+
   render() {
-    let data = [
+    let newData = [
       {
         id: "3423434",
-        date: "2020-01-20",
-        medicines: [
-          { name: "Panadol", count: 2 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        date: "2020-09-21",
+        time: "3.00 PM",
+        test: "Complete Blood Count (CBC)",
+        lab: "Durdens lLboratory",
+        isHistory: false,
       },
+    ];
+    let historyData = [
       {
         id: "3423435",
-        date: "2020-01-21",
-        medicines: [
-          { name: "Zitrazine", count: 1 },
-          { name: "Vitamin C", count: 1 },
-        ],
+        date: "2020-09-21",
+        time: "11.00 AM",
+        test: "Alanine Aminotransferase (ALT)",
+        lab: "Durdens lLboratory",
+        isHistory: true,
+      },
+      {
+        id: "3423436",
+        date: "2020-09-21",
+        time: "4.00 PM",
+        test: "Comprehensive Metabolic Panel (CMP)",
+        lab: "Durdens lLboratory",
+        isHistory: true,
       },
     ];
     const {
@@ -101,11 +155,32 @@ export default class LabAppointmentsList extends React.Component {
         <View style={styles.wrapper}>
           <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
-            data={data}
+            ListHeaderComponent={this.renderHeader}
+            data={newData}
             extraData={this.state}
-            keyExtractor={(item) => item.complainsId}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <DoctorAppointmentsListItem
+              <LabAppointmentsListItem
+                data={item}
+                toastMessage={toastMessage}
+                onPress={() => this.onItemClick(item)}
+                name={name}
+              />
+            )}
+            refreshing={false}
+            // onRefresh={this.handleRefresh}
+            // onEndReached={this.handleLoadMore}
+            // onEndReachedThreshold={0.5}
+            ListFooterComponent={this.renderFooter}
+          />
+          <FlatList
+            contentContainerStyle={{ paddingBottom: 12 }}
+            ListHeaderComponent={this.renderHistoryHeader}
+            data={historyData}
+            extraData={this.state}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <LabAppointmentsListItem
                 data={item}
                 toastMessage={toastMessage}
                 onPress={() => this.onItemClick(item)}
@@ -126,19 +201,19 @@ export default class LabAppointmentsList extends React.Component {
   }
 
   makeAppoinment = () => {
-    Navigation.push(this.props.componentId, {
+    Navigation.push("CenterStack", {
       component: {
-        name: "AddMedicine",
+        name: "MakeLabAppointment",
         options: {
           topBar: {
             visible: true,
             height: moderateScale(60),
             topMargin: 15,
-            borderHeight: 0,
+            borderHeight: 0.5,
             elevation: 0,
             title: {
               alignment: "center",
-              text: "Add Medicine",
+              text: "Make Lab Appointment",
               fontSize: 25,
               fontFamily: "Ubuntu-Bold",
             },
@@ -271,6 +346,18 @@ if (Platform.OS === "android") {
       justifyContent: "center",
       alignItems: "center",
       flexGrow: 1,
+    },
+    complainTypeSectionHeader: {
+      flex: 0,
+      marginBottom: moderateScale(15),
+      flexDirection: "row",
+      marginLeft: moderateScale(5),
+    },
+    complainTypeViewLabels: {
+      flex: 1,
+      fontSize: 17,
+      height: 30,
+      color: "#032DFF",
     },
   });
 } else if (Platform.OS === "ios") {

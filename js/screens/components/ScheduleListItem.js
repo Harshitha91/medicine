@@ -105,19 +105,24 @@ export const ScheduleListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {"9 AM"}
+                    {data.time}
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}
                   >
-                    Date:{" "}
-                    <Text style={{ color: "#ff2020" }}>{"2020-08-31"}</Text>
+                    Date: <Text style={{ color: "#ff2020" }}>{data.date}</Text>
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
                     Phill Name:{" "}
-                    <Text style={{ color: "#000" }}>{"Panadol"}</Text>
+                    <Text style={{ color: "#000" }}>{data.name}</Text>
+                  </Text>
+                  <Text
+                    style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
+                  >
+                    Phill Count:{" "}
+                    <Text style={{ color: "#000" }}>{data.count}</Text>
                   </Text>
                 </View>
               </View>
@@ -134,25 +139,13 @@ export const ScheduleListItem = (props) => {
             >
               {Platform.OS === "android" && (
                 <Badge
-                  status="warning"
+                  status={data.isTaken ? "success" : "warning"}
                   containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-              {Platform.OS === "ios" && (
-                <Badge
-                  badgeStyle={{
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    borderRadius: 25,
-                  }}
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
+                  value={data.isTaken ? "Took" : "Missed"}
                 />
               )}
             </View>
-            <View>
+            {/* <View>
               <Badge
                 badgeStyle={
                   Platform.OS === "android"
@@ -177,7 +170,7 @@ export const ScheduleListItem = (props) => {
                 containerStyle={{ left: moderateScale(5) }}
                 value={SeveritybadgeText}
               />
-            </View>
+            </View> */}
           </View>
         </View>
       </View>

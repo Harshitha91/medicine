@@ -28,6 +28,50 @@ export default class SignIn extends React.Component {
     fcmToken: "",
   };
 
+  async componentDidMount() {
+    await AsyncStorage.removeItem("fcmToken");
+    this.checkPermission();
+  }
+
+  async checkPermission() {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
+      this.getToken();
+    } else {
+      this.requestPermission();
+    }
+  }
+
+  async getToken() {
+    let fcmToken = await AsyncStorage.getItem("fcmToken");
+    if (!fcmToken) {
+      fcmToken = await firebase.messaging().getToken();
+      if (fcmToken) {
+        // user has a device token
+        await AsyncStorage.setItem("fcmToken", fcmToken);
+        this.setState({
+          fcmToken: fcmToken,
+        });
+      }
+    }
+    let currentDeviceToken = await AsyncStorage.getItem("fcmToken");
+
+    this.setState({
+      fcmToken: currentDeviceToken,
+    });
+  }
+
+  async requestPermission() {
+    try {
+      await firebase.messaging().requestPermission();
+      // User has authorised
+      this.getToken();
+    } catch (error) {
+      // User has rejected permissions
+      console.log("permission rejected");
+    }
+  }
+
   signIn = () => {
     checkConnectivity();
     const { frmLogin, btnState, setState, authUser } = this.props;
@@ -43,7 +87,6 @@ export default class SignIn extends React.Component {
       frmLogin,
       {
         deviceToken: this.state.fcmToken,
-        app: "Admin",
       },
       this.props.componentId
     );

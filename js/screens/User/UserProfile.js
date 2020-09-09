@@ -15,7 +15,6 @@ import {
   setFormFields,
   onFieldChange,
   getUserDetails,
-  updateUserDeviceId,
 } from "actions";
 import updateUserModel from "models/updateUser";
 import Text from "components/ui/Text";
@@ -30,6 +29,59 @@ export default class UserProfile extends Component {
     Navigation.events().bindComponent(this);
   }
 
+  static get options() {
+    return {
+      topBar: {
+        leftButtons: [
+          {
+            id: "menuBtn",
+            icon: require("images/baseline_menu.png"),
+            color: "black",
+          },
+        ],
+        rightButtons: [
+          {
+            id: "updateBtn",
+            text: "Update",
+            color: "black",
+          },
+        ],
+      },
+    };
+  }
+
+  navigationButtonPressed({ buttonId }) {
+    Navigation.push("CenterStack", {
+      component: {
+        name: "UpdateUser",
+        passProps: {
+          data: {},
+        },
+        options: {
+          topBar: {
+            visible: true,
+            height: moderateScale(60),
+            topMargin: 15,
+            borderHeight: 0,
+            elevation: 0,
+            title: {
+              alignment: "center",
+              text: "Update Profile",
+              fontSize: 25,
+              fontFamily: "Ubuntu-Bold",
+            },
+            backButton: {
+              showTitle: false,
+            },
+            background: {
+              color: "#FFFFFF",
+            },
+          },
+        },
+      },
+    });
+  }
+
   componentDidMount() {
     const { setFormFields, userDetails } = this.props;
     setFormFields({
@@ -39,12 +91,11 @@ export default class UserProfile extends Component {
   }
 
   Signout = () => {
-    const { updateUserDeviceId, logout } = this.props;
+    const { logout } = this.props;
     const objUserToken = {
       deviceToken: null,
       app: "Admin",
     };
-    updateUserDeviceId(objUserToken);
     logout();
   };
 
@@ -102,44 +153,70 @@ export default class UserProfile extends Component {
                 style={{
                   fontSize: 24,
                   paddingLeft: 20,
-                  marginTop: 120,
+                  marginTop: 75,
+                  marginLeft: 100,
                   width: "60%",
                 }}
               >
-                {userDetails ? userDetails.fullName : ""}
+                {"Thiraj Hassen"}
               </Text>
-              <Text
+              {/* <Text
                 onPress={this.goToEditPage}
                 style={styles.editIcon}
-                color="white"
+                color="#000000"
               >
-                Edit
-              </Text>
+                Update
+              </Text> */}
             </View>
 
             <View
               style={{
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
-                marginTop: 10,
+                marginTop: 25,
                 marginRight: 20,
                 marginLeft: 20,
               }}
             />
             <View style={{ flex: 3, padding: 20 }}>
+              {/* <Text style={{ marginBottom: 10 }}>
+                Name :
+                <Text style={{ fontWeight: "bold" }}> {"Thiraj Hassen"}</Text>
+              </Text> */}
               <Text style={{ marginBottom: 10 }}>
-                Weight :<Text style={{ fontWeight: "bold" }}> {"73 KG"}</Text>
+                Address :
+                <Text style={{ fontWeight: "bold" }}>
+                  {" "}
+                  {"14/16, Hendala Road, Wattala"}
+                </Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
-                Height :<Text style={{ fontWeight: "bold" }}> {"150 cm"}</Text>
+                Email :
+                <Text style={{ fontWeight: "bold" }}> {"thira@gmail.com"}</Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
-                Phone :
-                <Text style={{ fontWeight: "bold" }}> {"+94719354760"}</Text>
+                Mobile :
+                <Text style={{ fontWeight: "bold" }}> {"0739264897"}</Text>
+              </Text>
+              <Text style={{ marginBottom: 10 }}>
+                Date of Birth :
+                <Text style={{ fontWeight: "bold" }}> {"1990-07-09"}</Text>
+              </Text>
+              <Text style={{ marginBottom: 10 }}>
+                Gender :<Text style={{ fontWeight: "bold" }}> {"Male"}</Text>
+              </Text>
+              <Text style={{ marginBottom: 10 }}>
+                Height :<Text style={{ fontWeight: "bold" }}> {"170 cm"}</Text>
+              </Text>
+              <Text style={{ marginBottom: 10 }}>
+                Weight :<Text style={{ fontWeight: "bold" }}> {"70  KG"}</Text>
+              </Text>
+              <Text style={{ marginBottom: 10 }}>
+                Age :<Text style={{ fontWeight: "bold" }}> {"30 years"}</Text>
               </Text>
               <Text>
-                Email :
-                <Text style={{ fontWeight: "bold" }}> {"test1@gmail.com"}</Text>
+                Blood Group :
+                <Text style={{ fontWeight: "bold" }}> {"B Positive"}</Text>
               </Text>
             </View>
           </View>
@@ -169,37 +246,37 @@ export default class UserProfile extends Component {
     );
   }
 
-  goToEditPage = (item) => {
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: "UpdateUser",
-        passProps: {
-          data: item,
-        },
-        options: {
-          topBar: {
-            visible: true,
-            height: moderateScale(60),
-            topMargin: 15,
-            borderHeight: 0,
-            elevation: 0,
-            title: {
-              alignment: "center",
-              text: "Edit Profile Details",
-              fontSize: 25,
-              fontFamily: "Ubuntu-Bold",
-            },
-            backButton: {
-              showTitle: false,
-            },
-            background: {
-              color: "#FFFFFF",
-            },
-          },
-        },
-      },
-    });
-  };
+  // goToEditPage = (item) => {
+  //   Navigation.push("CenterStack", {
+  //     component: {
+  //       name: "UpdateUser",
+  //       passProps: {
+  //         data: item,
+  //       },
+  //       options: {
+  //         topBar: {
+  //           visible: true,
+  //           height: moderateScale(60),
+  //           topMargin: 15,
+  //           borderHeight: 0,
+  //           elevation: 0,
+  //           title: {
+  //             alignment: "center",
+  //             text: "Update Profile",
+  //             fontSize: 25,
+  //             fontFamily: "Ubuntu-Bold",
+  //           },
+  //           backButton: {
+  //             showTitle: false,
+  //           },
+  //           background: {
+  //             color: "#FFFFFF",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // };
 
   handleFieldChange = (name, value) => {
     const { onFieldChange } = this.props;
@@ -228,7 +305,6 @@ export const UserProfileContainer = connect(mapStateToProps, {
   setState,
   updateUser,
   logout,
-  updateUserDeviceId,
 })(UserProfile);
 
 const styles = StyleSheet.create({
@@ -236,7 +312,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topProBlock: {
-    height: 120,
+    height: 80,
     width: "100%",
   },
   editIcon: {
@@ -253,9 +329,9 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === "android" ? 40 : moderateScale(55 / 2),
     borderWidth: 1,
     position: "absolute",
-    left: "auto",
-    right: 50,
-    top: 50,
+    // left: "auto",
+    right: 180,
+    top: 10,
   },
   profileImgBg: {
     position: "absolute",

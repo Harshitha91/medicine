@@ -23,7 +23,7 @@ type Props = {
   maxDate: number,
   mode?: "calendar" | "spinner" | "default",
   onChange: (string, any) => mixed,
-  disabled?: boolean
+  disabled?: boolean,
 };
 
 async function showPicker(
@@ -42,7 +42,7 @@ async function showPicker(
         date: value ? new Date(Number(value) * 1000) : new Date(),
         mode,
         minDate,
-        maxDate
+        maxDate,
       });
       // $FlowFixMe
       if (action !== DatePickerAndroid.dismissedAction) {
@@ -52,7 +52,7 @@ async function showPicker(
     } else {
       const { action, year, month, day } = await DatePickerAndroid.open({
         minDate: new Date(Number(value) * 1000),
-        mode
+        mode,
       });
       // $FlowFixMe
       if (action !== DatePickerAndroid.dismissedAction) {
@@ -67,7 +67,7 @@ async function showPicker(
 
 class DatePicker extends Component<Props> {
   static defaultProps = {
-    isbackDated: true
+    isbackDated: true,
   };
 
   checkRequired() {
@@ -86,8 +86,9 @@ class DatePicker extends Component<Props> {
       error,
       minDate,
       maxDate,
-      disabled
+      disabled,
     } = this.props;
+    console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", label);
     return (
       <View style={styles.inputGroup}>
         <Text style={styles.label}>
@@ -125,20 +126,18 @@ class DatePicker extends Component<Props> {
                           .format("DD-MM-YYYY")
                       : "Pick a date"}
                   </Text>
-                  {value !== undefined &&
-                    !disabled &&
-                    value !== "" && (
-                      <TouchableOpacity
-                        style={styles.dateRemoveBtn}
-                        onPress={() => onChange(name, "")}
-                      >
-                        <Icon
-                          name={"times"}
-                          size={moderateScale(12)}
-                          color={theme.button.dangerBGColor}
-                        />
-                      </TouchableOpacity>
-                    )}
+                  {value !== undefined && !disabled && value !== "" && (
+                    <TouchableOpacity
+                      style={styles.dateRemoveBtn}
+                      onPress={() => onChange(name, "")}
+                    >
+                      <Icon
+                        name={"times"}
+                        size={moderateScale(12)}
+                        color={theme.button.dangerBGColor}
+                      />
+                    </TouchableOpacity>
+                  )}
                   {/*<Text style={styles.text}>{ (!isUndefined(value)) ? formatUsDate(formatDateTime(value)) : 'Pick a date'}</Text>*/}
                 </View>
               </TouchableOpacity>

@@ -190,33 +190,6 @@ export default class SignUp extends React.Component {
     );
   }
 
-  conditions = () => {
-    Linking.openURL("https://rcsapp.net/privacy-policy.html");
-    // Navigation.push(this.props.componentId, {
-    //   component: {
-    //     name: "Condition",
-    //     options: {
-    //       topBar: {
-    //         visible: true,
-    //         height: 60,
-    //         topMargin: 15,
-    //         borderHeight: 0,
-    //         elevation: 0,
-    //         title: {
-    //           text: 'Privacy Policy',
-    //           alignment: 'center',
-    //           fontSize: 25,
-    //           fontFamily: 'Ubuntu-Bold'
-    //         },
-    //         background: {
-    //           color: '#FFFFFF'
-    //         }
-    //       }
-    //     },
-    //   }
-    // });
-  };
-
   signIn = () => {
     Navigation.push(this.props.componentId, {
       component: {
@@ -241,16 +214,7 @@ export default class SignUp extends React.Component {
   };
 
   signUp = () => {
-    if (this.state.checkBoxChecked) {
-      this.saveUserHandler();
-    } else {
-      Alert.alert(
-        "Privacy Policy",
-        "Please agree to RCS Privacy Policy to proceed",
-        [{ text: "OK", onPress: () => {} }],
-        { cancelable: true }
-      );
-    }
+    this.saveUserHandler();
   };
 
   handleFieldChange = (name, value) => {

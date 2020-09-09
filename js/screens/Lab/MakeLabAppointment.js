@@ -16,14 +16,21 @@ import {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
+  saveSchedule,
 } from "actions";
-import propertyModel from "models/property.json";
-import complainTypeModel from "models/complainType.json";
+import labModel from "models/lab.json";
+import modalStyle from "styles/ui/modalStyle";
+import timeModel from "models/times.json";
 import { moderateScale, normalize } from "util/sizes";
+import Text from "components/ui/Text";
 import Form from "components/ui/forms/Form";
 import InputField from "components/ui/forms/InputField";
 import Buttons from "components/ui/Button";
-import ImagePicker from "react-native-image-picker";
+import { ComplainTypeListItem } from "../components/ComplainTypeListItem";
+import isEmpty from "lodash/isEmpty";
+import { validate } from "util/validator";
+import { isUndefined } from "util/core";
+import { showInAppNotification } from "util/NavigationActions";
 import withPreventDoubleClick from "screens/components/PreventDoubleClick";
 
 const Button = withPreventDoubleClick(Buttons);
@@ -45,114 +52,60 @@ export default class MakeLabAppointment extends React.Component {
 
   static defaultProps = {
     btnState: false,
-    frmProperty: {},
-    frmComplainType: {},
-    propertyModelError: {},
+    frmSchedule: {},
+    frmTime: {},
+    scheduleModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
-    isVisibleComplainTypeModal: false,
-    complainTypeModelError: {},
-    country: [],
+    isVisibleTimeModal: false,
+    timeModelError: {},
   };
 
   state = {
-    complainTypeData: [],
-    isMounted: false,
+    timeData: [],
     isUpdate: false,
     pickedImage: null,
     imgData: null,
     updatebtnDisable: false,
+    times: [],
   };
 
-  pickImageHandler = () => {
-    ImagePicker.showImagePicker(
-      { title: "Pick an Image", maxWidth: 800, maxHeight: 600 },
-      (res) => {
-        if (res.didCancel) {
-          console.log("Image selection canceled");
-        } else if (res.error) {
-          console.log("Error", res.error);
-        } else {
-          this.setState({
-            pickedImage: res.uri,
-            imgData: res.data,
-          });
-        }
-      }
-    );
-  };
-
-  reset = () => {
-    this.setState({
-      pickedImage: null,
-      imgData: null,
-    });
-  };
-
-  componentDidMount() {
-    const { data, setFormFields } = this.props;
-    if (data) {
-      setFormFields({
-        name: propertyModel.name,
-        value: data,
-      });
-
-      // getComplainTypes(data.propertyId);
-
-      this.setState({
-        isUpdate: true,
-        imgData: data.imageData,
-        pickedImage: data.imageData,
-        updatebtnDisable: true,
-      });
-
-      // if(data.complainTypes) {
-      //   this.setState({
-      //     complainTypeData: data.complainTypes
-      //   });
-      // }
-    }
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     const { resetForm, setState } = this.props;
-    resetForm("property");
+    resetForm("schedule");
     setState({
-      propertyModelError: {},
-      country: [],
+      scheduleModelError: {},
     });
   }
 
   render() {
     const {
-      frmProperty,
-      propertyModelError,
-      complainTypeModelError,
-      frmComplainType,
-      isVisibleComplainTypeModal,
+      frmSchedule,
+      scheduleModelError,
+      timeModelError,
+      frmTime,
+      isVisibleTimeModal,
       setState,
-      complainTypes,
+      time,
       btnState,
-      country,
     } = this.props;
 
-    const propertyFields = propertyModel.fields;
+    const labFields = labModel.fields;
+    const timeFields = timeModel.fields;
     const formData = {
-      name: propertyModel.name,
-      data: frmProperty,
+      name: labModel.name,
+      data: frmSchedule,
     };
-    let countryList = [];
-    country.forEach((item) => {
-      countryList.push({ id: item.name, name: item.name });
-    });
-    const buttonLabel = this.state.isUpdate ? "Update Facility" : "Add";
-
-    let types = [
-      { value: 3, label: "High" },
-      { value: 2, label: "Medium" },
-      { value: 1, label: "Low" },
-    ];
-
+    const timeFormData = {
+      name: timeModel.name,
+      data: frmTime,
+    };
+    const timeData = this.state.timeData;
+    const buttonLabel = this.state.isUpdate
+      ? "Update Schedule"
+      : "Create Schedule";
     return (
       <View style={styles.containerStyle}>
         <KeyboardAwareScrollView
@@ -162,50 +115,48 @@ export default class MakeLabAppointment extends React.Component {
         >
           <Form form={formData}>
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              data={[
+                { id: "2424", value: "sfsdfsdf" },
+                { id: "2425", value: "sfsdfsdf" },
+              ]}
+              schema={labFields.date}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={scheduleModelError}
             />
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              data={[
+                { id: "2424", value: "sfsdfsdf" },
+                { id: "2425", value: "sfsdfsdf" },
+              ]}
+              schema={labFields.lab}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={scheduleModelError}
             />
             <InputField
-              schema={propertyFields.description}
-              placeholder={"Description"}
-              multiline={true}
-              numberOfLines={3}
+              data={[
+                { id: "2424", value: "sfsdfsdf" },
+                { id: "2425", value: "sfsdfsdf" },
+              ]}
+              schema={labFields.test}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={scheduleModelError}
             />
             <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
+              schema={labFields.time}
+              placeholder={"Time"}
               onChange={this.handleFieldChange}
-              error={propertyModelError}
-            />
-            <InputField
-              data={types}
-              style={styles.dropdown}
-              schema={propertyFields.type}
-              onChange={this.handleFieldChange}
-              error={propertyModelError}
+              error={scheduleModelError}
             />
           </Form>
+
           <View style={styles.buttonSection}>
             <Button
               style={styles.rcsButton}
               disabled={this.state.updatebtnDisable}
-              onPress={this.propertyHandler}
+              onPress={this.scheduleHandler}
               loading={btnState}
             >
-              {buttonLabel}
+              {"Book Now"}
             </Button>
           </View>
         </KeyboardAwareScrollView>
@@ -213,56 +164,88 @@ export default class MakeLabAppointment extends React.Component {
     );
   }
 
-  handleFieldChange = (name, value) => {
-    const { onFieldChange } = this.props;
-    if (name == "country") {
-      let countryName = value.name ? value.name : value;
-      onFieldChange({
-        form: propertyModel.name,
-        name,
-        value: Platform.OS === "android" ? countryName : value.Name,
-      });
+  scheduleHandler = () => {
+    const { frmSchedule, setState, saveSchedule, componentId } = this.props;
+
+    // if (!this.state.isUpdate) {
+    frmSchedule.times = this.state.timeData;
+    // }
+    const validateStatus = validate(scheduleModel, { ...frmSchedule });
+    setState({
+      scheduleModelError: validateStatus,
+    });
+
+    let hasActiveComplainTypes = false;
+
+    if (!this.state.isUpdate) {
+      if (this.state.timeData.length == 0) {
+        showInAppNotification("error", "Please add a complaint type", 5000);
+        return;
+      }
     } else {
-      onFieldChange({
-        form: propertyModel.name,
-        name,
-        value,
-      });
+      if (this.state.times.length == 0) {
+        showInAppNotification("error", "Please add a complaint type", 5000);
+        return;
+      }
     }
 
-    if (this.state.isUpdate) {
-      this.setState({
-        updatebtnDisable: false,
-      });
+    if (isEmpty(validateStatus)) {
+      setState({ btnState: true });
+      saveSchedule(frmSchedule, componentId);
     }
   };
 
-  handleComplainTypeModalFieldChange = (name, value) => {
-    const { onFieldChange, complainTypes } = this.props;
-    onFieldChange({
-      form: complainTypeModel.name,
-      name,
-      value,
+  removeTime = (keyIndex) => {
+    // if (this.state.isUpdate) {
+    //   this.props.removeTime(keyIndex);
+    // } else {
+    const timeArray = [...this.state.timeData];
+    timeArray.splice(keyIndex, 1);
+
+    this.setState({
+      timeData: timeArray,
     });
-    if (complainTypes.length == 0) {
+    // }
+  };
+
+  addTime = () => {
+    const { frmTime, setState, resetForm, updateTime, saveTime } = this.props;
+    const validateStatus = validate(timeModel, { ...frmTime });
+
+    setState({
+      timeModelError: validateStatus,
+    });
+
+    if (isEmpty(validateStatus)) {
+      frmTime.key = Date.now(); //Add timestamp as a key for array item.
       this.setState({
-        updatebtnDisable: false,
+        timeData: [...this.state.timeData, frmTime],
       });
+      resetForm(timeModel.name);
+      setState({ isVisibleTimeModal: false });
     }
+  };
+
+  handleCancelButtonClick = (formName) => {
+    const { setState, resetForm, resetUpdateFormFields } = this.props;
+    resetForm(formName);
+    resetUpdateFormFields(formName);
+    setState({
+      isVisibleTimeModal: false,
+      complainTypeModelError: "",
+    });
   };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     btnState: state.app.btnState,
-    frmProperty: state.form.property,
-    frmComplainType: state.form.complainType,
+    frmSchedule: state.form.schedule,
+    frmTime: state.form.time,
     sessionObject: state.app.sessionObject,
-    isVisibleComplainTypeModal: state.app.isVisibleComplainTypeModal,
-    propertyModelError: state.app.propertyModelError,
-    complainTypeModelError: state.app.complainTypeModelError,
-    userProperties: state.app.userProperties,
-    country: state.app.country,
+    isVisibleTimeModal: state.app.isVisibleTimeModal,
+    scheduleModelError: state.app.scheduleModelError,
+    timeModelError: state.app.timeModelError,
   };
 };
 
@@ -272,6 +255,7 @@ export const MakeLabAppointmentContainer = connect(mapStateToProps, {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
+  saveSchedule,
 })(MakeLabAppointment);
 
 const styles = StyleSheet.create({
@@ -336,7 +320,7 @@ const styles = StyleSheet.create({
   complainTypeAddBtn: {
     height: moderateScale(20),
     width: moderateScale(98),
-    backgroundColor: "#ff2020",
+    backgroundColor: "#032DFF",
     borderRadius: moderateScale(20),
     marginTop: moderateScale(15),
   },

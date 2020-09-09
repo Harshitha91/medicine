@@ -8,14 +8,19 @@ import { UpdateUserContainer } from "./User/UpdateUser";
 import { SliderContainer } from "./Slider";
 import InAppNotification from "./InAppNotification";
 import { ScheduleHistoryContainer } from "./Schedule/ScheduleHistory";
+import { CreateScheduleContainer } from "./Schedule/CreateSchedule";
 import { HomeContainer } from "./Home";
 import { MedicineListContainer } from "./Medicine/MedicineList";
 import { AddMedicineContainer } from "./Medicine/AddMedicine";
 import { OrderMedicineContainer } from "./Medicine/OrderMedicine";
 import { DoctorAppointmentsListContainer } from "./Doctor/DoctorAppointmentsList";
+import { ChannelingDetailsContainer } from "./Doctor/ChannelingDetails";
+import { TimeSlotsContainer } from "./Doctor/TimeSlots";
 import { MakeDoctorAppointmentContainer } from "./Doctor/MakeDoctorAppointment";
 import { LabAppointmentsListContainer } from "./Lab/LabAppointmentsList";
 import { MakeLabAppointmentContainer } from "./Lab/MakeLabAppointment";
+import { CareGiverListContainer } from "./CareGiver/CareGiverList";
+import { AddCareGiverInvitationContainer } from "./CareGiver/AddCareGiverInvitation";
 import { LoaderOverlayContainer } from "./LoaderOverlay";
 
 export function registerScreens(store, Provider) {
@@ -171,5 +176,50 @@ export function registerScreens(store, Provider) {
       </Provider>
     ),
     () => MakeLabAppointmentContainer
+  );
+  Navigation.registerComponent(
+    "CreateSchedule",
+    () => (props) => (
+      <Provider store={store}>
+        <CreateScheduleContainer {...props} />
+      </Provider>
+    ),
+    () => CreateScheduleContainer
+  );
+  Navigation.registerComponent(
+    "ChannelingDetails",
+    () => (props) => (
+      <Provider store={store}>
+        <ChannelingDetailsContainer {...props} />
+      </Provider>
+    ),
+    () => ChannelingDetailsContainer
+  );
+  Navigation.registerComponent(
+    "TimeSlots",
+    () => (props) => (
+      <Provider store={store}>
+        <TimeSlotsContainer {...props} />
+      </Provider>
+    ),
+    () => TimeSlotsContainer
+  );
+  Navigation.registerComponent(
+    "CareGiverList",
+    () => (props) => (
+      <Provider store={store}>
+        <CareGiverListContainer {...props} />
+      </Provider>
+    ),
+    () => CareGiverListContainer
+  );
+  Navigation.registerComponent(
+    "AddCareGiverInvitation",
+    () => (props) => (
+      <Provider store={store}>
+        <AddCareGiverInvitationContainer {...props} />
+      </Provider>
+    ),
+    () => AddCareGiverInvitationContainer
   );
 }

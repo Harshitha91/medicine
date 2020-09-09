@@ -1,0 +1,21 @@
+{
+  "name": "schedule",
+  "plural": "schedules",
+  "label": "Schedule",
+  "fields": {
+    "id": {
+      "name": "id"
+    },
+    "time": {
+      "name": "time",
+      "label": "Time",
+      "type": "timestamp",
+      "required": true
+    },
+    "dose": {
+      "name": "dose",
+      "label": "Dose",
+      "type": "number"
+    }
+  }
+}

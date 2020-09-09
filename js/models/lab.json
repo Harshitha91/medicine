@@ -1,0 +1,29 @@
+{
+  "name": "lab",
+  "plural": "labs",
+  "label": "Lab",
+  "fields": {
+    "date": {
+      "name": "date",
+      "label": "Date",
+      "type": "enum",
+      "required": true
+    },
+    "lab": {
+      "name": "lab",
+      "label": "Lab",
+      "type": "enum",
+      "required": true
+    },
+    "test": {
+      "name": "test",
+      "label": "Test",
+      "type": "enum"
+    },
+    "time": {
+      "name": "time",
+      "label": "Time",
+      "type": "string"
+    }
+  }
+}

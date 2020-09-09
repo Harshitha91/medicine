@@ -12,24 +12,24 @@ import { Agenda } from "react-native-calendars";
 import { pushComplainTypeScreen } from "../navigation";
 import { connect } from "react-redux";
 import debounce from "lodash/debounce";
-import { setState } from "actions";
 import { Navigation } from "react-native-navigation";
 import { PropertyListItem } from "../components/PropertyListItem";
-import PlusButton from "components/ui/Fab";
-import { Badge } from "react-native-elements";
+import CallButton from "components/ui/CallButton";
+import { CheckBox } from "react-native-elements";
 import { moderateScale } from "util/sizes";
 import withPreventDoubleClick from "../components/PreventDoubleClick";
 import moment from "moment";
+import { setState, getScheduleCalandar } from "actions";
 
-const Fab = withPreventDoubleClick(PlusButton);
+const Fab = withPreventDoubleClick(CallButton);
 const PropertyListItems = withPreventDoubleClick(PropertyListItem);
 
 export default class Home extends React.Component {
   static defaultProps = {
     refreshing: false,
     sessionObject: {},
-    properties: [],
-    loaderProperty: true,
+    data: [],
+    loading: false,
   };
   state = {
     filterString: "",
@@ -37,6 +37,25 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);
+  }
+
+  static get options() {
+    return {
+      topBar: {
+        leftButtons: [
+          {
+            id: "menuBtn",
+            icon: require("images/baseline_menu.png"),
+            color: "black",
+          },
+        ],
+      },
+    };
+  }
+
+  componentDidMount() {
+    console.log("000000000000000000000000000000000000000000000000");
+    this.props.getScheduleCalandar();
   }
 
   handleRefresh(props) {
@@ -73,6 +92,79 @@ export default class Home extends React.Component {
     );
   }
 
+  onClickCheckBox = (item) => {
+    // this.props.updateTakenStatus({ id: item.id, isTaken: !item.item });
+  };
+
+  renderItem = (item) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {}}
+        style={[
+          styles.item,
+          { height: 80, backgroundColor: "#FFC900", flexDirection: "column" },
+        ]}
+      >
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            style={{
+              fontWeight: "700",
+              fontSize: 20,
+              color: "white",
+              paddingBottom: 2,
+            }}
+          >
+            {item.time}
+          </Text>
+
+          <View style={{ marginLeft: 15 }}>
+            <Text
+              style={{
+                fontWeight: "600",
+                fontSize: 15,
+                color: "white",
+                paddingBottom: 2,
+              }}
+            >
+              {item.name}
+            </Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <CheckBox
+            left
+            containerStyle={{
+              backgroundColor: "transparent",
+              borderWidth: 0,
+              // marginTop: 30,
+            }}
+            title="Took"
+            textStyle={{ color: "green" }}
+            checked={item.isTaken}
+            uncheckedColor={"green"}
+            checkedColor={"green"}
+            onPress={this.onClickCheckBox(item)}
+          />
+          <CheckBox
+            right
+            containerStyle={{
+              backgroundColor: "transparent",
+              borderWidth: 0,
+              // marginTop: 30,
+              // marginRight: 100,
+            }}
+            textStyle={{ color: "red" }}
+            title="Missed"
+            checked={!item.isTaken}
+            uncheckedColor={"red"}
+            checkedColor={"red"}
+            onPress={this.onClickCheckBox(item)}
+          />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   render() {
     const { refreshing, properties, loaderProperty } = this.props;
 
@@ -99,71 +191,17 @@ export default class Home extends React.Component {
             <Agenda
               displayLoadingIndicator={false}
               dayLoading={false}
-              items={{
-                "2020-08-15": [{ name: "item 1 - any js object" }],
-                "2020-08-16": [{ name: "item 2 - any js object", height: 80 }],
-                "2020-09-02": [
-                  { name: "Panadol", time: "9 PM" },
-                  { name: "Zitracine", time: "10 PM" },
-                ],
-              }}
+              // items={{
+              //   "2020-08-15": [{ name: "item 1 - any js object" }],
+              //   "2020-08-16": [{ name: "item 2 - any js object", height: 80 }],
+              //   "2020-09-02": [
+              //     { name: "Panadol", time: "9 PM" },
+              //     { name: "Zitracine", time: "10 PM" },
+              //   ],
+              // }}
+              items={this.props.data}
               selected={formatedCurrentDate}
-              renderItem={(item, firstItemInDay) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={[
-                      styles.item,
-                      { height: 80, backgroundColor: "green" },
-                    ]}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      <Text
-                        style={{
-                          fontWeight: "700",
-                          fontSize: 20,
-                          color: "white",
-                          paddingBottom: 2,
-                        }}
-                      >
-                        {item.time}
-                      </Text>
-
-                      <View style={{ marginLeft: 15 }}>
-                        <Text
-                          style={{
-                            fontWeight: "600",
-                            fontSize: 15,
-                            color: "white",
-                            paddingBottom: 2,
-                          }}
-                        >
-                          fsdfsdfsdf
-                        </Text>
-                        {/* <Text
-                          style={{
-                            fontWeight: "600",
-                            fontSize: 12,
-                            color: "white",
-                            paddingBottom: 2,
-                          }}
-                        >
-                          'fdgdfgdfgg'
-                        </Text>
-                        <Text
-                          style={{
-                            fontWeight: "400",
-                            fontSize: 12,
-                            color: "white",
-                          }}
-                        >
-                          'fgdfgdfgfdgfdg'
-                        </Text> */}
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }}
+              renderItem={this.renderItem}
               // renderEmptyData={() => {
               //   return <View />;
               // }}
@@ -206,7 +244,7 @@ export default class Home extends React.Component {
   }
 
   addProperty = () => {
-    Navigation.push(this.props.componentId, {
+    Navigation.push("CenterStack", {
       component: {
         name: "AddMedicine",
         options: {
@@ -240,10 +278,13 @@ const mapStateToProps = (state, ownProps) => {
     sessionObject: state.app.sessionObject,
     refreshing: state.app.refreshing,
     loaderProperty: state.app.loaderProperty,
+    data: state.home.data,
+    loading: state.home.loading,
   };
 };
 export const HomeContainer = connect(mapStateToProps, {
   setState,
+  getScheduleCalandar,
 })(Home);
 
 let styles;

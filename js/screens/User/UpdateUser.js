@@ -156,7 +156,7 @@ export default class UpdateUser extends Component {
           <View
             style={{
               height: 60,
-              marginTop: 100,
+              marginTop: 60,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -229,8 +229,26 @@ export default class UpdateUser extends Component {
                 style={inputStyles.inputField}
                 schema={updateUserFields.phoneNumber}
                 inlineImagePadding={20}
-                inlineImageLeft="phone"
+                inlineImageLeft="user"
                 placeholder={"Mobile Number"}
+                onChange={this.handleFieldChange}
+                error={updateUserModelError}
+              />
+              <InputField
+                style={inputStyles.inputField}
+                schema={updateUserFields.fullName}
+                inlineImagePadding={20}
+                inlineImageLeft="user"
+                placeholder={"Address"}
+                onChange={this.handleFieldChange}
+                error={updateUserModelError}
+              />
+              <InputField
+                style={inputStyles.inputField}
+                schema={updateUserFields.fullName}
+                inlineImagePadding={20}
+                inlineImageLeft="user"
+                placeholder={"Date of Birth"}
                 onChange={this.handleFieldChange}
                 error={updateUserModelError}
               />

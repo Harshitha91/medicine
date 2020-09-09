@@ -15,6 +15,7 @@ import Badge from "components/ui/Badge";
 import { CachedImage } from "react-native-cached-image";
 import { localTime } from "../../helpers/datetimeHelper";
 import { imageBucket } from "../../../config";
+// import { Badge } from "react-native-elements";
 const theme = Style.get();
 
 export const LabAppointmentsListItem = (props) => {
@@ -105,79 +106,33 @@ export const LabAppointmentsListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {"10 AM"}
+                    {data.test}
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}
                   >
-                    Date:{" "}
-                    <Text style={{ color: "#ff2020" }}>{"2020-08-31"}</Text>
+                    Date: <Text style={{ color: "#ff2020" }}>{data.date}</Text>
+                  </Text>
+                  <Text
+                    style={{ marginTop: moderateScale(5), color: "#ff2020" }}
+                  >
+                    Time: <Text style={{ color: "#ff2020" }}>{data.time}</Text>
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
-                    Phill Name:{" "}
-                    <Text style={{ color: "#000" }}>{"Panadol"}</Text>
+                    Lab: <Text style={{ color: "#000" }}>{data.lab}</Text>
                   </Text>
                 </View>
               </View>
             </View>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                alignItems: "flex-start",
-                marginTop: moderateScale(4),
-                paddingLeft: moderateScale(10),
-                marginBottom: moderateScale(2),
-              }}
-            >
-              {Platform.OS === "android" && (
-                <Badge
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-              {Platform.OS === "ios" && (
-                <Badge
-                  badgeStyle={{
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    borderRadius: 25,
-                  }}
-                  status="warning"
-                  containerStyle={{ left: moderateScale(0) }}
-                  value={tag}
-                />
-              )}
-            </View>
-            <View>
+            {data.isHistory && (
               <Badge
-                badgeStyle={
-                  Platform.OS === "android"
-                    ? {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        paddingBottom: 10,
-                        paddingTop: 10,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                    : {
-                        backgroundColor: SeveritybadgeColor,
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        borderRadius: 25,
-                        marginTop: moderateScale(4),
-                      }
-                }
-                status={SeveritybadgeType}
-                containerStyle={{ left: moderateScale(5) }}
-                value={SeveritybadgeText}
+                value="View Reports"
+                status="error"
+                containerStyle={{ position: "absolute", top: 60, right: 4 }}
               />
-            </View>
+            )}
           </View>
         </View>
       </View>

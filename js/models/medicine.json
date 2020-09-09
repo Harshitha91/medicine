@@ -1,0 +1,29 @@
+{
+  "name": "medicine",
+  "plural": "medicines",
+  "label": "Medicine",
+  "fields": {
+    "type": {
+      "name": "type",
+      "label": "Type",
+      "type": "enum",
+      "required": true
+    },
+    "medicine": {
+      "name": "medicine",
+      "label": "Medicine",
+      "type": "string",
+      "required": true
+    },
+    "prefferedName": {
+      "name": "prefferedName",
+      "label": "Preffered Name",
+      "type": "string"
+    },
+    "noOfPills": {
+      "name": "noOfPills",
+      "label": "No Of Pills",
+      "type": "string"
+    }
+  }
+}
