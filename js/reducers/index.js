@@ -5,12 +5,16 @@ import app from "./app";
 import form from "./form";
 import user from "./user";
 import home from "./home";
+import schedule from "./schedule";
+import medicine from "./medicine";
 
 const appReducer = combineReducers({
   app,
   form,
   user,
   home,
+  schedule,
+  medicine,
 });
 
 const rootReducer = (state = {}, action) => {

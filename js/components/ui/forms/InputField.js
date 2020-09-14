@@ -6,6 +6,7 @@ import { isUndefined } from "util/core";
 import OptionInput from "components/ui/forms/OptionInput";
 import TextField from "components/ui/forms/TextField";
 import DatePicker from "components/ui/forms/DatePicker";
+import TimePicker from "components/ui/forms/TimePicker";
 import Autocomplete from "components/ui/forms/Autocomplete";
 import SwitchInput from "components/ui/forms/SwitchInput";
 import CheckBoxList from "components/ui/forms/CheckBoxList";
@@ -55,6 +56,7 @@ export default class InputField extends Component {
       dataSource,
       required,
       label,
+      onFocus,
       editable,
       ...restProps
     } = this.props;
@@ -121,6 +123,7 @@ export default class InputField extends Component {
             error={error[schema.name]}
             required={schema.required || required}
             onChange={this.onChangeField.bind(this, schema)}
+            onFocus={onFocus}
             value={this.getInputValue(schema)}
           />
         );
@@ -153,6 +156,20 @@ export default class InputField extends Component {
       case "timestamp":
         return (
           <DatePicker
+            {...restProps}
+            label={schema.label}
+            name={schema.name}
+            error={error[schema.name]}
+            required={schema.required}
+            minDate={minDate}
+            maxDate={maxDate}
+            onChange={this.onChangeField.bind(this, schema)}
+            value={value ? value : this.getInputValue(schema)}
+          />
+        );
+      case "time":
+        return (
+          <TimePicker
             {...restProps}
             label={schema.label}
             name={schema.name}

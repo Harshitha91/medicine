@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Platform,
   Text,
+  Dimensions,
 } from "react-native";
 import { Agenda } from "react-native-calendars";
 import { pushComplainTypeScreen } from "../navigation";
@@ -19,7 +20,9 @@ import { CheckBox } from "react-native-elements";
 import { moderateScale } from "util/sizes";
 import withPreventDoubleClick from "../components/PreventDoubleClick";
 import moment from "moment";
-import { setState, getScheduleCalandar } from "actions";
+import { setState, getScheduleCalandar, updateTakenStatus } from "actions";
+const window = Dimensions.get("window");
+const { height, width } = window;
 
 const Fab = withPreventDoubleClick(CallButton);
 const PropertyListItems = withPreventDoubleClick(PropertyListItem);
@@ -33,6 +36,7 @@ export default class Home extends React.Component {
   };
   state = {
     filterString: "",
+    selectedDate: "",
   };
   constructor(props) {
     super(props);
@@ -54,8 +58,21 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log("000000000000000000000000000000000000000000000000");
-    this.props.getScheduleCalandar();
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    let yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    today = yyyy + "-" + mm + "-" + dd;
+
+    this.setState({ selectedDate: today });
+
+    this.props.getScheduleCalandar(today);
   }
 
   handleRefresh(props) {
@@ -65,7 +82,7 @@ export default class Home extends React.Component {
     this.handleSearchInputChange("");
   }
 
-  renderEmptyDate() {
+  renderEmptyDate = () => {
     return (
       <View
         style={{
@@ -90,10 +107,14 @@ export default class Home extends React.Component {
         </Text>
       </View>
     );
-  }
+  };
 
-  onClickCheckBox = (item) => {
-    // this.props.updateTakenStatus({ id: item.id, isTaken: !item.item });
+  onClickCheckBox = (item, status) => {
+    this.props.updateTakenStatus({
+      frequency_id: item.id,
+      status,
+      date: this.state.selectedDate,
+    });
   };
 
   renderItem = (item) => {
@@ -102,34 +123,34 @@ export default class Home extends React.Component {
         onPress={() => {}}
         style={[
           styles.item,
-          { height: 80, backgroundColor: "#FFC900", flexDirection: "column" },
+          { height: 110, backgroundColor: "#FFC900", flexDirection: "column" },
         ]}
       >
-        <View style={{ flexDirection: "row" }}>
+        {/* <View style={{ flexDirection: "row" }}> */}
+        <Text
+          style={{
+            fontWeight: "700",
+            fontSize: 20,
+            color: "white",
+            paddingBottom: 2,
+          }}
+        >
+          {item.time}
+        </Text>
+
+        <View style={{ marginLeft: 15 }}>
           <Text
             style={{
-              fontWeight: "700",
-              fontSize: 20,
+              fontWeight: "600",
+              fontSize: 15,
               color: "white",
               paddingBottom: 2,
             }}
           >
-            {item.time}
+            {item.name}
           </Text>
-
-          <View style={{ marginLeft: 15 }}>
-            <Text
-              style={{
-                fontWeight: "600",
-                fontSize: 15,
-                color: "white",
-                paddingBottom: 2,
-              }}
-            >
-              {item.name}
-            </Text>
-          </View>
         </View>
+        {/* </View> */}
         <View style={{ flexDirection: "row" }}>
           <CheckBox
             left
@@ -140,10 +161,10 @@ export default class Home extends React.Component {
             }}
             title="Took"
             textStyle={{ color: "green" }}
-            checked={item.isTaken}
+            checked={item.status === "completed"}
             uncheckedColor={"green"}
             checkedColor={"green"}
-            onPress={this.onClickCheckBox(item)}
+            onPress={() => this.onClickCheckBox(item, "completed")}
           />
           <CheckBox
             right
@@ -155,10 +176,10 @@ export default class Home extends React.Component {
             }}
             textStyle={{ color: "red" }}
             title="Missed"
-            checked={!item.isTaken}
+            checked={item.status === "missed"}
             uncheckedColor={"red"}
             checkedColor={"red"}
-            onPress={this.onClickCheckBox(item)}
+            onPress={() => this.onClickCheckBox(item, "missed")}
           />
         </View>
       </TouchableOpacity>
@@ -166,7 +187,8 @@ export default class Home extends React.Component {
   };
 
   render() {
-    const { refreshing, properties, loaderProperty } = this.props;
+    const { refreshing, properties, loaderProperty, data } = this.props;
+    console.log("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII ", data);
 
     let formatedCurrentDate = moment(new Date()).format("YYYY-MM-DD");
 
@@ -199,12 +221,19 @@ export default class Home extends React.Component {
               //     { name: "Zitracine", time: "10 PM" },
               //   ],
               // }}
-              items={this.props.data}
+              onDayPress={(day) => {
+                console.log("++++++++++++++++++++++++++++++++", day);
+                this.setState({ selectedDate: day.dateString });
+                this.props.getScheduleCalandar(day.dateString);
+              }}
+              onDayChange={(day) => {
+                this.setState({ selectedDate: day.dateString });
+                this.props.getScheduleCalandar(day.dateString);
+              }}
+              items={data}
               selected={formatedCurrentDate}
               renderItem={this.renderItem}
-              // renderEmptyData={() => {
-              //   return <View />;
-              // }}
+              renderEmptyData={this.renderEmptyDate}
               // rowHasChanged={(r1, r2) => {
               //   return r1.text !== r2.text;
               // }}
@@ -285,6 +314,7 @@ const mapStateToProps = (state, ownProps) => {
 export const HomeContainer = connect(mapStateToProps, {
   setState,
   getScheduleCalandar,
+  updateTakenStatus,
 })(Home);
 
 let styles;

@@ -1,6 +1,6 @@
 {
-  "name": "schedule",
-  "plural": "schedules",
+  "name": "time",
+  "plural": "times",
   "label": "Schedule",
   "fields": {
     "id": {
@@ -9,13 +9,14 @@
     "time": {
       "name": "time",
       "label": "Time",
-      "type": "timestamp",
+      "type": "time",
       "required": true
     },
     "dose": {
       "name": "dose",
       "label": "Dose",
-      "type": "number"
+      "type": "number",
+      "required": true
     }
   }
 }

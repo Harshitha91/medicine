@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 export const ComplainTypeListItem = ({
   data,
   keyIndex,
-  removeComplainType,
+  removeTime,
   onPress,
   isPropertyUpdate,
 }) => {
@@ -24,24 +24,16 @@ export const ComplainTypeListItem = ({
         style={styles.listItem}
         onPress={() => onPress(data)}
       >
-        <Text style={styles.listItemText}>{data.name}</Text>
+        <Text style={styles.listItemText}>{data.time}</Text>
         {isPropertyUpdate && !data.hasComplain && (
           <View style={styles.btnArea}>
             {Platform.OS === "android" && (
               <Icon
                 name="clear"
                 size={25}
-                color="#ff2020"
-                onPress={() => removeComplainType(keyIndex)}
+                color="#032DFF"
+                onPress={() => removeTime(keyIndex)}
                 style={styles.clearBtn}
-              />
-            )}
-            {Platform.OS === "ios" && (
-              <Icon
-                name="clear"
-                size={25}
-                color="#ff2020"
-                onPress={() => removeComplainType(keyIndex)}
               />
             )}
           </View>
@@ -51,8 +43,8 @@ export const ComplainTypeListItem = ({
             <Icon
               name="clear"
               size={25}
-              color="#ff2020"
-              onPress={() => removeComplainType(keyIndex)}
+              color="#032DFF"
+              onPress={() => removeTime(keyIndex)}
               style={
                 Platform.OS === "android"
                   ? styles.clearBtn

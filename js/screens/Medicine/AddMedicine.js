@@ -16,7 +16,8 @@ import {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
-  saveSchedule,
+  saveMedicine,
+  searchFilter,
 } from "actions";
 import medicineModel from "models/medicine.json";
 import modalStyle from "styles/ui/modalStyle";
@@ -32,6 +33,7 @@ import { validate } from "util/validator";
 import { isUndefined } from "util/core";
 import { showInAppNotification } from "util/NavigationActions";
 import withPreventDoubleClick from "screens/components/PreventDoubleClick";
+import { SearchMedicineModal } from "./SearchMedicineModal";
 
 const Button = withPreventDoubleClick(Buttons);
 
@@ -52,13 +54,14 @@ export default class AddMedicine extends React.Component {
 
   static defaultProps = {
     btnState: false,
-    frmSchedule: {},
+    frmMedicine: {},
     frmTime: {},
     medicineModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
     isVisibleTimeModal: false,
     timeModelError: {},
+    filterData: [],
   };
 
   state = {
@@ -68,21 +71,22 @@ export default class AddMedicine extends React.Component {
     imgData: null,
     updatebtnDisable: false,
     times: [],
+    showSearchModal: false,
   };
 
   componentDidMount() {
     const { data, setFormFields } = this.props;
-    if (data) {
-      setFormFields({
-        name: medicineModel.name,
-        value: data,
-      });
+    // if (data) {
+    //   setFormFields({
+    //     name: medicineModel.name,
+    //     value: data,
+    //   });
 
-      this.setState({
-        isUpdate: true,
-        updatebtnDisable: true,
-      });
-    }
+    //   this.setState({
+    //     isUpdate: true,
+    //     updatebtnDisable: true,
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -95,7 +99,7 @@ export default class AddMedicine extends React.Component {
 
   render() {
     const {
-      frmSchedule,
+      frmMedicine,
       medicineModelError,
       timeModelError,
       frmTime,
@@ -105,20 +109,11 @@ export default class AddMedicine extends React.Component {
       btnState,
     } = this.props;
 
-    const scheduleFields = medicineModel.fields;
-    const timeFields = timeModel.fields;
+    const medicineFields = medicineModel.fields;
     const formData = {
       name: medicineModel.name,
-      data: frmSchedule,
+      data: frmMedicine,
     };
-    const timeFormData = {
-      name: timeModel.name,
-      data: frmTime,
-    };
-    const timeData = this.state.timeData;
-    const buttonLabel = this.state.isUpdate
-      ? "Update Schedule"
-      : "Create Schedule";
     return (
       <View style={styles.containerStyle}>
         <KeyboardAwareScrollView
@@ -127,7 +122,7 @@ export default class AddMedicine extends React.Component {
           contentContainerStyle={styles.formContainer}
         >
           <Form form={formData}>
-            <InputField
+            {/* <InputField
               data={[
                 { id: "2424", value: "sfsdfsdf" },
                 { id: "2425", value: "sfsdfsdf" },
@@ -136,21 +131,26 @@ export default class AddMedicine extends React.Component {
               placeholder={"Type"}
               onChange={this.handleFieldChange}
               error={medicineModelError}
-            />
+            /> */}
             <InputField
-              schema={scheduleFields.medicine}
+              // data={[
+              //   { id: "2424", value: "sfsdfsdf" },
+              //   { id: "2425", value: "sfsdfsdf" },
+              // ]}
+              schema={medicineFields.medicine_name}
               placeholder={"Medicine"}
+              onFocus={this.onFocusMedicine}
               onChange={this.handleFieldChange}
               error={medicineModelError}
             />
             <InputField
-              schema={scheduleFields.prefferedName}
+              schema={medicineFields.preferred_name}
               placeholder={"Preffered Name"}
               onChange={this.handleFieldChange}
               error={medicineModelError}
             />
             <InputField
-              schema={scheduleFields.noOfPills}
+              schema={medicineFields.count}
               placeholder={"No Of Pills"}
               onChange={this.handleFieldChange}
               error={medicineModelError}
@@ -167,39 +167,61 @@ export default class AddMedicine extends React.Component {
               {"Add"}
             </Button>
           </View>
+          <SearchMedicineModal
+            title={"Search Medicine"}
+            filterValues={this.filterValues}
+            visible={this.state.showSearchModal}
+            cancelButton={this.onTapCancelButton}
+            onClick={this.onSelect}
+            arrayObjects={this.props.filterData}
+          />
         </KeyboardAwareScrollView>
       </View>
     );
   }
 
-  scheduleHandler = () => {
-    const { frmSchedule, setState, saveSchedule, componentId } = this.props;
+  onSelect = (value) => {
+    console.log(
+      "PPPPPPPPLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+      value
+    );
+    const { onFieldChange } = this.props;
+    onFieldChange({
+      form: medicineModel.name,
+      name: "medicine_name",
+      value: value.medicine_name,
+    });
+    onFieldChange({
+      form: medicineModel.name,
+      name: "medicine_stength",
+      value: value.medicine_stength,
+    });
+    this.setState({ showSearchModal: false });
+  };
 
-    // if (!this.state.isUpdate) {
-    frmSchedule.times = this.state.timeData;
-    // }
-    const validateStatus = validate(medicineModel, { ...frmSchedule });
+  filterValues = (text) => {
+    this.props.searchFilter(text);
+  };
+
+  onTapCancelButton = () => {
+    this.setState({ showSearchModal: false });
+  };
+
+  onFocusMedicine = () => {
+    this.setState({ showSearchModal: true });
+  };
+
+  scheduleHandler = () => {
+    const { frmMedicine, setState, saveMedicine, componentId } = this.props;
+
+    const validateStatus = validate(medicineModel, { ...frmMedicine });
     setState({
       medicineModelError: validateStatus,
     });
 
-    let hasActiveComplainTypes = false;
-
-    if (!this.state.isUpdate) {
-      if (this.state.timeData.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    } else {
-      if (this.state.times.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    }
-
     if (isEmpty(validateStatus)) {
       setState({ btnState: true });
-      saveSchedule(frmSchedule, componentId);
+      saveMedicine(frmMedicine, componentId);
     }
   };
 
@@ -211,19 +233,6 @@ export default class AddMedicine extends React.Component {
     });
 
     setState({ isVisibleTimeModal: true });
-  };
-
-  removeTime = (keyIndex) => {
-    // if (this.state.isUpdate) {
-    //   this.props.removeTime(keyIndex);
-    // } else {
-    const timeArray = [...this.state.timeData];
-    timeArray.splice(keyIndex, 1);
-
-    this.setState({
-      timeData: timeArray,
-    });
-    // }
   };
 
   handleFieldChange = (name, value) => {
@@ -254,45 +263,16 @@ export default class AddMedicine extends React.Component {
       });
     }
   };
-
-  addTime = () => {
-    const { frmTime, setState, resetForm, updateTime, saveTime } = this.props;
-    const validateStatus = validate(timeModel, { ...frmTime });
-
-    setState({
-      timeModelError: validateStatus,
-    });
-
-    if (isEmpty(validateStatus)) {
-      frmTime.key = Date.now(); //Add timestamp as a key for array item.
-      this.setState({
-        timeData: [...this.state.timeData, frmTime],
-      });
-      resetForm(timeModel.name);
-      setState({ isVisibleTimeModal: false });
-    }
-  };
-
-  handleCancelButtonClick = (formName) => {
-    const { setState, resetForm, resetUpdateFormFields } = this.props;
-    resetForm(formName);
-    resetUpdateFormFields(formName);
-    setState({
-      isVisibleTimeModal: false,
-      complainTypeModelError: "",
-    });
-  };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     btnState: state.app.btnState,
-    frmSchedule: state.form.schedule,
-    frmTime: state.form.time,
+    frmMedicine: state.form.medicine,
     sessionObject: state.app.sessionObject,
     isVisibleTimeModal: state.app.isVisibleTimeModal,
     medicineModelError: state.app.medicineModelError,
-    timeModelError: state.app.timeModelError,
+    filterData: state.app.filterData,
   };
 };
 
@@ -302,7 +282,8 @@ export const AddMedicineContainer = connect(mapStateToProps, {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
-  saveSchedule,
+  saveMedicine,
+  searchFilter,
 })(AddMedicine);
 
 const styles = StyleSheet.create({

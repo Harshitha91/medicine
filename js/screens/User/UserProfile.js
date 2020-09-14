@@ -92,10 +92,6 @@ export default class UserProfile extends Component {
 
   Signout = () => {
     const { logout } = this.props;
-    const objUserToken = {
-      deviceToken: null,
-      app: "Admin",
-    };
     logout();
   };
 

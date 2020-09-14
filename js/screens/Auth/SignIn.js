@@ -90,7 +90,6 @@ export default class SignIn extends React.Component {
       },
       this.props.componentId
     );
-    goHome(1);
   };
 
   forgotPassword = () => {
@@ -190,7 +189,7 @@ export default class SignIn extends React.Component {
               /> */}
               <TextField
                 style={styles.inputField}
-                placeholder={"Username or Email"}
+                placeholder={"Email"}
                 name="username"
                 onChange={this.handleFieldChange}
                 value={frmLogin.username}

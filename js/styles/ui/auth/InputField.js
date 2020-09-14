@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { isUndefined } from "util/core";
 
 import OptionInput from "components/ui/forms/OptionInput";
-import TextField from "./TextField";
+import TextField from "components/ui/forms/TextField";
 import DatePicker from "components/ui/forms/DatePicker";
 import Autocomplete from "components/ui/forms/Autocomplete";
 import SwitchInput from "components/ui/forms/SwitchInput";
@@ -128,7 +128,9 @@ export default class InputField extends Component {
           <TextField
             {...restProps}
             name={schema.name}
+            label={schema.label}
             error={error[schema.name]}
+            placeholder={placeholder}
             required={schema.required}
             keyboardType={"numeric"}
             onChange={this.onChangeField.bind(this, schema)}
@@ -150,7 +152,6 @@ export default class InputField extends Component {
           />
         );
       case "timestamp":
-        console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP", schema.label);
         return (
           <DatePicker
             {...restProps}

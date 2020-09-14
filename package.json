@@ -37,6 +37,7 @@
     "react-native-image-picker": "^0.28.1",
     "react-native-image-view": "^2.1.5",
     "react-native-keyboard-aware-scrollview": "SteFF1997/react-native-keyboard-aware-scrollview",
+    "react-native-loading-spinner-overlay": "^1.1.0",
     "react-native-modal-datetime-picker": "^8.5.1",
     "react-native-navigation": "^2.17.0",
     "react-native-notifications": "^1.5.0",

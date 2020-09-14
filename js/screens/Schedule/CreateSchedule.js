@@ -9,6 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import Spinner from "react-native-loading-spinner-overlay";
 import { connect } from "react-redux";
 import {
   setState,
@@ -17,6 +18,7 @@ import {
   resetForm,
   resetUpdateFormFields,
   saveSchedule,
+  getDropdownMedicines,
 } from "actions";
 import scheduleModel from "models/schedule.json";
 import modalStyle from "styles/ui/modalStyle";
@@ -32,7 +34,7 @@ import { validate } from "util/validator";
 import { isUndefined } from "util/core";
 import { showInAppNotification } from "util/NavigationActions";
 import withPreventDoubleClick from "screens/components/PreventDoubleClick";
-
+import moment from "moment";
 const Button = withPreventDoubleClick(Buttons);
 
 export default class CreateSchedule extends React.Component {
@@ -59,6 +61,8 @@ export default class CreateSchedule extends React.Component {
     sessionObject: {},
     isVisibleTimeModal: false,
     timeModelError: {},
+    loading: false,
+    medicines: [],
   };
 
   state = {
@@ -71,18 +75,19 @@ export default class CreateSchedule extends React.Component {
   };
 
   componentDidMount() {
-    const { data, setFormFields } = this.props;
-    if (data) {
-      setFormFields({
-        name: scheduleModel.name,
-        value: data,
-      });
+    const { data, setFormFields, getDropdownMedicines } = this.props;
+    // if (data) {
+    //   setFormFields({
+    //     name: scheduleModel.name,
+    //     value: data,
+    //   });
 
-      this.setState({
-        isUpdate: true,
-        updatebtnDisable: true,
-      });
-    }
+    //   this.setState({
+    //     isUpdate: true,
+    //     updatebtnDisable: true,
+    //   });
+    // }
+    this.props.getDropdownMedicines();
   }
 
   componentWillUnmount() {
@@ -128,34 +133,31 @@ export default class CreateSchedule extends React.Component {
         >
           <Form form={formData}>
             <InputField
-              data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
-              ]}
-              schema={scheduleFields.medicine}
+              data={this.props.medicines}
+              schema={scheduleFields.medicine_id}
               placeholder={"Medicine"}
               onChange={this.handleFieldChange}
               error={scheduleModelError}
             />
             <InputField
               data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
+                { value: "daily", label: "Daily" },
+                { value: "weekly", label: "Weekly" },
               ]}
-              schema={scheduleFields.rewining}
-              placeholder={"Rewining"}
+              schema={scheduleFields.recurring_type}
+              placeholder={"Recurring Type"}
               onChange={this.handleFieldChange}
               error={scheduleModelError}
             />
             <InputField
-              schema={scheduleFields.startDate}
+              schema={scheduleFields.start_date}
               placeholder={"Start Date"}
               onChange={this.handleFieldChange}
               error={scheduleModelError}
             />
             <InputField
-              schema={scheduleFields.finishDate}
-              placeholder={"Finish Date"}
+              schema={scheduleFields.end_date}
+              placeholder={"End Date"}
               onChange={this.handleFieldChange}
               error={scheduleModelError}
             />
@@ -169,7 +171,7 @@ export default class CreateSchedule extends React.Component {
             <View style={styles.listContainer}>
               <FlatList
                 data={this.state.times}
-                schema={scheduleModel.time}
+                schema={scheduleModel.schedule}
                 extraData={this.state.times}
                 renderItem={({ item, index }) => (
                   <ComplainTypeListItem
@@ -238,9 +240,7 @@ export default class CreateSchedule extends React.Component {
             <View style={modalStyle.overlay}>
               <View style={modalStyle.body}>
                 <View style={modalStyle.header}>
-                  <Text style={modalStyle.headerText}>
-                    {"Complaint type details"}
-                  </Text>
+                  <Text style={modalStyle.headerText}>{"Times And Doses"}</Text>
                 </View>
                 <View style={modalStyle.containerStyle}>
                   <KeyboardAwareScrollView
@@ -283,16 +283,21 @@ export default class CreateSchedule extends React.Component {
               </View>
             </View>
           </Modal>
+          {this.renderSpinnerLoader()}
         </KeyboardAwareScrollView>
       </View>
     );
   }
 
+  renderSpinnerLoader = () => {
+    return <Spinner visible={this.props.loading} />;
+  };
+
   scheduleHandler = () => {
     const { frmSchedule, setState, saveSchedule, componentId } = this.props;
 
     // if (!this.state.isUpdate) {
-    frmSchedule.times = this.state.timeData;
+
     // }
     const validateStatus = validate(scheduleModel, { ...frmSchedule });
     setState({
@@ -301,21 +306,21 @@ export default class CreateSchedule extends React.Component {
 
     let hasActiveComplainTypes = false;
 
-    if (!this.state.isUpdate) {
-      if (this.state.timeData.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    } else {
-      if (this.state.times.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    }
+    frmSchedule.schedule = {
+      [frmSchedule.recurring_type]: this.state.times,
+    };
 
     if (isEmpty(validateStatus)) {
       setState({ btnState: true });
-      saveSchedule(frmSchedule, componentId);
+      saveSchedule(
+        {
+          ...frmSchedule,
+          medicine_id: 1,
+          start_date: moment.unix(frmSchedule.start_date).format("YYYY-MM-DD"),
+          end_date: moment.unix(frmSchedule.end_date).format("YYYY-MM-DD"),
+        },
+        componentId
+      );
     }
   };
 
@@ -333,11 +338,11 @@ export default class CreateSchedule extends React.Component {
     // if (this.state.isUpdate) {
     //   this.props.removeTime(keyIndex);
     // } else {
-    const timeArray = [...this.state.timeData];
+    const timeArray = [...this.state.times];
     timeArray.splice(keyIndex, 1);
 
     this.setState({
-      timeData: timeArray,
+      times: timeArray,
     });
     // }
   };
@@ -350,11 +355,11 @@ export default class CreateSchedule extends React.Component {
       value,
     });
 
-    if (this.state.isUpdate) {
-      this.setState({
-        updatebtnDisable: false,
-      });
-    }
+    // if (this.state.isUpdate) {
+    //   this.setState({
+    //     updatebtnDisable: false,
+    //   });
+    // }
   };
 
   handleTimeModalFieldChange = (name, value) => {
@@ -382,7 +387,7 @@ export default class CreateSchedule extends React.Component {
     if (isEmpty(validateStatus)) {
       frmTime.key = Date.now(); //Add timestamp as a key for array item.
       this.setState({
-        timeData: [...this.state.timeData, frmTime],
+        times: [...this.state.times, frmTime],
       });
       resetForm(timeModel.name);
       setState({ isVisibleTimeModal: false });
@@ -409,6 +414,8 @@ const mapStateToProps = (state, ownProps) => {
     isVisibleTimeModal: state.app.isVisibleTimeModal,
     scheduleModelError: state.app.scheduleModelError,
     timeModelError: state.app.timeModelError,
+    loading: state.schedule.loading,
+    medicines: state.schedule.medicines,
   };
 };
 
@@ -419,6 +426,7 @@ export const CreateScheduleContainer = connect(mapStateToProps, {
   resetForm,
   resetUpdateFormFields,
   saveSchedule,
+  getDropdownMedicines,
 })(CreateSchedule);
 
 const styles = StyleSheet.create({

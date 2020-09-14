@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
-import { setState } from "actions";
+import { setState, getScheduleList } from "actions";
 import { SearchBar } from "react-native-elements";
 import { Navigation } from "react-native-navigation";
 import { DEFAULT_NUMBER_OF_ROWS } from "constant";
@@ -25,7 +25,7 @@ export default class ScheduleHistory extends React.Component {
     isFetching: false,
     selectedTabIndex: 0,
     sessionObject: {},
-    complains: [],
+    scheduleList: [],
     refreshing: true,
     loaderComplain: true,
     isFetchingMoreComplains: false,
@@ -51,17 +51,12 @@ export default class ScheduleHistory extends React.Component {
     Navigation.events().bindComponent(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.toastMessage !== this.props.toastMessage) {
-      this.dropdown.alertWithType(
-        nextProps.toastMessage.status,
-        nextProps.toastMessage.header,
-        nextProps.toastMessage.details
-      );
-    }
-  }
-
   componentDidMount() {}
+
+  componentDidAppear() {
+    console.log("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
+    this.props.getScheduleList();
+  }
 
   renderFooter = () => {
     return this.props.isFetchingMoreComplains ? (
@@ -100,7 +95,7 @@ export default class ScheduleHistory extends React.Component {
         <View style={styles.wrapper}>
           <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
-            data={data}
+            data={this.props.scheduleList}
             extraData={this.state}
             keyExtractor={(item) => item.complainsId}
             renderItem={({ item }) => (
@@ -159,10 +154,12 @@ const mapStateToProps = (state, ownProps) => {
     sessionObject: state.app.sessionObject,
     toastMessage: state.app.toastMessage,
     refreshing: state.app.refreshing,
+    scheduleList: state.schedule.list,
   };
 };
 export const ScheduleHistoryContainer = connect(mapStateToProps, {
   setState,
+  getScheduleList,
 })(ScheduleHistory);
 
 let styles;

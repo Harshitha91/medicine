@@ -3,27 +3,21 @@
   "plural": "medicines",
   "label": "Medicine",
   "fields": {
-    "type": {
-      "name": "type",
-      "label": "Type",
-      "type": "enum",
-      "required": true
-    },
-    "medicine": {
-      "name": "medicine",
+    "medicine_name": {
+      "name": "medicine_name",
       "label": "Medicine",
       "type": "string",
       "required": true
     },
-    "prefferedName": {
-      "name": "prefferedName",
+    "preferred_name": {
+      "name": "preferred_name",
       "label": "Preffered Name",
       "type": "string"
     },
-    "noOfPills": {
-      "name": "noOfPills",
+    "count": {
+      "name": "count",
       "label": "No Of Pills",
-      "type": "string"
+      "type": "number"
     }
   }
 }

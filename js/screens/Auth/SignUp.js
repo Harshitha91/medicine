@@ -14,6 +14,7 @@ import styles from "styles/ui/auth/signUp";
 import withPreventDoubleClick from "screens/components/PreventDoubleClick";
 import { Navigation } from "react-native-navigation";
 import { normalize, moderateScale, verticalScale } from "util/sizes";
+import moment from "moment";
 import Style from "styles";
 const theme = Style.get();
 
@@ -82,39 +83,84 @@ export default class SignUp extends React.Component {
             <Form form={formData}>
               <InputField
                 style={styles.inputField}
-                schema={signUpFields.Email}
-                inlineImagePadding={30}
-                inlineImageLeft="mail"
-                placeholder={"Email Address"}
+                schema={signUpFields.firstName}
+                // inlineImagePadding={30}
+                // inlineImageLeft="mail"
+                placeholder={"First Name"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
               />
               <InputField
                 style={styles.inputField}
-                schema={signUpFields.Fullname}
-                inlineImagePadding={30}
-                inlineImageLeft="user"
-                placeholder={"Full Name"}
+                schema={signUpFields.lastName}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Last Name"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
               />
               <InputField
                 style={styles.inputField}
-                schema={signUpFields.Username}
-                inlineImagePadding={30}
-                inlineImageLeft="user"
-                placeholder={"Username"}
+                schema={signUpFields.dateOfBirth}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Date Of Birth"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
               />
               <InputField
                 style={styles.inputField}
-                schema={signUpFields.PhoneNumber}
-                placeholder={"Mobile Number"}
+                schema={signUpFields.height}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Height"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
-                inlineImagePadding={30}
-                inlineImageLeft="phone"
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.weight}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Weight"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.email}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Email"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.address}
+                // inlineImagePadding={30}
+                // inlineImageLeft="user"
+                placeholder={"Address"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.mobile}
+                placeholder={"Mobile"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+                // inlineImagePadding={30}
+                // inlineImageLeft="phone"
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.phone}
+                placeholder={"Phone"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+                // inlineImagePadding={30}
+                // inlineImageLeft="phone"
               />
               <InputField
                 style={styles.inputField}
@@ -126,8 +172,30 @@ export default class SignUp extends React.Component {
                 error={signUpModelError}
               />
               <InputField
+                data={[
+                  { value: "m", label: "Male" },
+                  { value: "f", label: "Female" },
+                ]}
                 style={styles.inputField}
-                schema={signUpFields.ConfirmPassword}
+                schema={signUpFields.gender}
+                placeholder={"Gender"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+                // inlineImagePadding={30}
+                // inlineImageLeft="phone"
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.password}
+                inlineImagePadding={30}
+                inlineImageLeft="lock"
+                placeholder={"Password"}
+                onChange={this.handleFieldChange}
+                error={signUpModelError}
+              />
+              <InputField
+                style={styles.inputField}
+                schema={signUpFields.confirmPassword}
                 inlineImagePadding={30}
                 inlineImageLeft="lock"
                 placeholder={"Confirm Password"}
@@ -232,20 +300,31 @@ export default class SignUp extends React.Component {
     setState({
       signUpModelError: validateStatus,
     });
-    if (frmSignUp.Password !== frmSignUp.ConfirmPassword) {
+    if (frmSignUp.password !== frmSignUp.confirmPassword) {
       return;
     }
     if (isEmpty(validateStatus)) {
       setState({ btnState: true });
-      let phoneNumber = frmSignUp.PhoneNumber.toString();
-      if (phoneNumber.charAt(0) == "0") {
-        phoneNumber = phoneNumber.substring(1);
-      }
+      // let mobile = frmSignUp.mobile.toString();
+      // if (mobile.charAt(0) == "0") {
+      //   mobile = mobile.substring(1);
+      // }
 
-      let formattedNumber = `+${frmSignUp.Country.callingCode}${phoneNumber}`;
-      const { Country: __, ...frmSignUpWithoutCountry } = frmSignUp;
+      // let formattedMobile = `+${frmSignUp.Country.callingCode}${mobile}`;
+
+      // let phone = frmSignUp.phone.toString();
+      // if (phone.charAt(0) == "0") {
+      //   phone = phone.substring(1);
+      // }
+
+      // let formattedPhone = `+${frmSignUp.Country.callingCode}${phone}`;
+
+      // const { Country: __, ...frmSignUpWithoutCountry } = frmSignUp;
       saveUser(
-        { ...frmSignUpWithoutCountry, PhoneNumber: formattedNumber },
+        {
+          ...frmSignUp,
+          dateOfBirth: moment.unix(frmSignUp.dateOfBirth).format("YYYY-MM-DD"),
+        },
         componentId
       );
     }

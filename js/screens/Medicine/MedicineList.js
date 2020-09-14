@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
-import { setState } from "actions";
+import { setState, getMedicineList } from "actions";
 import { SearchBar } from "react-native-elements";
 import { Navigation } from "react-native-navigation";
 import { DEFAULT_NUMBER_OF_ROWS } from "constant";
@@ -47,7 +47,7 @@ export default class MedicineList extends React.Component {
     isFetching: false,
     selectedTabIndex: 0,
     sessionObject: {},
-    complains: [],
+    medicines: [],
     refreshing: true,
     loaderComplain: true,
     isFetchingMoreComplains: false,
@@ -91,17 +91,9 @@ export default class MedicineList extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.toastMessage !== this.props.toastMessage) {
-      this.dropdown.alertWithType(
-        nextProps.toastMessage.status,
-        nextProps.toastMessage.header,
-        nextProps.toastMessage.details
-      );
-    }
+  componentDidAppear() {
+    this.props.getMedicineList();
   }
-
-  componentDidMount() {}
 
   renderFooter = () => {
     return this.props.isFetchingMoreComplains ? (
@@ -147,7 +139,7 @@ export default class MedicineList extends React.Component {
         <View style={styles.wrapper}>
           <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
-            data={data}
+            data={this.props.medicines}
             extraData={this.state}
             keyExtractor={(item) => item.complainsId}
             renderItem={({ item }) => (
@@ -214,11 +206,12 @@ const mapStateToProps = (state, ownProps) => {
     currentComplainsCount: state.app.currentComplainsCount,
     completedComplainsCount: state.app.completedComplainsCount,
     isFetchingMoreComplains: state.app.isFetchingMoreComplains,
-    complainFilters: state.complainFilters,
+    medicines: state.medicine.list,
   };
 };
 export const MedicineListContainer = connect(mapStateToProps, {
   setState,
+  getMedicineList,
 })(MedicineList);
 
 let styles;

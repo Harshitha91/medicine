@@ -79,7 +79,8 @@ export const ScheduleListItem = (props) => {
     <TouchableOpacity
       key={data.id}
       style={styles.listItem}
-      onPress={() => onPress(data)}
+      // onPress={() => onPress(data)}
+      onPress={() => {}}
     >
       <View>
         <View style={{ flexDirection: "column" }}>
@@ -105,31 +106,32 @@ export const ScheduleListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {data.time}
+                    {data.medicine_id}
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}
                   >
-                    Date: <Text style={{ color: "#ff2020" }}>{data.date}</Text>
+                    Start Date:{" "}
+                    <Text style={{ color: "#ff2020" }}>{data.start_date}</Text>
+                  </Text>
+                  <Text
+                    style={{ marginTop: moderateScale(5), color: "#ff2020" }}
+                  >
+                    End Date:{" "}
+                    <Text style={{ color: "#ff2020" }}>{data.end_date}</Text>
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
-                    Phill Name:{" "}
-                    <Text style={{ color: "#000" }}>{data.name}</Text>
-                  </Text>
-                  <Text
-                    style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
-                  >
-                    Phill Count:{" "}
-                    <Text style={{ color: "#000" }}>{data.count}</Text>
+                    Recurring Type:{" "}
+                    <Text style={{ color: "#000" }}>{data.recurring_type}</Text>
                   </Text>
                 </View>
               </View>
             </View>
           </View>
           <View style={{ flexDirection: "row" }}>
-            <View
+            {/* <View
               style={{
                 alignItems: "flex-start",
                 marginTop: moderateScale(4),
@@ -144,7 +146,7 @@ export const ScheduleListItem = (props) => {
                   value={data.isTaken ? "Took" : "Missed"}
                 />
               )}
-            </View>
+            </View> */}
             {/* <View>
               <Badge
                 badgeStyle={

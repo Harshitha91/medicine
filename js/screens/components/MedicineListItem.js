@@ -79,7 +79,8 @@ export const MedicineListItem = (props) => {
     <TouchableOpacity
       key={data.id}
       style={styles.listItem}
-      onPress={() => onPress(data)}
+      // onPress={() => onPress(data)}
+      onPress={() => {}}
     >
       <View style={{ flexDirection: "column" }}>
         <View style={{ flex: 1, flexDirection: "row" }}>
@@ -104,17 +105,17 @@ export const MedicineListItem = (props) => {
                     marginRight: 10,
                   }}
                 >
-                  {data.name}
+                  {data.medicine_id}
                 </Text>
                 <Text style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}>
                   Preferred Name:{" "}
-                  <Text style={{ color: "#000" }}>{data.prefferedName}</Text>
+                  <Text style={{ color: "#000" }}>{data.preferred_name}</Text>
                 </Text>
               </View>
             </View>
           </View>
           <Badge
-            value={"Count:" + data.count}
+            value={"Count:" + data.available_count}
             status="primary"
             containerStyle={{ position: "absolute", top: 30, right: 4 }}
           />

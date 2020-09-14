@@ -20,7 +20,7 @@ class TextField extends Component {
     required: false,
     noLabel: false,
     small: false,
-    selectTextOnFocus: true
+    selectTextOnFocus: true,
   };
 
   setKeyboardType(keyboardType) {
@@ -55,6 +55,7 @@ class TextField extends Component {
       containerStyle,
       name,
       onChange,
+      onFocus,
       onSubmitEditing,
       placeholder,
       style,
@@ -69,14 +70,14 @@ class TextField extends Component {
     const inputGroup = (customStyle && customStyle.inputGroup) || [
       styles.inputGroup,
       small && styles.smallInputGroup,
-      noBottomMargin && styles.noBottomMargin
+      noBottomMargin && styles.noBottomMargin,
     ];
     const inputStyle = [
       styles.container,
       small && styles.smallContainer,
-      Platform.OS === 'android' && !editable && styles.editableFalseStyle,
+      Platform.OS === "android" && !editable && styles.editableFalseStyle,
       containerStyle,
-      error && styles.errorContainer
+      error && styles.errorContainer,
     ];
     const labelStyle = [styles.label, small && styles.smallLabel];
     const inputStyles = [styles.input, small && styles.samllInput, style];
@@ -105,6 +106,7 @@ class TextField extends Component {
                 value={valueString}
                 autoCapitalize={`none`}
                 onChangeText={this.onTextChange.bind(this)}
+                onFocus={onFocus}
                 placeholder={placeholder}
                 placeholderTextColor="rgb(158,158,158)"
                 onSubmitEditing={onSubmitEditing}

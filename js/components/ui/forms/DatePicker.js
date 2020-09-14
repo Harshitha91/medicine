@@ -88,7 +88,6 @@ class DatePicker extends Component<Props> {
       maxDate,
       disabled,
     } = this.props;
-    console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", label);
     return (
       <View style={styles.inputGroup}>
         <Text style={styles.label}>
