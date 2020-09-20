@@ -17,6 +17,8 @@ import {
   resetForm,
   resetUpdateFormFields,
   saveSchedule,
+  getChannelingCenters,
+  getDoctorsList,
 } from "actions";
 import doctorModel from "models/doctor.json";
 import modalStyle from "styles/ui/modalStyle";
@@ -53,9 +55,9 @@ export default class MakeDoctorAppointment extends React.Component {
 
   static defaultProps = {
     btnState: false,
-    frmSchedule: {},
-    frmTime: {},
-    scheduleModelError: {},
+    frmDoctor: {},
+    channelingCenters: [],
+    doctorModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
     isVisibleTimeModal: false,
@@ -71,42 +73,31 @@ export default class MakeDoctorAppointment extends React.Component {
     times: [],
   };
 
-  componentDidMount() {}
-
-  componentWillUnmount() {
-    const { resetForm, setState } = this.props;
-    resetForm("schedule");
-    setState({
-      scheduleModelError: {},
-    });
+  componentDidMount() {
+    this.props.getChannelingCenters();
   }
 
+  // componentWillUnmount() {
+  //   const { resetForm, setState } = this.props;
+  //   resetForm("schedule");
+  //   setState({
+  //     scheduleModelError: {},
+  //   });
+  // }
+
   render() {
-    const {
-      frmSchedule,
-      scheduleModelError,
-      timeModelError,
-      frmTime,
-      isVisibleTimeModal,
-      setState,
-      time,
-      btnState,
-    } = this.props;
+    const { frmDoctor, doctorModelError, setState, btnState } = this.props;
+
+    let formattedChannelinCenters = this.props.channelingCenters.map((item) => {
+      return { value: item.id, label: item.name };
+    });
 
     const doctorFields = doctorModel.fields;
-    const timeFields = timeModel.fields;
+    console.log("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ", doctorFields);
     const formData = {
       name: doctorModel.name,
-      data: frmSchedule,
+      data: frmDoctor,
     };
-    const timeFormData = {
-      name: timeModel.name,
-      data: frmTime,
-    };
-    const timeData = this.state.timeData;
-    const buttonLabel = this.state.isUpdate
-      ? "Update Schedule"
-      : "Create Schedule";
     return (
       <View style={styles.containerStyle}>
         <KeyboardAwareScrollView
@@ -116,48 +107,40 @@ export default class MakeDoctorAppointment extends React.Component {
         >
           <Form form={formData}>
             <InputField
-              data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
-              ]}
-              schema={doctorFields.hospital}
+              data={formattedChannelinCenters}
+              schema={doctorFields.channeling_center_id}
+              placeholder={"Channeling Center"}
               onChange={this.handleFieldChange}
-              error={scheduleModelError}
+              error={doctorModelError}
             />
             <InputField
-              data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
-              ]}
               schema={doctorFields.date}
               onChange={this.handleFieldChange}
-              error={scheduleModelError}
+              error={doctorModelError}
             />
             <InputField
               data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
+                { value: "Acupuncture", label: "Acupuncture" },
+                { value: "Arthritis", label: "Arthritis" },
+                { value: "Audiologist", label: "Audiologist" },
+                { value: "Audiometrist", label: "Audiometrist" },
+                { value: "Bacteriologist", label: "Bacteriologist" },
+                { value: "Cardiographer", label: "Cardiographer" },
+                { value: "Cardiologist", label: "Cardiologist" },
+                { value: "Chiropractor", label: "Chiropractor" },
               ]}
               schema={doctorFields.speciality}
               onChange={this.handleFieldChange}
-              error={scheduleModelError}
+              placeholder={"Speciality"}
+              error={doctorModelError}
             />
-            {/* <InputField
-              data={[
-                { id: "2424", value: "sfsdfsdf" },
-                { id: "2425", value: "sfsdfsdf" },
-              ]}
-              schema={doctorFields.speciality}
-              onChange={this.handleFieldChange}
-              error={scheduleModelError}
-            /> */}
           </Form>
 
           <View style={styles.buttonSection}>
             <Button
               style={styles.rcsButton}
               disabled={this.state.updatebtnDisable}
-              onPress={this.searchDoctorForAppoinment}
+              onPress={this.searchForDoctor}
               loading={btnState}
             >
               {"Search"}
@@ -168,10 +151,11 @@ export default class MakeDoctorAppointment extends React.Component {
     );
   }
 
-  searchDoctorForAppoinment = () => {
+  searchForDoctor = () => {
+    this.props.getDoctorsList(this.props.frmDoctor);
     Navigation.push("CenterStack", {
       component: {
-        name: "TimeSlots",
+        name: "DoctorsList",
         options: {
           topBar: {
             visible: true,
@@ -181,7 +165,7 @@ export default class MakeDoctorAppointment extends React.Component {
             elevation: 0,
             title: {
               alignment: "center",
-              text: "Time Slots",
+              text: "Doctors List",
               fontSize: 25,
               fontFamily: "Ubuntu-Bold",
             },
@@ -197,87 +181,30 @@ export default class MakeDoctorAppointment extends React.Component {
     });
   };
 
-  scheduleHandler = () => {
-    const { frmSchedule, setState, saveSchedule, componentId } = this.props;
-
-    // if (!this.state.isUpdate) {
-    frmSchedule.times = this.state.timeData;
-    // }
-    const validateStatus = validate(scheduleModel, { ...frmSchedule });
-    setState({
-      scheduleModelError: validateStatus,
+  handleFieldChange = (name, value) => {
+    const { onFieldChange } = this.props;
+    onFieldChange({
+      form: doctorModel.name,
+      name,
+      value,
     });
 
-    let hasActiveComplainTypes = false;
-
-    if (!this.state.isUpdate) {
-      if (this.state.timeData.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    } else {
-      if (this.state.times.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    }
-
-    if (isEmpty(validateStatus)) {
-      setState({ btnState: true });
-      saveSchedule(frmSchedule, componentId);
-    }
-  };
-
-  removeTime = (keyIndex) => {
     // if (this.state.isUpdate) {
-    //   this.props.removeTime(keyIndex);
-    // } else {
-    const timeArray = [...this.state.timeData];
-    timeArray.splice(keyIndex, 1);
-
-    this.setState({
-      timeData: timeArray,
-    });
+    //   this.setState({
+    //     updatebtnDisable: false,
+    //   });
     // }
-  };
-
-  addTime = () => {
-    const { frmTime, setState, resetForm, updateTime, saveTime } = this.props;
-    const validateStatus = validate(timeModel, { ...frmTime });
-
-    setState({
-      timeModelError: validateStatus,
-    });
-
-    if (isEmpty(validateStatus)) {
-      frmTime.key = Date.now(); //Add timestamp as a key for array item.
-      this.setState({
-        timeData: [...this.state.timeData, frmTime],
-      });
-      resetForm(timeModel.name);
-      setState({ isVisibleTimeModal: false });
-    }
-  };
-
-  handleCancelButtonClick = (formName) => {
-    const { setState, resetForm, resetUpdateFormFields } = this.props;
-    resetForm(formName);
-    resetUpdateFormFields(formName);
-    setState({
-      isVisibleTimeModal: false,
-      complainTypeModelError: "",
-    });
   };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     btnState: state.app.btnState,
-    frmSchedule: state.form.schedule,
-    frmTime: state.form.time,
+    frmDoctor: state.form.doctor,
+    channelingCenters: state.doctor.channelingCenters,
     sessionObject: state.app.sessionObject,
     isVisibleTimeModal: state.app.isVisibleTimeModal,
-    scheduleModelError: state.app.scheduleModelError,
+    doctorModelError: state.app.doctorModelError,
     timeModelError: state.app.timeModelError,
   };
 };
@@ -288,7 +215,9 @@ export const MakeDoctorAppointmentContainer = connect(mapStateToProps, {
   onFieldChange,
   resetForm,
   resetUpdateFormFields,
+  getChannelingCenters,
   saveSchedule,
+  getDoctorsList,
 })(MakeDoctorAppointment);
 
 const styles = StyleSheet.create({

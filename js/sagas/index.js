@@ -4,6 +4,8 @@ import user from "./user";
 import home from "./home";
 import schedule from "./schedule";
 import medicine from "./medicine";
+import doctor from "./doctor";
+import lab from "./lab";
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +14,7 @@ export default function* rootSaga() {
     fork(home),
     fork(schedule),
     fork(medicine),
+    fork(doctor),
+    fork(lab),
   ]);
 }

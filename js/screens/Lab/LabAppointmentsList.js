@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
-import { setState } from "actions";
+import { setState, getLabAppoinmentList } from "actions";
 import { SearchBar } from "react-native-elements";
 import { Navigation } from "react-native-navigation";
 import { DEFAULT_NUMBER_OF_ROWS } from "constant";
@@ -40,17 +40,9 @@ export default class LabAppointmentsList extends React.Component {
     // this.dbounceItemClick = debounce(this.handleItemClick, 200);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.toastMessage !== this.props.toastMessage) {
-      this.dropdown.alertWithType(
-        nextProps.toastMessage.status,
-        nextProps.toastMessage.header,
-        nextProps.toastMessage.details
-      );
-    }
+  componentDidAppear() {
+    this.props.getLabAppoinmentList();
   }
-
-  componentDidMount() {}
 
   renderFooter = () => {
     return this.props.isFetchingMoreComplains ? (
@@ -283,6 +275,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 export const LabAppointmentsListContainer = connect(mapStateToProps, {
   setState,
+  getLabAppoinmentList,
 })(LabAppointmentsList);
 
 let styles;

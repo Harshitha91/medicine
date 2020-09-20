@@ -10,7 +10,10 @@ import ViewStylePropTypes from "react-native/Libraries/DeprecatedPropTypes/Depre
 // const StyleSheetPropType = require('react-native/Libraries/StyleSheet/StyleSheetPropType');
 // const ViewStylePropTypes = require('react-native/Libraries/Components/View/ViewStylePropTypes');
 
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 const stylePropType = StyleSheetPropType(ViewStylePropTypes);
 
@@ -22,7 +25,7 @@ class TextField extends Component {
     required: false,
     noLabel: false,
     small: false,
-    selectTextOnFocus: true
+    selectTextOnFocus: true,
   };
 
   setKeyboardType(keyboardType) {
@@ -73,14 +76,14 @@ class TextField extends Component {
     const inputGroup = (customStyle && customStyle.inputGroup) || [
       styles.inputGroup,
       small && styles.smallInputGroup,
-      noBottomMargin && styles.noBottomMargin
+      noBottomMargin && styles.noBottomMargin,
     ];
     const inputStyle = [
       styles.container,
       small && styles.smallContainer,
       !editable && styles.editableFalseStyle,
       containerStyle,
-      error && styles.errorContainer
+      error && styles.errorContainer,
     ];
     const labelStyle = [styles.label, small && styles.smallLabel];
     const inputStyles = [styles.input, small && styles.samllInput, style];
@@ -126,23 +129,20 @@ class TextField extends Component {
 
 export default TextField;
 
-
-
-
 const signupStyles = StyleSheet.create({
   container: {
-    marginTop: '5%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: "5%",
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
   },
   responsiveBox: {
-    width: wp('84.5%'),
-    height: hp('17%'),
+    width: wp("84.5%"),
+    height: hp("17%"),
     borderWidth: 2,
-    borderColor: 'orange',
-    flexDirection: 'column',
-    justifyContent: 'space-around'
+    borderColor: "orange",
+    flexDirection: "column",
+    justifyContent: "space-around",
   },
   logo: {
     width: 256,
@@ -151,50 +151,49 @@ const signupStyles = StyleSheet.create({
   rcsButton: {
     height: 60,
     width: 315,
-    backgroundColor: '#ff2020',
-    shadowColor: 'rgba(255, 107, 107, 0.45)',
+    backgroundColor: "#ff2020",
+    shadowColor: "rgba(255, 107, 107, 0.45)",
     shadowOffset: {
       width: 0,
-      height: 1.3
+      height: 1.3,
     },
     shadowRadius: 6.7,
     shadowOpacity: 1,
     borderRadius: 20,
   },
   rcsButtonSection: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   registerHeader: {
-    color: 'black',
+    color: "black",
   },
   baseText: {
     fontSize: 30,
-    marginTop: '1%',
-    color: 'black',
-    fontWeight: 'bold',
+    marginTop: "1%",
+    color: "black",
+    fontWeight: "bold",
   },
   titleText: {
     fontSize: 15,
-    color: 'black',
+    color: "black",
   },
-  signingLinktText:{
-    marginTop:'15%',
-    color: 'rgb(255, 32, 32)'
+  signingLinktText: {
+    marginTop: "15%",
+    color: "rgb(255, 32, 32)",
   },
-  inputSection:{
+  inputSection: {
     height: 48,
-    width: '98%',
-    backgroundColor: '#ffffff',
-    shadowColor: 'rgba(125, 125, 125, 0.19)',
+    width: "98%",
+    backgroundColor: "#ffffff",
+    shadowColor: "rgba(125, 125, 125, 0.19)",
     shadowOffset: {
       width: 0,
-      height: 1.3
+      height: 1.3,
     },
     shadowRadius: 6.7,
     shadowOpacity: 1,
-    borderRadius: 20
-  }
-
-})
+    borderRadius: 20,
+  },
+});

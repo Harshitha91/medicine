@@ -25,7 +25,7 @@ export default {
     topTabButtonBackgroundColor: "#ffc425",
     color: "#FFF",
     inActiveColor: "#00ff00",
-    underlayColor: "#ff4848",
+    underlayColor: "#4891ff",
     transparentUnderlayColor: "#ffffff",
     dangerBGColor: "#00b159",
     borderRadius: 50,

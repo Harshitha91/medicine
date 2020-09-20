@@ -5,6 +5,7 @@ import { SignInContainer } from "./Auth/SignIn";
 import { SignUpContainer } from "./Auth/SignUp";
 import { UserProfileContainer } from "./User/UserProfile";
 import { UpdateUserContainer } from "./User/UpdateUser";
+import { RestUserDataContainer } from "./User/RestUserData";
 import { SliderContainer } from "./Slider";
 import InAppNotification from "./InAppNotification";
 import { ScheduleHistoryContainer } from "./Schedule/ScheduleHistory";
@@ -15,13 +16,15 @@ import { AddMedicineContainer } from "./Medicine/AddMedicine";
 import { OrderMedicineContainer } from "./Medicine/OrderMedicine";
 import { DoctorAppointmentsListContainer } from "./Doctor/DoctorAppointmentsList";
 import { ChannelingDetailsContainer } from "./Doctor/ChannelingDetails";
-import { TimeSlotsContainer } from "./Doctor/TimeSlots";
+import { BookContainer } from "./Doctor/Book";
+import { DoctorsListContainer } from "./Doctor/DoctorsList";
 import { MakeDoctorAppointmentContainer } from "./Doctor/MakeDoctorAppointment";
 import { LabAppointmentsListContainer } from "./Lab/LabAppointmentsList";
 import { MakeLabAppointmentContainer } from "./Lab/MakeLabAppointment";
 import { CareGiverListContainer } from "./CareGiver/CareGiverList";
 import { AddCareGiverInvitationContainer } from "./CareGiver/AddCareGiverInvitation";
 import { LoaderOverlayContainer } from "./LoaderOverlay";
+import { DashBoardContainer } from "./DashBoard";
 
 export function registerScreens(store, Provider) {
   Navigation.registerComponent(
@@ -196,13 +199,13 @@ export function registerScreens(store, Provider) {
     () => ChannelingDetailsContainer
   );
   Navigation.registerComponent(
-    "TimeSlots",
+    "Book",
     () => (props) => (
       <Provider store={store}>
-        <TimeSlotsContainer {...props} />
+        <BookContainer {...props} />
       </Provider>
     ),
-    () => TimeSlotsContainer
+    () => BookContainer
   );
   Navigation.registerComponent(
     "CareGiverList",
@@ -221,5 +224,32 @@ export function registerScreens(store, Provider) {
       </Provider>
     ),
     () => AddCareGiverInvitationContainer
+  );
+  Navigation.registerComponent(
+    "DashBoard",
+    () => (props) => (
+      <Provider store={store}>
+        <DashBoardContainer {...props} />
+      </Provider>
+    ),
+    () => DashBoardContainer
+  );
+  Navigation.registerComponent(
+    "RestUserData",
+    () => (props) => (
+      <Provider store={store}>
+        <RestUserDataContainer {...props} />
+      </Provider>
+    ),
+    () => RestUserDataContainer
+  );
+  Navigation.registerComponent(
+    "DoctorsList",
+    () => (props) => (
+      <Provider store={store}>
+        <DoctorsListContainer {...props} />
+      </Provider>
+    ),
+    () => DoctorsListContainer
   );
 }

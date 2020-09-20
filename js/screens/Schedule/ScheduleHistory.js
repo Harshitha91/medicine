@@ -46,6 +46,18 @@ export default class ScheduleHistory extends React.Component {
     };
   }
 
+  navigationButtonPressed({ buttonId }) {
+    if (buttonId === "menuBtn") {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
+    }
+  }
+
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this);

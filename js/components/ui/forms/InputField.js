@@ -320,6 +320,7 @@ export default class InputField extends Component {
 
   getInputValue(schema) {
     const { form, updateForm } = this.props;
+    console.log("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK", form);
     if (isUndefined(form.data[schema.name])) {
       return updateForm[schema.name];
     }

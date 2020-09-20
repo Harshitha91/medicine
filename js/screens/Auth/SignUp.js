@@ -52,7 +52,6 @@ export default class SignUp extends React.Component {
   render() {
     const { frmSignUp, signUpModelError, btnState } = this.props;
     const signUpFields = signUpModel.fields;
-    signUpFields.RoleName = "Admin";
     const formData = {
       name: signUpModel.name,
       data: frmSignUp,
@@ -85,7 +84,7 @@ export default class SignUp extends React.Component {
                 style={styles.inputField}
                 schema={signUpFields.firstName}
                 // inlineImagePadding={30}
-                // inlineImageLeft="mail"
+                // inlineImageLeft="user"
                 placeholder={"First Name"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
@@ -96,33 +95,6 @@ export default class SignUp extends React.Component {
                 // inlineImagePadding={30}
                 // inlineImageLeft="user"
                 placeholder={"Last Name"}
-                onChange={this.handleFieldChange}
-                error={signUpModelError}
-              />
-              <InputField
-                style={styles.inputField}
-                schema={signUpFields.dateOfBirth}
-                // inlineImagePadding={30}
-                // inlineImageLeft="user"
-                placeholder={"Date Of Birth"}
-                onChange={this.handleFieldChange}
-                error={signUpModelError}
-              />
-              <InputField
-                style={styles.inputField}
-                schema={signUpFields.height}
-                // inlineImagePadding={30}
-                // inlineImageLeft="user"
-                placeholder={"Height"}
-                onChange={this.handleFieldChange}
-                error={signUpModelError}
-              />
-              <InputField
-                style={styles.inputField}
-                schema={signUpFields.weight}
-                // inlineImagePadding={30}
-                // inlineImageLeft="user"
-                placeholder={"Weight"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
               />
@@ -170,19 +142,6 @@ export default class SignUp extends React.Component {
                 placeholder={"Password"}
                 onChange={this.handleFieldChange}
                 error={signUpModelError}
-              />
-              <InputField
-                data={[
-                  { value: "m", label: "Male" },
-                  { value: "f", label: "Female" },
-                ]}
-                style={styles.inputField}
-                schema={signUpFields.gender}
-                placeholder={"Gender"}
-                onChange={this.handleFieldChange}
-                error={signUpModelError}
-                // inlineImagePadding={30}
-                // inlineImageLeft="phone"
               />
               <InputField
                 style={styles.inputField}

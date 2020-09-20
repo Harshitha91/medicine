@@ -6,12 +6,12 @@
     "date": {
       "name": "date",
       "label": "Date",
-      "type": "enum",
+      "type": "timestamp",
       "required": true
     },
-    "hospital": {
-      "name": "hospital",
-      "label": "Hospital",
+    "channeling_center_id": {
+      "name": "channeling_center_id",
+      "label": "Channeling Center",
       "type": "enum",
       "required": true
     },

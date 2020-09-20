@@ -15,6 +15,7 @@ import Badge from "components/ui/Badge";
 import { CachedImage } from "react-native-cached-image";
 import { localTime } from "../../helpers/datetimeHelper";
 import { imageBucket } from "../../../config";
+import withPreventDoubleClick from "../components/PreventDoubleClick";
 const theme = Style.get();
 
 export const MedicineListItem = (props) => {

@@ -120,6 +120,20 @@ export const DoctorAppointmentsListItem = (props) => {
                       {data.channelingCenter}
                     </Text>
                   </Text>
+                  <View
+                    style={{
+                      alignItems: "flex-start",
+                      marginTop: 4,
+                      paddingLeft: 10,
+                      marginBottom: 2,
+                    }}
+                  >
+                    <Badge
+                      status={data.status === "pending" ? "warning" : "success"}
+                      containerStyle={{ left: 0 }}
+                      value={data.status}
+                    />
+                  </View>
                 </View>
               </View>
             </View>

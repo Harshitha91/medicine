@@ -133,6 +133,34 @@ export const goToSignUp = async () =>
     },
   });
 
+export const goToRestUserData = async () =>
+  await Navigation.setRoot({
+    root: {
+      stack: {
+        id: "restUserData",
+        children: [
+          {
+            component: {
+              id: "restUserData",
+              name: "RestUserData",
+              options: {
+                topBar: {
+                  visible: false,
+                  height: 0,
+                },
+                bottomTab: {
+                  fontSize: 12,
+                  text: "User Data",
+                  icon: require("images/signin.png"),
+                },
+              },
+            },
+          },
+        ],
+      },
+    },
+  });
+
 export const goHome = async (currentTabIndex = 0) =>
   await Navigation.setRoot({
     root: {
@@ -190,6 +218,44 @@ export const goHome = async (currentTabIndex = 0) =>
                           bottomTab: {
                             text: "Schedule History",
                             icon: require("images/schedule_history.png"),
+                            selectedIconColor: "#032DFF",
+                          },
+                        },
+                      },
+                    },
+                    {
+                      stack: {
+                        id: "dashBoard",
+                        children: [
+                          {
+                            component: {
+                              id: "dashBoardComponent",
+                              name: "DashBoard",
+                              options: {
+                                topBar: {
+                                  visible: true,
+                                  height: 55,
+                                  topMargin: 15,
+                                  borderHeight: 0.5,
+                                  elevation: 0,
+                                  title: {
+                                    alignment: "center",
+                                    text: "DashBoard",
+                                    fontSize: 25,
+                                    fontFamily: "Ubuntu-Bold",
+                                  },
+                                  background: {
+                                    color: "#FFFFFF",
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        ],
+                        options: {
+                          bottomTab: {
+                            text: "DashBoard",
+                            icon: require("images/property.png"),
                             selectedIconColor: "#032DFF",
                           },
                         },

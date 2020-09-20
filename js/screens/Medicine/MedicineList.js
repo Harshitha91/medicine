@@ -16,7 +16,7 @@ import { moderateScale, verticalScale } from "util/sizes";
 import DropdownAlert from "react-native-dropdownalert";
 import debounce from "lodash/debounce";
 import PlusButton from "components/ui/Fab";
-import withPreventDoubleClick from "../components/PreventDoubleClick";
+import withPreventDoubleClick from "screens/components/PreventDoubleClick";
 const Fab = withPreventDoubleClick(PlusButton);
 import { MedicineListItem } from "screens/components/MedicineListItem";
 import _ from "lodash";
@@ -85,6 +85,14 @@ export default class MedicineList extends React.Component {
                 color: "#FFFFFF",
               },
             },
+          },
+        },
+      });
+    } else if (buttonId === "menuBtn") {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: true,
           },
         },
       });

@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { isUndefined } from "util/core";
 
 import OptionInput from "components/ui/forms/OptionInput";
-import TextField from "components/ui/forms/TextField";
+import TextField from "./TextField";
 import DatePicker from "components/ui/forms/DatePicker";
 import Autocomplete from "components/ui/forms/Autocomplete";
 import SwitchInput from "components/ui/forms/SwitchInput";
@@ -128,11 +128,10 @@ export default class InputField extends Component {
           <TextField
             {...restProps}
             name={schema.name}
-            label={schema.label}
             error={error[schema.name]}
-            placeholder={placeholder}
             required={schema.required}
             keyboardType={"numeric"}
+            placeholder={placeholder}
             onChange={this.onChangeField.bind(this, schema)}
             value={this.getInputValue(schema)}
           />
@@ -155,7 +154,6 @@ export default class InputField extends Component {
         return (
           <DatePicker
             {...restProps}
-            label={schema.label}
             name={schema.name}
             error={error[schema.name]}
             required={schema.required}

@@ -106,7 +106,7 @@ export const ScheduleListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {data.medicine_id}
+                    {data.medicine.preferred_name}
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}

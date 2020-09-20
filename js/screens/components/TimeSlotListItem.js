@@ -105,9 +105,9 @@ export const TimeSlotListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {data.one_start}
+                    {data.one_start + " - " + data.one_send}
                   </Text>
-                  <Text
+                  {/* <Text
                     type="bold"
                     numberOfLines={2}
                     style={{
@@ -117,58 +117,7 @@ export const TimeSlotListItem = (props) => {
                     }}
                   >
                     {data.one_send}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        key={data.id}
-        style={
-          data.notbooked
-            ? [styles.listItem, { backgroundColor: "#A9A79D" }]
-            : [styles.listItem]
-        }
-        onPress={() => onPress(data)}
-      >
-        <View style={{ flexDirection: "column" }}>
-          <View style={{ flex: 1, flexDirection: "row" }}>
-            <View style={{ flex: 80 }}>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "stretch",
-                  paddingLeft: moderateScale(10),
-                  paddingTop: 5,
-                }}
-              >
-                <View style={{ top: moderateScale(0) }}>
-                  <Text
-                    type="bold"
-                    numberOfLines={2}
-                    style={{
-                      color: "rgb(67,67,67)",
-                      fontSize: 20,
-                      marginRight: 10,
-                    }}
-                  >
-                    {data.two_start}
-                  </Text>
-                  <Text
-                    type="bold"
-                    numberOfLines={2}
-                    style={{
-                      color: "rgb(67,67,67)",
-                      fontSize: 20,
-                      marginRight: 10,
-                    }}
-                  >
-                    {data.two_end}
-                  </Text>
+                  </Text> */}
                 </View>
               </View>
             </View>
@@ -202,7 +151,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(10),
     borderRadius: moderateScale(5),
     marginBottom: 15,
-    width: "45%",
+    width: "95%",
     left: "4%",
     top: "6%",
     right: "2%",

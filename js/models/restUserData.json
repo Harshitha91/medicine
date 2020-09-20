@@ -1,0 +1,33 @@
+{
+  "name": "restUserData",
+  "plural": "medicines",
+  "label": "User Data",
+  "fields": {
+    "date_of_birth": {
+      "name": "date_of_birth",
+      "label": "Date Of Birth",
+      "type": "timestamp",
+      "required": true
+    },
+    "gender": {
+      "name": "gender",
+      "label": "Gender",
+      "type": "enum"
+    },
+    "height": {
+      "name": "height",
+      "label": "Height",
+      "type": "number"
+    },
+    "weight": {
+      "name": "weight",
+      "label": "Weight",
+      "type": "number"
+    },
+    "blood_group": {
+      "name": "blood_group",
+      "label": "Blood Group",
+      "type": "enum"
+    }
+  }
+}

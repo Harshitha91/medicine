@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { connect } from "react-redux";
-import { setState } from "actions";
+import { setState, getDoctorAppoinmentList } from "actions";
 import { SearchBar } from "react-native-elements";
 import { Navigation } from "react-native-navigation";
 import { DEFAULT_NUMBER_OF_ROWS } from "constant";
@@ -41,11 +41,8 @@ export default class DoctorAppointmentsList extends React.Component {
     isFetching: false,
     selectedTabIndex: 0,
     sessionObject: {},
-    complains: [],
+    appointmentList: [],
     refreshing: true,
-    loaderComplain: true,
-    isFetchingMoreComplains: false,
-    complainFilterString: "",
   };
 
   constructor(props) {
@@ -54,17 +51,9 @@ export default class DoctorAppointmentsList extends React.Component {
     // this.dbounceItemClick = debounce(this.handleItemClick, 200);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.toastMessage !== this.props.toastMessage) {
-      this.dropdown.alertWithType(
-        nextProps.toastMessage.status,
-        nextProps.toastMessage.header,
-        nextProps.toastMessage.details
-      );
-    }
+  componentDidAppear() {
+    this.props.getDoctorAppoinmentList();
   }
-
-  componentDidMount() {}
 
   renderFooter = () => {
     return this.props.isFetchingMoreComplains ? (
@@ -164,7 +153,7 @@ export default class DoctorAppointmentsList extends React.Component {
           <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
             ListHeaderComponent={this.renderHeader}
-            data={newData}
+            data={this.props.appointmentList}
             extraData={this.state}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
@@ -172,7 +161,6 @@ export default class DoctorAppointmentsList extends React.Component {
                 data={item}
                 toastMessage={toastMessage}
                 onPress={() => this.onItemClick(item)}
-                name={name}
               />
             )}
             refreshing={false}
@@ -192,7 +180,6 @@ export default class DoctorAppointmentsList extends React.Component {
                 data={item}
                 toastMessage={toastMessage}
                 onPress={() => this.onItemClick(item)}
-                name={name}
               />
             )}
             refreshing={false}
@@ -280,17 +267,12 @@ const mapStateToProps = (state, ownProps) => {
     toastMessage: state.app.toastMessage,
     selectedTabIndex: state.app.selectedTabIndex,
     refreshing: state.app.refreshing,
-    loaderComplain: state.app.loaderComplain,
-    allComplainsCount: state.app.allComplainsCount,
-    pendingComplainsCount: state.app.pendingComplainsCount,
-    currentComplainsCount: state.app.currentComplainsCount,
-    completedComplainsCount: state.app.completedComplainsCount,
-    isFetchingMoreComplains: state.app.isFetchingMoreComplains,
-    complainFilters: state.complainFilters,
+    appointmentList: state.doctor.list,
   };
 };
 export const DoctorAppointmentsListContainer = connect(mapStateToProps, {
   setState,
+  getDoctorAppoinmentList,
 })(DoctorAppointmentsList);
 
 let styles;

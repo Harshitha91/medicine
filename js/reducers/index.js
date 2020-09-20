@@ -7,6 +7,8 @@ import user from "./user";
 import home from "./home";
 import schedule from "./schedule";
 import medicine from "./medicine";
+import doctor from "./doctor";
+import lab from "./lab";
 
 const appReducer = combineReducers({
   app,
@@ -15,6 +17,8 @@ const appReducer = combineReducers({
   home,
   schedule,
   medicine,
+  doctor,
+  lab,
 });
 
 const rootReducer = (state = {}, action) => {

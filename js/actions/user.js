@@ -68,3 +68,11 @@ export const updateUser = (data, componentId) => {
     componentId,
   };
 };
+
+export const saveRestUserData = (data, componentId) => {
+  return {
+    type: "SAVE_REST_USER_DATA",
+    data,
+    componentId,
+  };
+};

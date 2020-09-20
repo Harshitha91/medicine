@@ -41,7 +41,7 @@ export function* getMedicineList(action) {
   try {
     const medicines = yield call(get, "patient/get-medicine");
     console.log("1111111111111111111111111111111111111", medicines);
-    yield put(receiveMedicineList(medicines));
+    yield put(receiveMedicineList(medicines.result));
   } catch (error) {
     console.log("error", error);
     yield put(setState({ btnState: false }));

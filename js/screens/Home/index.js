@@ -57,6 +57,18 @@ export default class Home extends React.Component {
     };
   }
 
+  navigationButtonPressed({ buttonId }) {
+    if (buttonId === "menuBtn") {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
+    }
+  }
+
   componentDidMount() {
     let today = new Date();
     let dd = today.getDate();

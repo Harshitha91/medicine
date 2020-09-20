@@ -11,8 +11,8 @@ function* getDropDownMedicines(action) {
   try {
     const medicines = yield call(get, "patient/get-medicine");
     console.log("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV", medicines);
-    if (medicines) {
-      let formattedMedicines = medicines.map((medi) => {
+    if (medicines && medicines.result) {
+      let formattedMedicines = medicines.result.map((medi) => {
         return { value: medi.medicine_id, label: medi.preferred_name };
       });
       yield put(receiveDropdownMedicines(formattedMedicines));
@@ -55,7 +55,8 @@ export function* saveSchedule(action) {
 export function* getScheduleList(action) {
   try {
     const schedules = yield call(get, "patient/schedule/all");
-    yield put(receiveScheduleList(schedules));
+    console.log("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", schedules);
+    yield put(receiveScheduleList(schedules.result));
   } catch (error) {
     console.log("error", error);
     yield put(setState({ btnState: false }));

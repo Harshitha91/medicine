@@ -51,35 +51,45 @@ export default class UserProfile extends Component {
   }
 
   navigationButtonPressed({ buttonId }) {
-    Navigation.push("CenterStack", {
-      component: {
-        name: "UpdateUser",
-        passProps: {
-          data: {},
-        },
-        options: {
-          topBar: {
-            visible: true,
-            height: moderateScale(60),
-            topMargin: 15,
-            borderHeight: 0,
-            elevation: 0,
-            title: {
-              alignment: "center",
-              text: "Update Profile",
-              fontSize: 25,
-              fontFamily: "Ubuntu-Bold",
-            },
-            backButton: {
-              showTitle: false,
-            },
-            background: {
-              color: "#FFFFFF",
+    if (buttonId === "updateBtn") {
+      Navigation.push("CenterStack", {
+        component: {
+          name: "UpdateUser",
+          passProps: {
+            data: {},
+          },
+          options: {
+            topBar: {
+              visible: true,
+              height: moderateScale(60),
+              topMargin: 15,
+              borderHeight: 0,
+              elevation: 0,
+              title: {
+                alignment: "center",
+                text: "Update Profile",
+                fontSize: 25,
+                fontFamily: "Ubuntu-Bold",
+              },
+              backButton: {
+                showTitle: false,
+              },
+              background: {
+                color: "#FFFFFF",
+              },
             },
           },
         },
-      },
-    });
+      });
+    } else if (buttonId === "menuBtn") {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: true,
+          },
+        },
+      });
+    }
   }
 
   componentDidMount() {
