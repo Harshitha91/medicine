@@ -7,6 +7,7 @@ const home = require("./home");
 const lab = require("./lab");
 const medicine = require("./medicine");
 const schedule = require("./schedule");
+const careGiver = require("./careGiver");
 
 module.exports = {
   ...app,
@@ -17,4 +18,5 @@ module.exports = {
   ...lab,
   ...medicine,
   ...schedule,
+  ...careGiver,
 };

@@ -16,12 +16,12 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color_mtrl_bottom_nav_item_tint.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/c94ecb29d2621fe793955d950028621b/res/color/mtrl_bottom_nav_item_tint.xml"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/anim_fab_slide_in_from_left.xml.flat",
@@ -44,12 +44,12 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/jetified-ahbottomnavigation-cbce3ef.aar/da92a74fc6828e910dd376b647c52ef0/res/drawable/item_background.xml"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color-v23_abc_tint_default.xml.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/color-v23/abc_tint_default.xml"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xhdpi-v4/abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color-v23_abc_tint_default.xml.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/color-v23/abc_tint_default.xml"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/animator_design_fab_show_motion_spec.xml.flat",
@@ -148,12 +148,12 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/core-1.0.0.aar/34f1e2e6e1e5355dc5edca0a459a9ace/res/drawable/notification_bg_low.xml"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/layout_abc_search_dropdown_item_icons_2line.xml.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/layout/abc_search_dropdown_item_icons_2line.xml"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_disabled.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/jetified-play-services-base-16.0.1.aar/6310fc68228f18a1eed94ab745e8db2c/res/drawable/common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/layout_abc_search_dropdown_item_icons_2line.xml.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_ic_arrow_back_black_rtl_24dp.png.flat",
@@ -252,24 +252,24 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-mdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_dark.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xxhdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_fab_add.png.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/fab-1.6.4.aar/d0d0c5a8fa4eb1a17f2bf69a9b06168b/res/drawable-xhdpi-v4/fab_add.png"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/anim_abc_slide_in_top.xml.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/anim/abc_slide_in_top.xml"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/layout_list_item.xml.flat",
         "source": "/Users/harshitha/Desktop/medicine/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug/layout/list_item.xml"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/anim_abc_slide_in_top.xml.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/anim/abc_slide_in_top.xml"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color-v23_abc_tint_seek_thumb.xml.flat",
@@ -284,12 +284,12 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-mdpi-v4/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_design_ic_visibility.png.flat",
-        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/c94ecb29d2621fe793955d950028621b/res/drawable-xxhdpi-v4/design_ic_visibility.png"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xxxhdpi-v4/abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_design_ic_visibility.png.flat",
+        "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/c94ecb29d2621fe793955d950028621b/res/drawable-xxhdpi-v4/design_ic_visibility.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable_tooltip_frame_dark.xml.flat",

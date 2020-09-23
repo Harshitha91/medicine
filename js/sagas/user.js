@@ -162,10 +162,19 @@ export function* logout(action) {
   }
 }
 
+export function* updateUserDeviceId(action) {
+  try {
+    yield call(save, "patient/device-token", { token: action.token }, null);
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+
 export default function* () {
   yield takeEvery(AUTH_USER, authenticateUser);
   yield takeEvery(SESSION_HANDLING, sessionHandling);
   yield takeEvery(SAVE_USER, saveUser);
   yield takeEvery(USER_LOGOUT, logout);
   yield takeEvery("SAVE_REST_USER_DATA", saveRestUserData);
+  yield takeEvery("UPDATE_USER_DEVICE_ID", updateUserDeviceId);
 }

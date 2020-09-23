@@ -100,9 +100,32 @@ export function* getChannelList(action) {
   }
 }
 
+export function* bookAppoinment(action) {
+  try {
+    const channels = yield call(save, "patient/appointment/book");
+    yield call(
+      showInAppNotification,
+      "success",
+      "Successfully Made Appoinment.",
+      5000
+    );
+    yield Navigation.pop(action.componentId);
+  } catch (error) {
+    console.log("errorrrrrrrrrrrrrr", error);
+    yield put(setState({ btnState: false }));
+    yield call(
+      showInAppNotification,
+      "error",
+      "Error occured while getting Channeling Centers.",
+      5000
+    );
+  }
+}
+
 export default function* () {
   yield takeEvery("GET_DOCTOR_APPOINMENT_LIST", getDoctorAppoinmentList);
   yield takeEvery("GET_CHANNELING_CENTERS", getChannelingCenters);
   yield takeEvery("GET_DOCTORS_LIST", getDoctorsList);
   yield takeEvery("GET_CHANNEL_LIST", getChannelList);
+  yield takeEvery("BOOK_APPOINMENT", bookAppoinment);
 }

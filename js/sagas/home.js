@@ -19,10 +19,7 @@ function* getScheduleCalandar(action) {
     //     { name: "Zitracine", time: "10 PM", isTaken: true },
     //   ],
     // };
-    const data = yield call(
-      get,
-      `patient/schedule/daily?patient_id=38&date=${action.date}`
-    );
+    const data = yield call(get, `patient/schedule/daily?date=${action.date}`);
     let formattedData =
       data &&
       data.data.map((item) => {

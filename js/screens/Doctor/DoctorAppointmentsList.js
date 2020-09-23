@@ -267,7 +267,7 @@ const mapStateToProps = (state, ownProps) => {
     toastMessage: state.app.toastMessage,
     selectedTabIndex: state.app.selectedTabIndex,
     refreshing: state.app.refreshing,
-    appointmentList: state.doctor.list,
+    appointmentList: state.doctor.appoinmets,
   };
 };
 export const DoctorAppointmentsListContainer = connect(mapStateToProps, {

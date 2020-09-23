@@ -17,6 +17,7 @@ import {
   resetForm,
   resetUpdateFormFields,
   saveSchedule,
+  inviteCareGiver,
 } from "actions";
 import careGiverModel from "models/careGiver.json";
 import modalStyle from "styles/ui/modalStyle";
@@ -54,7 +55,7 @@ export default class AddCareGiverInvitation extends React.Component {
     btnState: false,
     frmSchedule: {},
     frmTime: {},
-    medicineModelError: {},
+    careGiverModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
     isVisibleTimeModal: false,
@@ -74,7 +75,7 @@ export default class AddCareGiverInvitation extends React.Component {
     const { data, setFormFields } = this.props;
     if (data) {
       setFormFields({
-        name: medicineModel.name,
+        name: careGiverModel.name,
         value: data,
       });
 
@@ -89,36 +90,24 @@ export default class AddCareGiverInvitation extends React.Component {
     const { resetForm, setState } = this.props;
     resetForm("schedule");
     setState({
-      medicineModelError: {},
+      careGiverModelError: {},
     });
   }
 
   render() {
     const {
-      frmSchedule,
-      medicineModelError,
-      timeModelError,
-      frmTime,
-      isVisibleTimeModal,
+      frmCareGiver,
+      careGiverModelError,
       setState,
-      time,
       btnState,
     } = this.props;
 
     const careGiverFields = careGiverModel.fields;
-    const timeFields = timeModel.fields;
     const formData = {
       name: careGiverModel.name,
-      data: frmSchedule,
+      data: frmCareGiver,
     };
-    const timeFormData = {
-      name: timeModel.name,
-      data: frmTime,
-    };
-    const timeData = this.state.timeData;
-    const buttonLabel = this.state.isUpdate
-      ? "Update Schedule"
-      : "Create Schedule";
+
     return (
       <View style={styles.containerStyle}>
         <KeyboardAwareScrollView
@@ -128,10 +117,10 @@ export default class AddCareGiverInvitation extends React.Component {
         >
           <Form form={formData}>
             <InputField
-              schema={careGiverFields.mobileNumber}
-              placeholder={"Mobile Number"}
+              schema={careGiverFields.email}
+              placeholder={"Email"}
               onChange={this.handleFieldChange}
-              error={medicineModelError}
+              error={careGiverModelError}
             />
           </Form>
 
@@ -139,7 +128,7 @@ export default class AddCareGiverInvitation extends React.Component {
             <Button
               style={styles.rcsButton}
               disabled={this.state.updatebtnDisable}
-              onPress={this.scheduleHandler}
+              onPress={this.careGiverHandler}
               loading={btnState}
             >
               {"Send Invitation"}
@@ -150,64 +139,14 @@ export default class AddCareGiverInvitation extends React.Component {
     );
   }
 
-  scheduleHandler = () => {
-    const { frmSchedule, setState, saveSchedule, componentId } = this.props;
-
-    // if (!this.state.isUpdate) {
-    frmSchedule.times = this.state.timeData;
-    // }
-    const validateStatus = validate(medicineModel, { ...frmSchedule });
-    setState({
-      medicineModelError: validateStatus,
-    });
-
-    let hasActiveComplainTypes = false;
-
-    if (!this.state.isUpdate) {
-      if (this.state.timeData.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    } else {
-      if (this.state.times.length == 0) {
-        showInAppNotification("error", "Please add a complaint type", 5000);
-        return;
-      }
-    }
-
-    if (isEmpty(validateStatus)) {
-      setState({ btnState: true });
-      saveSchedule(frmSchedule, componentId);
-    }
-  };
-
-  handleTimeItemClick = (item) => {
-    const { setState, setFormFields } = this.props;
-    setFormFields({
-      name: timeModel.name,
-      value: item,
-    });
-
-    setState({ isVisibleTimeModal: true });
-  };
-
-  removeTime = (keyIndex) => {
-    // if (this.state.isUpdate) {
-    //   this.props.removeTime(keyIndex);
-    // } else {
-    const timeArray = [...this.state.timeData];
-    timeArray.splice(keyIndex, 1);
-
-    this.setState({
-      timeData: timeArray,
-    });
-    // }
+  careGiverHandler = () => {
+    this.props.inviteCareGiver(this.props.frmCareGiver, this.props.componentId);
   };
 
   handleFieldChange = (name, value) => {
     const { onFieldChange } = this.props;
     onFieldChange({
-      form: medicineModel.name,
+      form: careGiverModel.name,
       name,
       value,
     });
@@ -218,59 +157,14 @@ export default class AddCareGiverInvitation extends React.Component {
       });
     }
   };
-
-  handleTimeModalFieldChange = (name, value) => {
-    const { onFieldChange, times } = this.props;
-    onFieldChange({
-      form: timeModel.name,
-      name,
-      value,
-    });
-    if (this.state.times.length == 0) {
-      this.setState({
-        updatebtnDisable: false,
-      });
-    }
-  };
-
-  addTime = () => {
-    const { frmTime, setState, resetForm, updateTime, saveTime } = this.props;
-    const validateStatus = validate(timeModel, { ...frmTime });
-
-    setState({
-      timeModelError: validateStatus,
-    });
-
-    if (isEmpty(validateStatus)) {
-      frmTime.key = Date.now(); //Add timestamp as a key for array item.
-      this.setState({
-        timeData: [...this.state.timeData, frmTime],
-      });
-      resetForm(timeModel.name);
-      setState({ isVisibleTimeModal: false });
-    }
-  };
-
-  handleCancelButtonClick = (formName) => {
-    const { setState, resetForm, resetUpdateFormFields } = this.props;
-    resetForm(formName);
-    resetUpdateFormFields(formName);
-    setState({
-      isVisibleTimeModal: false,
-      complainTypeModelError: "",
-    });
-  };
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
     btnState: state.app.btnState,
-    frmSchedule: state.form.schedule,
-    frmTime: state.form.time,
+    frmCareGiver: state.form.careGiver,
     sessionObject: state.app.sessionObject,
-    isVisibleTimeModal: state.app.isVisibleTimeModal,
-    medicineModelError: state.app.medicineModelError,
-    timeModelError: state.app.timeModelError,
+    careGiverModelError: state.app.careGiverModelError,
   };
 };
 
@@ -281,6 +175,7 @@ export const AddCareGiverInvitationContainer = connect(mapStateToProps, {
   resetForm,
   resetUpdateFormFields,
   saveSchedule,
+  inviteCareGiver,
 })(AddCareGiverInvitation);
 
 const styles = StyleSheet.create({

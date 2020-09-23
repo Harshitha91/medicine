@@ -14,6 +14,7 @@ import {
   resetForms,
   handleUserSession,
   handleGetStated,
+  updateUserDeviceId,
 } from "actions";
 import { Navigation } from "react-native-navigation";
 import {
@@ -95,6 +96,11 @@ export default class Initializing extends Component {
     }
   }
 
+  updateUserDeviceToken = (token) => {
+    const { updateUserDeviceId } = this.props;
+    updateUserDeviceId(token, this.props.componentId);
+  };
+
   async createNotificationListeners() {
     const {
       getSubscribedUsers,
@@ -173,4 +179,5 @@ export const InitializingContainer = connect(mapStateToProps, {
   resetForms,
   handleUserSession,
   handleGetStated,
+  updateUserDeviceId,
 })(Initializing);

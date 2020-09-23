@@ -22,7 +22,13 @@ import { dialNumber } from "util/core";
 import { Navigation } from "react-native-navigation";
 import Badge from "components/ui/Badge";
 import { moderateScale } from "util/sizes";
-import { onFieldChange, setState, resetForms, setFormFields } from "actions";
+import {
+  onFieldChange,
+  setState,
+  resetForms,
+  setFormFields,
+  bookAppoinment,
+} from "actions";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import Style from "styles";
 import ImageView from "react-native-image-view";
@@ -341,7 +347,7 @@ export default class Book extends React.Component {
                 <View style={styles.buttonSection}>
                   <Button
                     style={styles.rcsButton}
-                    onPress={() => {}}
+                    onPress={this.book}
                     loading={btnState}
                   >
                     {"Book"}
@@ -361,6 +367,10 @@ export default class Book extends React.Component {
       </View>
     );
   }
+
+  book = () => {
+    this.props.bookAppoinment(this.props.data[0].id, this.props.componentId);
+  };
 
   closeButton = () => {
     return (
@@ -417,6 +427,7 @@ export const BookContainer = connect(mapStateToProps, {
   setState,
   resetForms,
   setFormFields,
+  bookAppoinment,
 })(Book);
 
 const styles = StyleSheet.create({

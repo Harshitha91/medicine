@@ -348,18 +348,13 @@ export default class CreateSchedule extends React.Component {
   };
 
   handleFieldChange = (name, value) => {
+    console.log("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", name, value);
     const { onFieldChange } = this.props;
     onFieldChange({
       form: scheduleModel.name,
       name,
       value,
     });
-
-    // if (this.state.isUpdate) {
-    //   this.setState({
-    //     updatebtnDisable: false,
-    //   });
-    // }
   };
 
   handleTimeModalFieldChange = (name, value) => {

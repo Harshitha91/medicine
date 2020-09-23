@@ -52,3 +52,11 @@ export function receiveDChannelList(data) {
     data,
   };
 }
+
+export function bookAppoinment(channel_id, componentId) {
+  return {
+    type: "BOOK_APPOINMENT",
+    channel_id,
+    componentId,
+  };
+}

@@ -13,7 +13,7 @@ function* getDropDownMedicines(action) {
     console.log("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV", medicines);
     if (medicines && medicines.result) {
       let formattedMedicines = medicines.result.map((medi) => {
-        return { value: medi.medicine_id, label: medi.preferred_name };
+        return { value: medi.id, label: medi.preferred_name };
       });
       yield put(receiveDropdownMedicines(formattedMedicines));
     }
@@ -28,7 +28,7 @@ export function* saveSchedule(action) {
     const savedComplain = yield call(
       save,
       "patient/schedule/store",
-      { ...action.data, patient_id: 12 },
+      { ...action.data },
       null
     );
 

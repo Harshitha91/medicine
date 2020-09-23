@@ -76,3 +76,11 @@ export const saveRestUserData = (data, componentId) => {
     componentId,
   };
 };
+
+export const updateUserDeviceId = (token, componentId = null) => {
+  return {
+    type: "UPDATE_USER_DEVICE_ID",
+    token,
+    componentId,
+  };
+};

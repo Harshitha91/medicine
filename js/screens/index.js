@@ -21,7 +21,7 @@ import { DoctorsListContainer } from "./Doctor/DoctorsList";
 import { MakeDoctorAppointmentContainer } from "./Doctor/MakeDoctorAppointment";
 import { LabAppointmentsListContainer } from "./Lab/LabAppointmentsList";
 import { MakeLabAppointmentContainer } from "./Lab/MakeLabAppointment";
-import { CareGiverListContainer } from "./CareGiver/CareGiverList";
+import { CareGiverContainer } from "./CareGiver";
 import { AddCareGiverInvitationContainer } from "./CareGiver/AddCareGiverInvitation";
 import { LoaderOverlayContainer } from "./LoaderOverlay";
 import { DashBoardContainer } from "./DashBoard";
@@ -208,13 +208,13 @@ export function registerScreens(store, Provider) {
     () => BookContainer
   );
   Navigation.registerComponent(
-    "CareGiverList",
+    "CareGiver",
     () => (props) => (
       <Provider store={store}>
-        <CareGiverListContainer {...props} />
+        <CareGiverContainer {...props} />
       </Provider>
     ),
-    () => CareGiverListContainer
+    () => CareGiverContainer
   );
   Navigation.registerComponent(
     "AddCareGiverInvitation",

@@ -142,6 +142,11 @@ export default class MedicineList extends React.Component {
       complainFilters,
     } = this.props;
 
+    console.log(
+      "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+      this.props.medicines
+    );
+
     return (
       <View style={styles.containerStyle}>
         <View style={styles.wrapper}>
