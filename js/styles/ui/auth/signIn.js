@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
 
   labelArea: {
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(0),
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
 
   logo: {
     marginTop: verticalScale(17),
-    width: getImageWidth(),
-    height: getImageHeight(),
+    width: 85,
+    height: 100,
   },
 
   baseText: {
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     paddingBottom: moderateScale(30),
   },
   linkText: {
-    color: "#032DFF",
+    color: "#00adf5",
   },
   buttonSignIn: {
     height: 60,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
       ? {
           height: 48,
           width: "100%",
-          backgroundColor: "#032DFF",
+          backgroundColor: "#00adf5",
           shadowColor: "rgba(255, 107, 107, 0.45)",
           shadowOffset: {
             width: 0,

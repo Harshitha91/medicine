@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
   complainTypeAddBtn: {
     height: moderateScale(20),
     width: moderateScale(98),
-    backgroundColor: "#032DFF",
+    backgroundColor: "#00adf5",
     borderRadius: moderateScale(20),
     marginTop: moderateScale(15),
   },
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
       ? {
           height: moderateScale(50),
           width: "90%",
-          backgroundColor: "#032DFF",
+          backgroundColor: "#00adf5",
           justifyContent: "center",
           alignItems: "center",
           shadowColor: "rgba(255, 107, 107, 0.45)",

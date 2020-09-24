@@ -169,9 +169,9 @@ export default class SignIn extends React.Component {
           keyboardShouldPersistTaps="always"
           style={styles.loginFormWrapper}
         >
-          {/* <View style={styles.logoArea}>
+          <View style={styles.logoArea}>
             <Image style={styles.logo} source={require("images/logo.png")} />
-          </View> */}
+          </View>
           <View style={styles.labelArea}>
             <Text type="bold" style={styles.baseText}>
               Welcome!

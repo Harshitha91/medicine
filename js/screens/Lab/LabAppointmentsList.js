@@ -50,7 +50,7 @@ export default class LabAppointmentsList extends React.Component {
         animating={true}
         style={true && { height: 80 }}
         size="large"
-        color="#032DFF"
+        color="#00adf5"
       />
     ) : null;
   };
@@ -350,7 +350,7 @@ if (Platform.OS === "android") {
       flex: 1,
       fontSize: 17,
       height: 30,
-      color: "#032DFF",
+      color: "#00adf5",
     },
   });
 } else if (Platform.OS === "ios") {

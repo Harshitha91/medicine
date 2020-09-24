@@ -19,7 +19,6 @@ import debounce from "lodash/debounce";
 import PlusButton from "components/ui/Fab";
 import withPreventDoubleClick from "../components/PreventDoubleClick";
 const Fab = withPreventDoubleClick(PlusButton);
-import { CareGiverListItem } from "screens/components/CareGiverListItem";
 import CareGiverList from "./CareGiverList";
 import _ from "lodash";
 
@@ -92,25 +91,9 @@ export default class CareGiver extends React.Component {
         animating={true}
         style={true && { height: 80 }}
         size="large"
-        color="#032DFF"
+        color="#00adf5"
       />
     ) : null;
-  };
-
-  renderHeader = () => {
-    return (
-      <View style={styles.complainTypeSectionHeader}>
-        <Text style={styles.complainTypeViewLabels}>Upcoming</Text>
-      </View>
-    );
-  };
-
-  renderHistoryHeader = () => {
-    return (
-      <View style={styles.complainTypeSectionHeader}>
-        <Text style={styles.complainTypeViewLabels}>History</Text>
-      </View>
-    );
   };
 
   onItemClick = () => {
@@ -192,14 +175,30 @@ export default class CareGiver extends React.Component {
       //   <Fab onPress={this.inviteCareGiver} />
       // </View>
       <View style={styles.containerStyle}>
+        {/* <SearchBar
+          platform={Platform.OS}
+          placeholder="Search Complaint"
+          containerStyle={styles.search}
+          inputStyle={ Platform.OS === 'android' ? { marginTop: -2, height: 45 } : { fontSize: 15 }}
+          inputContainerStyle={ Platform.OS === 'android' ? { marginTop: -8 } : styles.searchInput}
+          onChangeText={this.handleSearchInputChange}
+          value={complainFilterString}
+          searchIcon={{ color: 'red' }}
+          clearIcon={ Platform.OS === 'android' ? { name: 'close', color: 'red' } : {} }
+          backIcon={{ name: 'home' }}
+          leftIconContainerStyle={{ backgroundColor: '#F5F5F5', width: 30, borderRadius: 50, height: 30 }}
+          rightIconContainerStyle={{ width: 30, height: 30 }}
+          showLoading = {loaderComplain}
+        /> */}
+        {/* <View style={styles.search} /> */}
         <Tabs
           onPressTabItem={this.onPressTabItem}
-          selectedTabIndex={this.state.selectedTabIndex}
+          selectedTabIndex={this.props.selectedTabIndex}
           careGiverList={careGiverList}
-          style={{ marginTop: 56 }}
+          style={{ marginTop: 5 }}
         >
           <CareGiverList
-            name={"All"}
+            name={"Approved"}
             data={careGiverList}
             toastMessage={toastMessage}
             refreshing={refreshing}
@@ -209,7 +208,7 @@ export default class CareGiver extends React.Component {
             setState={setState}
           />
           <CareGiverList
-            name={"Pending"}
+            name={"Sent"}
             data={careGiverList}
             toastMessage={toastMessage}
             refreshing={refreshing}
@@ -219,7 +218,7 @@ export default class CareGiver extends React.Component {
             setState={setState}
           />
           <CareGiverList
-            name={"Current"}
+            name={"Received"}
             data={careGiverList}
             toastMessage={toastMessage}
             refreshing={refreshing}
@@ -284,106 +283,18 @@ export const CareGiverContainer = connect(mapStateToProps, {
   clearCareGiverList,
 })(CareGiver);
 
-let styles;
-if (Platform.OS === "android") {
-  styles = StyleSheet.create({
-    containerStyle: {
-      flex: 1,
-      marginTop: 10,
-      backgroundColor: "#FFFFFF",
-    },
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    search: {
-      borderRadius: 40,
-      elevation: 2,
-      marginLeft: "4.5%",
-      marginRight: "4.5%",
-      marginTop: 10,
-      height: 42,
-    },
-    userImg: {
-      marginTop: verticalScale(100),
-      width: moderateScale(235),
-      height: verticalScale(119),
-      marginBottom: verticalScale(50),
-      flex: 1,
-    },
-    baseText: {
-      fontSize: 20,
-      marginBottom: verticalScale(10),
-      marginTop: verticalScale(20),
-      color: "black",
-      textAlign: "center",
-    },
-    titleText: {
-      fontSize: 15,
-      color: "black",
-      textAlign: "center",
-    },
-    logoArea: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      marginTop: "30%",
-    },
-    logo: {
-      marginTop: verticalScale(17),
-      width: moderateScale(190),
-      height: verticalScale(60),
-    },
-    labelArea: {
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    contentContainer: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      flexGrow: 1,
-    },
-    complainTypeSectionHeader: {
-      flex: 0,
-      marginBottom: moderateScale(15),
-      flexDirection: "row",
-      marginLeft: moderateScale(5),
-    },
-    complainTypeViewLabels: {
-      flex: 1,
-      fontSize: 17,
-      height: 30,
-      color: "#032DFF",
-    },
-  });
-} else if (Platform.OS === "ios") {
-  styles = StyleSheet.create({
-    containerStyle: {
-      flex: 1,
-      marginTop: 10,
-      backgroundColor: "#FFFFFF",
-    },
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    search: {
-      backgroundColor: "#FFFFFF",
-      marginLeft: "2%",
-      marginRight: "2%",
-    },
-    searchInput: {
-      shadowOffset: { width: 3, height: 3 },
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      backgroundColor: "#FFFFFF",
-      borderRadius: 40,
-      marginTop: -8,
-      height: 42,
-    },
-  });
-}
+let styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1,
+    marginTop: 10,
+    backgroundColor: "#FFFFFF",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  search: {
+    elevation: 2,
+  },
+});

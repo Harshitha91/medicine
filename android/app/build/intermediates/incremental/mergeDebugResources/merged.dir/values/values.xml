@@ -487,7 +487,7 @@
     <integer name="mtrl_tab_indicator_anim_duration_ms">250</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
-    <string name="CODE_PUSH_APK_BUILD_TIME" translatable="false">"1600786833726"</string>
+    <string name="CODE_PUSH_APK_BUILD_TIME" translatable="false">"1600972365317"</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_up_description">Navigate up</string>
     <string name="abc_action_menu_overflow_description">More options</string>

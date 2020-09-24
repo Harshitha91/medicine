@@ -218,7 +218,7 @@ export const goHome = async (currentTabIndex = 0) =>
                           bottomTab: {
                             text: "Schedule History",
                             icon: require("images/schedule_history.png"),
-                            selectedIconColor: "#032DFF",
+                            selectedIconColor: "#00adf5",
                           },
                         },
                       },
@@ -255,8 +255,8 @@ export const goHome = async (currentTabIndex = 0) =>
                         options: {
                           bottomTab: {
                             text: "DashBoard",
-                            icon: require("images/property.png"),
-                            selectedIconColor: "#032DFF",
+                            icon: require("images/ic_notifications.png"),
+                            selectedIconColor: "#00adf5",
                           },
                         },
                       },
@@ -294,7 +294,7 @@ export const goHome = async (currentTabIndex = 0) =>
                           bottomTab: {
                             text: "Home",
                             icon: require("images/property.png"),
-                            selectedIconColor: "#032DFF",
+                            selectedIconColor: "#00adf5",
                           },
                         },
                       },
@@ -336,7 +336,7 @@ export const goHome = async (currentTabIndex = 0) =>
                           bottomTab: {
                             text: "Medicine",
                             icon: require("images/more_horiz.png"),
-                            selectedIconColor: "#032DFF",
+                            selectedIconColor: "#00adf5",
                           },
                         },
                       },
@@ -374,7 +374,7 @@ export const goHome = async (currentTabIndex = 0) =>
                           bottomTab: {
                             text: "Profile",
                             icon: require("images/people.png"),
-                            selectedIconColor: "#032DFF",
+                            selectedIconColor: "#00adf5",
                           },
                         },
                       },

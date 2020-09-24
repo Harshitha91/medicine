@@ -31,7 +31,7 @@ export const ComplainTypeListItem = ({
               <Icon
                 name="clear"
                 size={25}
-                color="#032DFF"
+                color="#00adf5"
                 onPress={() => removeTime(keyIndex)}
                 style={styles.clearBtn}
               />
@@ -43,7 +43,7 @@ export const ComplainTypeListItem = ({
             <Icon
               name="clear"
               size={25}
-              color="#032DFF"
+              color="#00adf5"
               onPress={() => removeTime(keyIndex)}
               style={
                 Platform.OS === "android"

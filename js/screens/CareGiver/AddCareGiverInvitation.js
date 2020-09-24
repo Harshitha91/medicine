@@ -53,8 +53,7 @@ export default class AddCareGiverInvitation extends React.Component {
 
   static defaultProps = {
     btnState: false,
-    frmSchedule: {},
-    frmTime: {},
+    frmCareGiver: {},
     careGiverModelError: {},
     isKeyboardShow: false,
     sessionObject: {},
@@ -73,17 +72,17 @@ export default class AddCareGiverInvitation extends React.Component {
 
   componentDidMount() {
     const { data, setFormFields } = this.props;
-    if (data) {
-      setFormFields({
-        name: careGiverModel.name,
-        value: data,
-      });
+    // if (data) {
+    //   setFormFields({
+    //     name: careGiverModel.name,
+    //     value: data,
+    //   });
 
-      this.setState({
-        isUpdate: true,
-        updatebtnDisable: true,
-      });
-    }
+    //   this.setState({
+    //     isUpdate: true,
+    //     updatebtnDisable: true,
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -123,6 +122,7 @@ export default class AddCareGiverInvitation extends React.Component {
               error={careGiverModelError}
             />
           </Form>
+          <View></View>
 
           <View style={styles.buttonSection}>
             <Button
@@ -140,7 +140,20 @@ export default class AddCareGiverInvitation extends React.Component {
   }
 
   careGiverHandler = () => {
-    this.props.inviteCareGiver(this.props.frmCareGiver, this.props.componentId);
+    const { frmCareGiver, setState, inviteCareGiver, componentId } = this.props;
+
+    // if (!this.state.isUpdate) {
+
+    // }
+    const validateStatus = validate(careGiverModel, { ...frmCareGiver });
+    setState({
+      careGiverModelError: validateStatus,
+    });
+
+    if (isEmpty(validateStatus)) {
+      setState({ btnState: true });
+      inviteCareGiver(this.props.frmCareGiver, componentId);
+    }
   };
 
   handleFieldChange = (name, value) => {
@@ -240,14 +253,14 @@ const styles = StyleSheet.create({
   complainTypeAddBtn: {
     height: moderateScale(20),
     width: moderateScale(98),
-    backgroundColor: "#032DFF",
+    backgroundColor: "#00adf5",
     borderRadius: moderateScale(20),
     marginTop: moderateScale(15),
   },
   buttonSection: {
     width: "100%",
     marginTop: "10%",
-    marginBottom: "5%",
+    // marginBottom: "5%",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -260,7 +273,7 @@ const styles = StyleSheet.create({
       ? {
           height: moderateScale(50),
           width: "90%",
-          backgroundColor: "#032DFF",
+          backgroundColor: "#00adf5",
           justifyContent: "center",
           alignItems: "center",
           shadowColor: "rgba(255, 107, 107, 0.45)",

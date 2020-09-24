@@ -21,18 +21,13 @@ export default class CareGiverList extends React.Component {
     isFetching: false,
   };
 
-  options = {
-    page: 1,
-    rows: DEFAULT_NUMBER_OF_ROWS,
-  };
-
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     const { getCareGivers, name } = this.props;
-    getCareGivers(name, this.options);
+    getCareGivers(name);
   }
 
   componentWillUnmount() {
@@ -55,7 +50,7 @@ export default class CareGiverList extends React.Component {
               animating={true}
               style={true && { height: 80 }}
               size="large"
-              color="#ff2020"
+              color="#00adf5"
             />
           ) : data.length !== 0 ? (
             <FlatList

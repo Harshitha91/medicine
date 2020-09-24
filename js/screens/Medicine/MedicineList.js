@@ -109,7 +109,7 @@ export default class MedicineList extends React.Component {
         animating={true}
         style={true && { height: 80 }}
         size="large"
-        color="#032DFF"
+        color="#00adf5"
       />
     ) : null;
   };

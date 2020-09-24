@@ -104,10 +104,11 @@ export const CareGiverListItem = (props) => {
                     marginRight: 10,
                   }}
                 >
-                  {data.name}
+                  {data.caregiver}
                 </Text>
                 <Text style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}>
-                  Contact: <Text style={{ color: "#000" }}>{data.contact}</Text>
+                  Contact:{" "}
+                  <Text style={{ color: "#000" }}>{data.invited_email}</Text>
                 </Text>
               </View>
             </View>

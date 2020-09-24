@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   signInButton: {
     height: 48,
     width: 315,
-    backgroundColor: "#032DFF",
+    backgroundColor: "#00adf5",
     shadowColor: "rgba(255, 107, 107, 0.45)",
     shadowOffset: {
       width: 0,
@@ -124,13 +124,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   linkText: {
-    color: "#032DFF",
+    color: "#00adf5",
     marginBottom: 50,
   },
   buttonSignIn: {
     height: 60,
     width: 315,
-    backgroundColor: "#032DFF",
+    backgroundColor: "#00adf5",
     shadowColor: "rgba(255, 107, 107, 0.45)",
     shadowOffset: {
       width: 0,
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
       ? {
           height: 48,
           width: "100%",
-          backgroundColor: "#032DFF",
+          backgroundColor: "#00adf5",
           shadowColor: "rgba(255, 107, 107, 0.45)",
           shadowOffset: {
             width: 0,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         },
   signingLinktText: {
     marginTop: "15%",
-    color: "#032DFF",
+    color: "#00adf5",
   },
   inputField: {
     height: 48,

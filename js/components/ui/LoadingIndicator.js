@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 export default () => {
   return (
     <View style={styles.activityIndicator}>
-      <ActivityIndicator animating={true} color={"#032DFF"} size={40} />
+      <ActivityIndicator animating={true} color={"#00adf5"} size={40} />
       <Text style={styles.activityText}>Loading...</Text>
     </View>
   );

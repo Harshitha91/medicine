@@ -162,7 +162,7 @@ export default class Initializing extends Component {
   render() {
     return (
       <View style={[styles.firstContainer]}>
-        <ActivityIndicator size="large" color="#032DFF" />
+        <ActivityIndicator size="large" color="#00adf5" />
       </View>
     );
   }

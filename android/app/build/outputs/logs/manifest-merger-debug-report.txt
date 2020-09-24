@@ -228,8 +228,8 @@ MERGED from [com.google.android.gms:play-services-measurement-base:16.0.3] /User
 	tools:ignore
 		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/debug/AndroidManifest.xml:7:75-114
 	android:roundIcon
-		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/main/AndroidManifest.xml:16:7-52
-		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/main/AndroidManifest.xml:16:7-52
+		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/main/AndroidManifest.xml:16:7-46
+		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/main/AndroidManifest.xml:16:7-46
 	tools:targetApi
 		ADDED from /Users/harshitha/Desktop/medicine/android/app/src/debug/AndroidManifest.xml:7:54-74
 	android:icon

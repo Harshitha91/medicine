@@ -135,7 +135,7 @@ export default class Home extends React.Component {
         onPress={() => {}}
         style={[
           styles.item,
-          { height: 110, backgroundColor: "#FFC900", flexDirection: "column" },
+          { height: 110, backgroundColor: "#fff", flexDirection: "column" },
         ]}
       >
         {/* <View style={{ flexDirection: "row" }}> */}
@@ -143,25 +143,25 @@ export default class Home extends React.Component {
           style={{
             fontWeight: "700",
             fontSize: 20,
-            color: "white",
+            color: "#121212",
             paddingBottom: 2,
           }}
         >
           {item.time}
         </Text>
 
-        <View style={{ marginLeft: 15 }}>
-          <Text
-            style={{
-              fontWeight: "600",
-              fontSize: 15,
-              color: "white",
-              paddingBottom: 2,
-            }}
-          >
-            {item.name}
-          </Text>
-        </View>
+        {/* <View style={{ marginLeft: 15 }}> */}
+        <Text
+          style={{
+            fontWeight: "600",
+            fontSize: 15,
+            color: "#393939",
+            paddingBottom: 2,
+          }}
+        >
+          {item.name}
+        </Text>
+        {/* </View> */}
         {/* </View> */}
         <View style={{ flexDirection: "row" }}>
           <CheckBox
@@ -172,10 +172,10 @@ export default class Home extends React.Component {
               // marginTop: 30,
             }}
             title="Took"
-            textStyle={{ color: "green" }}
+            textStyle={{ color: "#4c852b" }}
             checked={item.status === "completed"}
-            uncheckedColor={"green"}
-            checkedColor={"green"}
+            uncheckedColor={"#4c852b"}
+            checkedColor={"#4c852b"}
             onPress={() => this.onClickCheckBox(item, "completed")}
           />
           <CheckBox
@@ -186,11 +186,11 @@ export default class Home extends React.Component {
               // marginTop: 30,
               // marginRight: 100,
             }}
-            textStyle={{ color: "red" }}
+            textStyle={{ color: "#9e2217" }}
             title="Missed"
             checked={item.status === "missed"}
-            uncheckedColor={"red"}
-            checkedColor={"red"}
+            uncheckedColor={"#9e2217"}
+            checkedColor={"#9e2217"}
             onPress={() => this.onClickCheckBox(item, "missed")}
           />
         </View>
@@ -219,7 +219,7 @@ export default class Home extends React.Component {
               animating={true}
               style={true && { height: 80 }}
               size="large"
-              color="#032DFF"
+              color="#00adf5"
             />
           ) : (
             <Agenda
@@ -278,8 +278,6 @@ export default class Home extends React.Component {
             containerStyle={{ paddingLeft: 10, marginBottom: 10 }}
           />
         </View> */}
-
-        <Fab onPress={this.addProperty} />
       </View>
     );
   }
@@ -368,3 +366,5 @@ if (Platform.OS === "android") {
     },
   });
 }
+
+//#00adf5

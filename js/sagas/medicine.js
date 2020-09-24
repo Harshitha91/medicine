@@ -13,7 +13,7 @@ export function* saveMedicine(action) {
     const savedComplain = yield call(
       save,
       "patient/add-medicine",
-      { ...action.data, medicine_id: 2 },
+      { ...action.data },
       null
     );
 

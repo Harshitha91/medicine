@@ -109,17 +109,19 @@ export const ScheduleListItem = (props) => {
                     {data.medicine.preferred_name}
                   </Text>
                   <Text
-                    style={{ marginTop: moderateScale(5), color: "#ff2020" }}
+                    style={{ marginTop: moderateScale(5), color: "#00adf5" }}
                   >
                     Start Date:{" "}
-                    <Text style={{ color: "#ff2020" }}>{data.start_date}</Text>
+                    <Text style={{ color: "#393939" }}>{data.start_date}</Text>
+                    {"  "}- End Date:{"  "}
+                    <Text style={{ color: "#393939" }}>{data.end_date}</Text>
                   </Text>
-                  <Text
+                  {/* <Text
                     style={{ marginTop: moderateScale(5), color: "#ff2020" }}
                   >
                     End Date:{" "}
                     <Text style={{ color: "#ff2020" }}>{data.end_date}</Text>
-                  </Text>
+                  </Text> */}
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
@@ -203,6 +205,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(10),
     borderRadius: moderateScale(5),
     marginBottom: 15,
+    elevation: 1,
     width: "91%",
     left: "4%",
     top: "6%",

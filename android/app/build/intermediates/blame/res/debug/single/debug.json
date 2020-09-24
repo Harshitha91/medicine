@@ -208,10 +208,6 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/c94ecb29d2621fe793955d950028621b/res/drawable-mdpi-v4/design_ic_visibility_off.png"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "/Users/harshitha/Desktop/medicine/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xhdpi-v4/abc_text_select_handle_right_mtrl_light.png"
     },
@@ -370,10 +366,6 @@
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/color-v23_abc_btn_colored_borderless_text_material.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/color-v23/abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/harshitha/Desktop/medicine/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
@@ -1308,10 +1300,6 @@
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/color-v23/abc_tint_edittext.xml"
     },
     {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/Users/harshitha/Desktop/medicine/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable_abc_ic_menu_overflow_material.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable/abc_ic_menu_overflow_material.xml"
     },
@@ -1442,10 +1430,6 @@
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/drawable-xhdpi-v4/abc_list_pressed_holo_dark.9.png"
-    },
-    {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/harshitha/Desktop/medicine/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -1878,10 +1862,6 @@
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/layout_abc_tooltip.xml.flat",
         "source": "/Users/harshitha/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.0.aar/321315d85f30493e57566dfb3f9d32c2/res/layout/abc_tooltip.xml"
-    },
-    {
-        "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "/Users/harshitha/Desktop/medicine/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/Users/harshitha/Desktop/medicine/android/app/build/intermediates/res/merged/debug/layout_dev_loading_view.xml.flat",

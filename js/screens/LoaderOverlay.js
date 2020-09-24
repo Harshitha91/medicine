@@ -16,7 +16,7 @@ export default class LoaderOverlay extends Component {
           animating={true}
           style={{ height: 80 }}
           size="large"
-          color="#032DFF"
+          color="#00adf5"
         />
       </View>
     );

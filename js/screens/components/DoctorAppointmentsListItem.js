@@ -105,20 +105,28 @@ export const DoctorAppointmentsListItem = (props) => {
                       marginRight: 10,
                     }}
                   >
-                    {data.doctor}
+                    {data.doctor.firs_name + " " + data.doctor.last_name}
                   </Text>
                   <Text
-                    style={{ marginTop: moderateScale(5), color: "#ff2020" }}
+                    style={{ marginTop: moderateScale(5), color: "#bcbcbc" }}
                   >
-                    Date: <Text style={{ color: "#ff2020" }}>{data.date}</Text>
+                    Date:{" "}
+                    <Text style={{ color: "#000" }}>
+                      {data.channeling_date}
+                    </Text>
                   </Text>
                   <Text
                     style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}
                   >
                     Channeling Center:{" "}
                     <Text style={{ color: "#000" }}>
-                      {data.channelingCenter}
+                      {data.channeling_center.name}
                     </Text>
+                  </Text>
+                  <Text
+                    style={{ marginTop: moderateScale(2), color: "#00adf5" }}
+                  >
+                    {data.special_comment}
                   </Text>
                   <View
                     style={{
@@ -130,7 +138,7 @@ export const DoctorAppointmentsListItem = (props) => {
                   >
                     <Badge
                       status={data.status === "pending" ? "warning" : "success"}
-                      containerStyle={{ left: 0 }}
+                      containerStyle={{ marginTop: 5 }}
                       value={data.status}
                     />
                   </View>
@@ -167,6 +175,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(10),
     borderRadius: moderateScale(5),
     marginBottom: 15,
+    elevation: 1,
     width: "91%",
     left: "4%",
     top: "6%",

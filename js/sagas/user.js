@@ -16,6 +16,7 @@ import {
   setState,
   updateUserDeviceId as updateUserDeviceIdAction,
   clearState,
+  receiveUserData,
 } from "actions";
 import { goToSignIn, goHome, goToRestUserData } from "../screens/navigation";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -45,7 +46,7 @@ export function* sessionHandling(action) {
 
     if (sessionString && sessionString !== null) {
       // if (userData) {
-      yield call(goHome, 1);
+      yield call(goHome, 2);
       // } else {
       //   yield call(goToRestUserData);
       // }
@@ -110,7 +111,7 @@ export function* saveRestUserData(action) {
     // console.log("ppppppppppppppppppppppppppppppppppppppppp", savedUser);
 
     yield AsyncStorage.setItem("IS_ENTERED_USER_DATA", "true");
-    yield call(goHome, 1);
+    yield call(goHome, 2);
 
     // yield put(setState({ savedUser }));
     // yield AsyncStorage.setItem(VERIFIED_USER, "false");
@@ -170,6 +171,23 @@ export function* updateUserDeviceId(action) {
   }
 }
 
+export function* getUserDetails(action) {
+  try {
+    const userDeatails = yield call(get, "patient/view/profile");
+    console.log("00000000000000000000000000000000000000", userDeatails);
+    yield put(receiveUserData(userDeatails));
+  } catch (error) {
+    console.log("error", error);
+    yield put(setState({ btnState: false }));
+    yield call(
+      showInAppNotification,
+      "error",
+      "Error occured while adding Medicines",
+      5000
+    );
+  }
+}
+
 export default function* () {
   yield takeEvery(AUTH_USER, authenticateUser);
   yield takeEvery(SESSION_HANDLING, sessionHandling);
@@ -177,4 +195,5 @@ export default function* () {
   yield takeEvery(USER_LOGOUT, logout);
   yield takeEvery("SAVE_REST_USER_DATA", saveRestUserData);
   yield takeEvery("UPDATE_USER_DEVICE_ID", updateUserDeviceId);
+  yield takeEvery("GET_USER_DETAILS", getUserDetails);
 }

@@ -29,6 +29,12 @@ export default class UserProfile extends Component {
     Navigation.events().bindComponent(this);
   }
 
+  static defaultProps = {
+    userDeatails: {
+      patient: {},
+    },
+  };
+
   static get options() {
     return {
       topBar: {
@@ -100,6 +106,10 @@ export default class UserProfile extends Component {
     });
   }
 
+  componentDidAppear() {
+    this.props.getUserDetails();
+  }
+
   Signout = () => {
     const { logout } = this.props;
     logout();
@@ -128,8 +138,9 @@ export default class UserProfile extends Component {
   componentWillUnmount() {}
 
   render() {
-    const { userDetails, btnState } = this.props;
+    const { userDetails, btnState, userDeatails } = this.props;
     let userStatus = userDetails ? userDetails.userStatus : "";
+
     return (
       <View style={styles.userContainer}>
         <KeyboardAwareScrollView
@@ -164,7 +175,9 @@ export default class UserProfile extends Component {
                   width: "60%",
                 }}
               >
-                {"Thiraj Hassen"}
+                {userDeatails.patient.first_name +
+                  " " +
+                  userDeatails.patient.last_name}
               </Text>
               {/* <Text
                 onPress={this.goToEditPage}
@@ -193,36 +206,40 @@ export default class UserProfile extends Component {
                 Address :
                 <Text style={{ fontWeight: "bold" }}>
                   {" "}
-                  {"14/16, Hendala Road, Wattala"}
+                  {userDeatails.patient.address}
                 </Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
-                Email :
-                <Text style={{ fontWeight: "bold" }}> {"thira@gmail.com"}</Text>
-              </Text>
-              <Text style={{ marginBottom: 10 }}>
                 Mobile :
-                <Text style={{ fontWeight: "bold" }}> {"0739264897"}</Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  {" "}
+                  {userDeatails.patient.mobile}
+                </Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
                 Date of Birth :
-                <Text style={{ fontWeight: "bold" }}> {"1990-07-09"}</Text>
+                <Text style={{ fontWeight: "bold" }}>
+                  {" "}
+                  {userDeatails.patient.date_of_birth}
+                </Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
-                Gender :<Text style={{ fontWeight: "bold" }}> {"Male"}</Text>
+                Height :
+                <Text style={{ fontWeight: "bold" }}>
+                  {" "}
+                  {userDeatails.patient.height + " cm"}
+                </Text>
               </Text>
               <Text style={{ marginBottom: 10 }}>
-                Height :<Text style={{ fontWeight: "bold" }}> {"170 cm"}</Text>
-              </Text>
-              <Text style={{ marginBottom: 10 }}>
-                Weight :<Text style={{ fontWeight: "bold" }}> {"70  KG"}</Text>
-              </Text>
-              <Text style={{ marginBottom: 10 }}>
-                Age :<Text style={{ fontWeight: "bold" }}> {"30 years"}</Text>
+                Weight :
+                <Text style={{ fontWeight: "bold" }}>
+                  {" "}
+                  {userDeatails.patient.weight + " KG"}
+                </Text>
               </Text>
               <Text>
-                Blood Group :
-                <Text style={{ fontWeight: "bold" }}> {"B Positive"}</Text>
+                BMI :
+                <Text style={{ fontWeight: "bold" }}> {userDeatails.bmi}</Text>
               </Text>
             </View>
           </View>
@@ -300,6 +317,7 @@ const mapStateToProps = (state, ownProps) => {
     userDetails: state.app.userData,
     updateUserModelError: state.app.updateUserModelError,
     frmUpdateUser: state.form.updateUser,
+    userDeatails: state.user.userDeatails,
   };
 };
 

@@ -46,17 +46,15 @@ export const logout = () => {
   };
 };
 
-export const getUserDetails = (data, componentId) => {
+export const getUserDetails = () => {
   return {
-    type: GET_USER_DETAILS,
-    data,
-    componentId,
+    type: "GET_USER_DETAILS",
   };
 };
 
 export const receiveUserData = (data) => {
   return {
-    type: RECEIVE_USER_DATA,
+    type: "RECEIVE_USER_DATA",
     data,
   };
 };

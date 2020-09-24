@@ -20,7 +20,6 @@ const theme = Style.get();
 
 export const MedicineListItem = (props) => {
   const { data, onPress, name } = props;
-  const tag = data.complainType;
   let badgeType;
   let badgeText;
   let badgeColor;
@@ -106,9 +105,9 @@ export const MedicineListItem = (props) => {
                     marginRight: 10,
                   }}
                 >
-                  {data.medicine_id}
+                  {data.medicine_name}
                 </Text>
-                <Text style={{ marginTop: moderateScale(2), color: "#bcbcbc" }}>
+                <Text style={{ marginTop: moderateScale(5), color: "#bcbcbc" }}>
                   Preferred Name:{" "}
                   <Text style={{ color: "#000" }}>{data.preferred_name}</Text>
                 </Text>
@@ -149,6 +148,7 @@ const styles = StyleSheet.create({
     paddingRight: moderateScale(10),
     borderRadius: moderateScale(5),
     marginBottom: 15,
+    elevation: 1,
     width: "91%",
     left: "4%",
     top: "6%",

@@ -67,7 +67,7 @@ export default class Slider extends React.Component {
         this.navigate("DoctorAppointmentsList", "Doctor Appointments");
         break;
       case "Care Giver":
-        this.navigate("CareGiverList", "Care Giver List");
+        this.navigate("CareGiver", "Care Giver Invitations");
         break;
       default:
         break;

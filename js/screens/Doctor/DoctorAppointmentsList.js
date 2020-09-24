@@ -61,55 +61,39 @@ export default class DoctorAppointmentsList extends React.Component {
         animating={true}
         style={true && { height: 80 }}
         size="large"
-        color="#032DFF"
+        color="#00adf5"
       />
     ) : null;
   };
 
-  renderHeader = () => {
-    return (
-      <View style={styles.complainTypeSectionHeader}>
-        <Text style={styles.complainTypeViewLabels}>Upcoming</Text>
-      </View>
-    );
-  };
-
-  renderHistoryHeader = () => {
-    return (
-      <View style={styles.complainTypeSectionHeader}>
-        <Text style={styles.complainTypeViewLabels}>History</Text>
-      </View>
-    );
-  };
-
-  onItemClick = () => {
-    Navigation.push("CenterStack", {
-      component: {
-        name: "ChannelingDetails",
-        options: {
-          topBar: {
-            visible: true,
-            height: moderateScale(60),
-            topMargin: 15,
-            borderHeight: 0.5,
-            elevation: 0,
-            title: {
-              alignment: "center",
-              text: "Channeling Details",
-              fontSize: 25,
-              fontFamily: "Ubuntu-Bold",
-            },
-            backButton: {
-              showTitle: false,
-            },
-            background: {
-              color: "#FFFFFF",
-            },
-          },
-        },
-      },
-    });
-  };
+  // onItemClick = () => {
+  //   Navigation.push("CenterStack", {
+  //     component: {
+  //       name: "ChannelingDetails",
+  //       options: {
+  //         topBar: {
+  //           visible: true,
+  //           height: moderateScale(60),
+  //           topMargin: 15,
+  //           borderHeight: 0.5,
+  //           elevation: 0,
+  //           title: {
+  //             alignment: "center",
+  //             text: "Channeling Details",
+  //             fontSize: 25,
+  //             fontFamily: "Ubuntu-Bold",
+  //           },
+  //           backButton: {
+  //             showTitle: false,
+  //           },
+  //           background: {
+  //             color: "#FFFFFF",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // };
 
   render() {
     let newData = [
@@ -152,7 +136,7 @@ export default class DoctorAppointmentsList extends React.Component {
         <View style={styles.wrapper}>
           <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
-            ListHeaderComponent={this.renderHeader}
+            // ListHeaderComponent={this.renderHeader}
             data={this.props.appointmentList}
             extraData={this.state}
             keyExtractor={(item) => item.id}
@@ -160,7 +144,7 @@ export default class DoctorAppointmentsList extends React.Component {
               <DoctorAppointmentsListItem
                 data={item}
                 toastMessage={toastMessage}
-                onPress={() => this.onItemClick(item)}
+                onPress={() => {}}
               />
             )}
             refreshing={false}
@@ -169,7 +153,7 @@ export default class DoctorAppointmentsList extends React.Component {
             // onEndReachedThreshold={0.5}
             ListFooterComponent={this.renderFooter}
           />
-          <FlatList
+          {/* <FlatList
             contentContainerStyle={{ paddingBottom: 12 }}
             ListHeaderComponent={this.renderHistoryHeader}
             data={historyData}
@@ -187,7 +171,7 @@ export default class DoctorAppointmentsList extends React.Component {
             // onEndReached={this.handleLoadMore}
             // onEndReachedThreshold={0.5}
             ListFooterComponent={this.renderFooter}
-          />
+          /> */}
         </View>
         <DropdownAlert ref={(ref) => (this.dropdown = ref)} showCancel={true} />
         <Fab onPress={this.makeAppoinment} />
@@ -347,7 +331,7 @@ if (Platform.OS === "android") {
       flex: 1,
       fontSize: 17,
       height: 30,
-      color: "#032DFF",
+      color: "#00adf5",
     },
   });
 } else if (Platform.OS === "ios") {

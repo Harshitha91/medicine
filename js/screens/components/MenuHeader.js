@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: (headerHeight - 60) / 2,
     borderWidth: 3,
-    borderColor: "#032DFF",
+    borderColor: "#00adf5",
   },
   textContainer: {
     // flex: 1,

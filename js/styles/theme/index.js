@@ -20,7 +20,7 @@ export default {
   listGapColor: "#ECF2F6",
   emptyMessageColor: "#BFBFBF",
   button: {
-    backgroundColor: "#032DFF", /////////////////////
+    backgroundColor: "#00adf5", /////////////////////
     inActiveBackgroundColor: "#FFF",
     topTabButtonBackgroundColor: "#ffc425",
     color: "#FFF",
